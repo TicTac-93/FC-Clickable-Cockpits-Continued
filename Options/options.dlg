@@ -1,0 +1,852 @@
+-- Due to lack of documentation, taking a lot of this from the Community A-4E mod
+
+-- Layout Variables
+
+local MarginLeft = 15
+local LeftColumnX = MarginLeft
+-- local LeftColumnWidth = 500
+-- local LeftColumnLabelWidth = 250
+-- local LeftColumnComboListX = LeftColumnX + LeftColumnLabelWidth
+local LeftColumnIndent = LeftColumnX + 10
+local EntryHeight = 24
+local EntryLabelWidth = 160
+local EntryLabelWidthLong = 500
+-- local EntrySliderWidth = 300
+local EntryWidgetWidth = 50
+local EntryHelpWidth = 800
+-- local EntryWidgetOffset = 450
+local EntryCheckBoxOffset = 4
+local EntryCheckBoxIndent = 25
+-- local EntrySliderOffset = 2
+
+-- local MarginLeftColumn2 = 575
+-- local RightColumnX = MarginLeftColumn2
+-- local RightColumnWidth = 500
+-- local RightColumnLabelWidth = 160
+-- local RightColumnComboListX = RightColumnX + RightColumnLabelWidth
+-- local RightColumnIndent = 170
+--local EntryLabelWidthLongColumn2 = 200
+-- local EntrySliderWidthColumn2 = 200
+-- local EntryWidgetWidthColumn2 = 50
+-- local EntryHelpWidthColumn2 = 500
+-- local EntryWidgetOffsetColumn2 = 350
+-- local EntrySliderOffsetColumn2 = 2
+
+local lineheight = 23
+
+-- Menu entry y positions
+
+local OrderOptionsTitle       = lineheight * 1
+
+local OrderSecFC3             = lineheight * 4
+local OrderToggle1            = OrderSecFC3 + lineheight * 1
+local OrderToggle2            = OrderSecFC3 + lineheight * 2
+local OrderToggle3            = OrderSecFC3 + lineheight * 3
+local OrderToggle4            = OrderSecFC3 + lineheight * 4
+local OrderToggle5            = OrderSecFC3 + lineheight * 5
+local OrderToggle6            = OrderSecFC3 + lineheight * 6
+local OrderToggle7            = OrderSecFC3 + lineheight * 7
+local OrderToggle8            = OrderSecFC3 + lineheight * 8
+local OrderToggle9            = OrderSecFC3 + lineheight * 9
+local OrderToggle10           = OrderSecFC3 + lineheight * 10
+
+local OrderSecFC24            = OrderSecFC3 + lineheight * 12
+local OrderToggle11           = OrderSecFC24 + lineheight * 1
+local OrderToggle12           = OrderSecFC24 + lineheight * 2
+local OrderToggle13           = OrderSecFC24 + lineheight * 3
+
+-- Styles
+
+local SectionSkin = {
+  ["params"] = {
+    ["name"] = "staticOptionsCaptionSkin",
+  },
+	["states"] = {
+		["released"] = {
+			[1] = {
+				["text"] = {
+					["fontSize"] = 14,
+					["horzAlign"] = {
+						["type"] = "min"
+					}
+				}
+			}
+		}
+	}
+}
+
+local HelpSkin = {
+	["params"] = {
+		["name"] = "staticSkin2",
+	},
+	["states"] = {
+		["released"] = {
+			[1] = {
+				["text"] = {
+					["fontSize"] = 11,
+					["horzAlign"] = {
+						["type"] = "min"
+					}
+				}
+			}
+		}
+	}
+}
+
+local CheckBoxSkin = {
+	["params"] = {
+		["name"] = "checkBoxSkin_options",
+	},
+}
+
+-- Content
+
+dialog = {
+  ["children"] = {
+    ["containerPlugin"] = {
+      ["children"] = {
+				--------------------------------------------
+				-- Options Title
+				--------------------------------------------
+
+				["optionsTitle"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnX,
+							["y"] = OrderOptionsTitle,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_PLUGIN_NAME",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsTitleSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+
+				--------------------------------------------
+				-- Github Page
+				--------------------------------------------
+
+				["projectURL"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnX,
+							["y"] = OrderOptionsTitle + lineheight,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_PROJECT_URL",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsTitleSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				
+
+				--------------------------------------------
+				-- FC3 Toggles
+				--------------------------------------------
+
+				["FC3Label"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnX,
+							["y"] = OrderSecFC3,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_FC3_HEADER",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = SectionSkin,
+					["type"] = "Static",
+				},
+				
+
+				--------------------------------------------
+				-- A-10A
+				--------------------------------------------
+
+				["A10ALabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle1,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_A10A",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["A10A_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle1 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- F-15C
+				--------------------------------------------
+
+				["F15CLabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle2,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_F15C",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["F15C_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle2 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- J-11
+				--------------------------------------------
+
+				["J11Label"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle3,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_J11",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["J11_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle3 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- MiG-29a
+				--------------------------------------------
+
+				["MIG29ALabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle4,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_MIG29a",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["MIG29A_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle4 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- MiG-29g
+				--------------------------------------------
+
+				["MIG29GLabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle5,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_MIG29g",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["MIG29G_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle5 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- MiG-29s
+				--------------------------------------------
+
+				["MIG29SLabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle6,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_MIG29s",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["MIG29S_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle6 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- Su-25a
+				--------------------------------------------
+
+				["SU25ALabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle7,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_SU25A",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["SU25A_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle7 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- Su-25t
+				--------------------------------------------
+
+				["SU25TLabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle8,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_SU25T",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["SU25T_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle8 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- Su-27
+				--------------------------------------------
+
+				["SU27Label"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle9,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_SU27",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["SU27_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle9 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- Su-33
+				--------------------------------------------
+
+				["SU33Label"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle10,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_SU33",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["SU33_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle10 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- FC24 Toggles
+				--------------------------------------------
+
+				["FC24Label"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnX,
+							["y"] = OrderSecFC24,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_FC24_HEADER",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = SectionSkin,
+					["type"] = "Static",
+				},
+				
+
+				--------------------------------------------
+				-- F-5E
+				--------------------------------------------
+
+				["F5EFCLabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle11,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_F5E",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["F5EFC_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle11 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- F-86 FC
+				--------------------------------------------
+
+				["F86FCLabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle12,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_F86",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["F86FC_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle12 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+				
+
+				--------------------------------------------
+				-- MiG-15bis FC
+				--------------------------------------------
+
+				["MIG15FCLabel"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnIndent + EntryCheckBoxIndent,
+							["y"] = OrderToggle13,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_TOGGLE_MIG15",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "staticOptionsCaptionSkin"
+						}
+					},
+					["type"] = "Static"
+				},
+				["MIG15FC_EnabledCheckbox"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryWidgetWidth,
+							["x"] = LeftColumnIndent,
+							["y"] = OrderToggle13 + EntryCheckBoxOffset,
+						},
+						["enabled"] = true,
+						["state"] = true,
+						["tabOrder"] = 0,
+						["text"] = "",
+						["tooltip"] = "$FCC_TOGGLES_HINT",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = CheckBoxSkin,
+					["type"] = "CheckBox",
+				},
+        --------------------------------------------------
+      },
+
+
+
+			["params"] = {
+				["bounds"] = {
+					["h"] = 600,
+					["w"] = 974,
+					["x"] = 0,
+					["y"] = 0
+				},
+				["enabled"] = true,
+				["text"] = "",
+				["tooltip"] = "",
+				["visible"] = true,
+				["zindex"] = 2
+			},
+			["skin"] = {
+				["params"] = {
+					["name"] = "panelSkin"
+				}
+			},
+			["type"] = "Panel"
+		}
+	},
+	["params"] = {
+		["bounds"] = {
+			["h"] = 851,
+			["w"] = 1135,
+			["x"] = 0,
+			["y"] = 0
+		},
+		["draggable"] = true,
+		["enabled"] = true,
+		["hasCursor"] = true,
+		["lockFlow"] = false,
+		["modal"] = false,
+		["offscreen"] = false,
+		["resizable"] = false,
+		["text"] = "New dialog",
+		["zOrder"] = 0
+	},
+	["skin"] = {
+		["params"] = {
+			["name"] = "windowSkin"
+		}
+	},
+	["type"] = "Window"
+}

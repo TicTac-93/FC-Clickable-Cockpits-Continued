@@ -1,0 +1,19 @@
+Notes on the original mod's behavior:
+
+- DCS will search for and run entry.lua if it can find it.  This should initialize the mod.  In this case, it:
+	- Declares the plugin
+	- Sets up a menu entry for it with options for planes depending on whether or not you own them
+	- Mounts a few mod directories, including "Cockpit/Scripts" which will be checked (I think?) every time a cockpit is loaded
+
+- mainpanel_init.lua has a "shape_name" variable that sets the cockpit model.  This seems to be how we're loading our clickable models on top of the regular cockpits.
+	- This is also creating a bunch of "Gauge" objects, which I assume were for monitoring animated parts of the cockpit for xforming our interaction points.  But they seem unused.
+
+- I think the entire utils.lua file is copied from the A-4E mod, and according to the DCS log is failing to load.... How much of this stuff is just leftover from development?
+	- Would be good to try and put together an MVP build of this mod, figure out what the actual bare necessities are.
+
+- I think that any visible cockpit animation is the result of the default game models, but that should be confirmed.  The A-10A for instance has a TON of unused switch animations at the moment.
+
+- New plan: Start rebuilding the mod directory from scratch, one aircraft at a time.  Should leave us with the bare necessities and a better understanding of how this is all set up.
+
+Misc notes:
+- lshift + r to reload current mission in-game, this will reload any .lua scripts that get run dynamically (but won't re-init the whole plugin)
