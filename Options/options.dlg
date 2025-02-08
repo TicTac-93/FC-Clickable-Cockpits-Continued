@@ -206,7 +206,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["A10A_EnabledCheckbox"] = {
+				["A10A_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -252,7 +252,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["F15C_EnabledCheckbox"] = {
+				["F15C_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -298,7 +298,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["J11_EnabledCheckbox"] = {
+				["J11_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -344,7 +344,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["MIG29A_EnabledCheckbox"] = {
+				["MIG29A_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -390,7 +390,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["MIG29G_EnabledCheckbox"] = {
+				["MIG29G_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -436,7 +436,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["MIG29S_EnabledCheckbox"] = {
+				["MIG29S_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -482,7 +482,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["SU25A_EnabledCheckbox"] = {
+				["SU25A_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -528,7 +528,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["SU25T_EnabledCheckbox"] = {
+				["SU25T_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -574,7 +574,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["SU27_EnabledCheckbox"] = {
+				["SU27_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -620,7 +620,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["SU33_EnabledCheckbox"] = {
+				["SU33_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -689,7 +689,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["F5EFC_EnabledCheckbox"] = {
+				["F5EFC_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -735,7 +735,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["F86FC_EnabledCheckbox"] = {
+				["F86FC_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -781,7 +781,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["MIG15FC_EnabledCheckbox"] = {
+				["MIG15FC_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,

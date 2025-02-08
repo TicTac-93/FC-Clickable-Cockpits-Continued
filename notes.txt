@@ -1,9 +1,18 @@
+
+File load order from user ops / DCS forum posts (after entry.lua):
+--  1) device_init.lua (called by EDGE)
+--  2) mainpanel_init.lua (called by device_init)
+--- 3) all devices (called by device_init)
+--- 4) sounds_init.lua (called by device_init)
+--- 5) clickabledata.lua (called by EDGE?)
+
 Notes on the original mod's behavior:
 
 - DCS will search for and run entry.lua if it can find it.  This should initialize the mod.  In this case, it:
 	- Declares the plugin
-	- Sets up a menu entry for it with options for planes depending on whether or not you own them
-	- Mounts a few mod directories, including "Cockpit/Scripts" which will be checked (I think?) every time a cockpit is loaded
+	- Associates the plugin with certain aircraft
+		- Also (optionally?) connects to individual aircraft with settings defined in Options/
+	- Mounts a few mod directories, including "Cockpit/Scripts" which will be checked every time a connected aircraft is loaded
 
 - mainpanel_init.lua has a "shape_name" variable that sets the cockpit model.  This seems to be how we're loading our clickable models on top of the regular cockpits.
 	- This is also creating a bunch of "Gauge" objects, which I assume were for monitoring animated parts of the cockpit for xforming our interaction points.  But they seem unused.
@@ -17,3 +26,4 @@ Notes on the original mod's behavior:
 
 Misc notes:
 - lshift + r to reload current mission in-game, this will reload any .lua scripts that get run dynamically (but won't re-init the whole plugin)
+	- Holy shit, this can cause some bad memory leaks
