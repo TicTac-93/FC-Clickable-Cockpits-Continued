@@ -31,7 +31,7 @@ local path 		= current_mod_path..'/Cockpit/Scripts/'
 
 -- I believe this is linking the plugin to each aircraft, as long as their corresponding option is ENABLED
 -- Aircraft names must be exactly the same as in their entry.lua MAC_flyable() calls
-add_plugin_systems('CLICKABLE-FC3_Module','*',path,
+add_plugin_systems('FC-Clickable_module','*',path,
 	{
 	
 		["A-10A"]						= {enable_options_key_for_unit = "A10A_enabled"},

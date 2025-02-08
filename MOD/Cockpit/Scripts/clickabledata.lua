@@ -7,4 +7,4 @@
 ------ with args "Control Stick - HIDE/SHOW", devices.CANOPY, Keys.ToggleStick, nil
 ------            Hover Hint                  Device          Command code      arg (used for driving animation)
 
-env.info("FC Clickable: clickabledata.lua")
+log.info("FC Clickable: clickabledata.lua")
