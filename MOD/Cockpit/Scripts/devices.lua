@@ -5,6 +5,6 @@ local function counter()
 end
 -------DEVICE ID-------
 devices = {}
-devices["FCCC_COMMON"] = counter()
-devices["FCCC_TEST"] = counter()
-devices["FCCC_A10A"] = counter()
+devices["FCC_COMMON"] = counter()
+devices["FCC_TEST"] = counter()
+devices["FCC_A10A"] = counter()

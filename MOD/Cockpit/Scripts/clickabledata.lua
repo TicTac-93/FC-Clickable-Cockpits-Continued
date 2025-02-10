@@ -1,10 +1,23 @@
 -- Run automatically by EDGE
 --
 -- Binds Connectors in the cockpit to handler functions and devices
--- eg: elements["PNT_2"] = default_2_position_tumb("Control Stick - HIDE/SHOW", devices.CANOPY, Keys.ToggleStick, nil)
------- Bind Connector PNT_2
------- to Handler default_2_position_tumb()
------- with args "Control Stick - HIDE/SHOW", devices.CANOPY, Keys.ToggleStick, nil
-------            Hover Hint                  Device          Command code      arg (used for driving animation)
 
-log.info("FC Clickable: clickabledata.lua")
+dofile(LockOn_Options.script_path.."defs_clickables.lua")  -- Clickable element handler functions
+dofile(LockOn_Options.script_path.."defs_commands.lua")  -- Command codes to be sent to devices.  Internal, not specific to DCS
+dofile(LockOn_Options.script_path.."devices.lua")  -- Device IDs, bound to .lua files in device_init
+
+-- Not used directly, but possibly a requirement?
+local gettext = require("i_18n")
+_ = gettext.translate
+
+log.write("FC-Clickable", log.INFO, "clickabledata.lua")
+
+
+
+-- Elements table, stores all connectors as keys and their associated function calls as values
+elements = {}
+local current_aircraft = get_aircraft_type()
+
+-- Common elements, used by all FC aircraft
+-- elements["PNT_ALT_SET"] = default_axis_limited("Altimeter Pressure Set", devices.CLICKABLE, commands.ALTIMETER)
+elements["PNT_CANOPY"] = default_button("Canopy OPEN/CLOSE", devices.CLICKABLE, device_commands.CANOPY)

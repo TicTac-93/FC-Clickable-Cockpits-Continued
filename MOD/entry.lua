@@ -27,11 +27,11 @@ declare_plugin(mod_ID,
 
 })
 
-local path 		= current_mod_path..'/Cockpit/Scripts/'
+mount_vfs_model_path(current_mod_path.."/Shapes")
 
 -- I believe this is linking the plugin to each aircraft, as long as their corresponding option is ENABLED
 -- Aircraft names must be exactly the same as in their entry.lua MAC_flyable() calls
-add_plugin_systems('FC-Clickable_module','*',path,
+add_plugin_systems('FC-Clickable_module','*',current_mod_path.."/Cockpit/Scripts/",
 	{
 	
 		["A-10A"]						= {enable_options_key_for_unit = "A10A_enabled"},

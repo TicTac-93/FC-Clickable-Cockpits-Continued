@@ -19,9 +19,9 @@ MainPanel = {
 
 -- Creators table 
 creators = {}
-creators[devices.FCCC_COMMON] = {"avLuaDevice", this_dir.."Systems/clickable_common.lua"}
+creators[devices.FCC_COMMON] = {"avLuaDevice", this_dir.."Systems/clickable_common.lua"}
 
 -- Aircraft-specific scripts will be added to creators[] here via conditional statements
 if current_aircraft == "A-10A" then
-  creators[devices.FCCC_A10A] = {"avLuaDevice", this_dir.."Systems/A-10A/clickable_a10a.lua"}
+  creators[devices.FCC_A10A] = {"avLuaDevice", this_dir.."Systems/A-10A/clickable_a10a.lua"}
 end
