@@ -13,14 +13,18 @@ make_default_activity(update_time_step)
 -- Register all device_commands that will be handled in this file
 -- If it's not in this list, it cannot trigger SetCommand()
 self:listen_command(device_commands.CANOPY)
+self:listen_command(device_commands.ENGL_OFF)
+self:listen_command(device_commands.ENGR_OFF)
 
 ---This is called by the button handlers assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
 ---@param value number unknown
 function SetCommand(command, value)
+  FCCLOG.info("Command triggered: " .. command .. ", " .. value)
 
   if command == device_commands.CANOPY then
-    FCCLOG.info("CANOPY ACTIVATED")
+    dispatch_action(nil, iCommands.SYS_Canopy)
+    FCCLOG.info("CANOPY")
   end
 
 end

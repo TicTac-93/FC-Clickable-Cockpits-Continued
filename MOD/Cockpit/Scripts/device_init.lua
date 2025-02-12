@@ -36,11 +36,6 @@ if abort then
 end
 -- END AIRCRAFT WHITELIST
 
-
--- Initialize our devices table, which is really just a bunch of names paired with unique indices
--- Used for setting up the Creators table further down
-dofile(scripts.."devices.lua")
-
 MainPanel = {
   "ccMainPanel",
   scripts.."mainpanel_init.lua",
@@ -48,6 +43,7 @@ MainPanel = {
 }
 
 -- Creators table 
+dofile(scripts.."devices.lua")  -- Device IDs
 creators = {}
 creators[devices.FCC_COMMON] = {"avLuaDevice", scripts.."Systems/clickable_common.lua"}
 

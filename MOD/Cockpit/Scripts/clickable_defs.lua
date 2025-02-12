@@ -37,6 +37,28 @@ function default_button(hint_, device_, command_, arg_, arg_val_, arg_lim_, soun
     }
 end
 
+---Modified version of default_button.
+---Suitable for buttons that initiate an action, this does not emit a signal on release.
+---@param hint_ string
+---@param device_ integer
+---@param command_ integer
+---@return table
+function fcc_default_button(hint_, device_, command_)
+    local arg_val_ = 1
+    local arg_lim_ = {0, 1}
+
+    return {
+        class = {class_type.BTN},
+        hint = hint_,
+        device = device_,
+        action = {command_},
+        arg = {nil},
+        arg_value = {arg_val_},
+        arg_lim = {arg_lim_},
+        use_release_message = {true},
+    }
+end
+
 -- not in use
 function default_1_position_tumb(hint_, device_, command_, arg_, arg_val_, arg_lim_)
     local arg_val_ = arg_val_ or 1

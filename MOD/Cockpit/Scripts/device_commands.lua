@@ -1,7 +1,7 @@
 -- Stores command values for both internal use and for sending to the game engine
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")  -- Mod logging functions
 
-local count = 10000  -- Start at 10k to deconflict with internal keybind signals
+local count = 3500  -- Adjust starting value to deconflict with other systems in the game.  Our range of values HAS to be unique!
 local function counter()
 	count = count + 1
 	return count

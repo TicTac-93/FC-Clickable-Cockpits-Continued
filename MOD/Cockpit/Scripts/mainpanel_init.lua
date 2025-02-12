@@ -1,4 +1,4 @@
--- Called by device_init.lua
+-- Specified by device_init.lua, but called by EDGE
 -- Responsible for loading the model (shape_name) for the cockpit,
 -- as well as connecting parameters to animation args via Gauges
 
