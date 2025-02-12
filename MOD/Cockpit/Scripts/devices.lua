@@ -4,7 +4,11 @@ local function counter()
 	return count
 end
 -------DEVICE ID-------
-devices = {}
-devices["FCC_COMMON"] = counter()
-devices["FCC_TEST"] = counter()
-devices["FCC_A10A"] = counter()
+if devices == nil then
+
+	devices = {}
+	devices["FCC_COMMON"] = counter()
+	devices["FCC_TEST"] = counter()
+	devices["FCC_A10A"] = counter()
+	
+end

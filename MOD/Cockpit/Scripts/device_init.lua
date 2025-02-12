@@ -1,27 +1,59 @@
 -- Run automatically by EDGE
 -- More or less responsible for initializing the rest of the plugin
---
--- Since the plugin should only run for aircraft that it's been associated with in entry.lua,
--- and should only run if their corresponding option is enabled, we can proceed with starting up.
 
-local this_dir = LockOn_Options.script_path
+dofile(LockOn_Options.script_path.."/Utilities/logging.lua")  -- Mod logging functions
+
+local scripts = LockOn_Options.script_path
 current_aircraft = get_aircraft_type()
+
+-- You might think that this plugin would only be run for the aircraft in entry.lua's add_plugin_system()
+-- You would be wrong.
+-- If the current aircraft is not whitelisted, abort the initialization
+local abort = true
+local whitelist = {
+  "A-10A",
+  "F-15C",
+  "J-11A",
+  "MiG-29A",
+  "MiG-29G",
+  "MiG-29S",
+  "Su-25",
+  "Su-25T",
+  "Su-27",
+  "Su-33",
+  "F-5E-3_FC",
+  "F-86F_FC",
+  "MiG-15bis_FC",
+}
+for index= 0, table.getn(whitelist), 1 do
+  if whitelist[index] == current_aircraft then
+    abort = false
+    break
+  end
+end
+if abort then
+  return
+end
+-- END AIRCRAFT WHITELIST
+
 
 -- Initialize our devices table, which is really just a bunch of names paired with unique indices
 -- Used for setting up the Creators table further down
-dofile(this_dir.."devices.lua")
+dofile(scripts.."devices.lua")
 
 MainPanel = {
   "ccMainPanel",
-  this_dir.."mainpanel_init.lua",
+  scripts.."mainpanel_init.lua",
   {}
 }
 
 -- Creators table 
 creators = {}
-creators[devices.FCC_COMMON] = {"avLuaDevice", this_dir.."Systems/clickable_common.lua"}
+creators[devices.FCC_COMMON] = {"avLuaDevice", scripts.."Systems/clickable_common.lua"}
 
 -- Aircraft-specific scripts will be added to creators[] here via conditional statements
 if current_aircraft == "A-10A" then
-  creators[devices.FCC_A10A] = {"avLuaDevice", this_dir.."Systems/A-10A/clickable_a10a.lua"}
+  creators[devices.FCC_A10A] = {"avLuaDevice", scripts.."Systems/clickable_a10a.lua"}
 end
+
+FCCLOG.info("device_init INIT")
