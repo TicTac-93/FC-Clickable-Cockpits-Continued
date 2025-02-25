@@ -1,29 +1,30 @@
 local mod_ID = "FC Clickable Cockpits Continued"
 
 declare_plugin(mod_ID,
-{
-
-	installed			= true,
-	dirName				= current_mod_path,
-	displayName		= mod_ID,
-	shortName			= "FC Clickable",
-	fileMenuName	= "FC Clickable",
-	version				= "TEST",
-	state					= "installed",
-	developerName	= "TicTac",
-	info					= "A spiritual successor to RedK0d's Clickable Cockpits mod",
-
-	load_immediately	= true,
-	binaries					= {},
-	Skins = {},
-	Options = 
 	{
+
+		installed			= true,
+		dirName				= current_mod_path,
+		displayName		= _(mod_ID),
+		fileMenuName	= _("FC Clickable"),
+		version				= "TEST",
+		state					= "installed",
+		developerName	= "TicTac",
+		info					= _("A spiritual successor to RedK0d's Clickable Cockpits mod"),
+
+		load_immediately	= true,
+		binaries					= {},
+		Skins = {},
+		
+		-- All table entries in the declare_plugin call need to be wrapped in a second table, for some reason
+		Options = 
 		{
-			name			= mod_ID,
-			nameId		= "FC CCC",
-			dir				= "Options",
+			{
+				name			= _("FC Clickable Cockpits"),
+				nameId		= "FC CCC",
+				dir				= "Options",
+			},
 		},
-	},
 
 })
 
@@ -31,9 +32,9 @@ mount_vfs_model_path(current_mod_path.."/Shapes")
 
 -- I believe this is linking the plugin to each aircraft, as long as their corresponding option is ENABLED
 -- Aircraft names must be exactly the same as in their entry.lua MAC_flyable() calls
-add_plugin_systems('FC-Clickable_module','*',current_mod_path.."/Cockpit/Scripts/",
+add_plugin_systems("FC-Clickable_module","*",current_mod_path.."/Cockpit/Scripts/",
 	{
-	
+
 		["A-10A"]						= {enable_options_key_for_unit = "A10A_enabled"},
 		["F-15C"]						= {enable_options_key_for_unit = "F15C_enabled"},
 		["J-11A"] 					= {enable_options_key_for_unit = "J11_enabled"},
@@ -48,7 +49,6 @@ add_plugin_systems('FC-Clickable_module','*',current_mod_path.."/Cockpit/Scripts
 		["F-86F_FC"] 				= {enable_options_key_for_unit = "F86FC_enabled"},
 		["MiG-15bis_FC"] 		= {enable_options_key_for_unit = "MIG15FC_enabled"},
 
-	}
-)
+})
 
 plugin_done()

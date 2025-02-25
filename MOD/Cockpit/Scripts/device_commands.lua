@@ -44,6 +44,8 @@ if device_commands == nil then
 		POWER_TGL = counter(),
 		POWER_ON = counter(),
 		POWER_OFF = counter(),
+		RWR_VOL = counter(),
+		RWR_MODE = counter(),
 		WPT_CYCLE = counter(),  -- Waypoint / Airfield selection
 
 		WEP_CYCLE = counter(),
@@ -53,6 +55,10 @@ if device_commands == nil then
 
 		FUEL_AA_TGL = counter(),
 		FUEL_DUMP = counter(),
+
+		VIEW_VERT = counter(),
+		VIEW_FWD = counter(),
+		STICK_TGL = counter(),
 
 	}
 	

@@ -6,9 +6,10 @@ end
 -------DEVICE ID-------
 if devices == nil then
 
-	devices = {}
-	devices["FCC_COMMON"] = counter()
-	devices["FCC_TEST"] = counter()
-	devices["FCC_A10A"] = counter()
+	devices = {
+		FCC_COMMON = counter(),
+		FCC_TEST = counter(),
+		FCC_A10A = counter(),
+	}
 	
 end
