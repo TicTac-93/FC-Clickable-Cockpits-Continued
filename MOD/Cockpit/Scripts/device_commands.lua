@@ -18,6 +18,7 @@ if device_commands == nil then
 		ALT_SET = counter(),
 		AP_MODE = counter(),  -- Autopilot: Cycle modes
 		AP_TGL = counter(),
+		AP_ARM = counter(),  -- Used by the A-10A to arm the autopilot system
 		CANOPY = counter(),
 		CAUTION_CLR = counter(),
 		CM_AUTO = counter(),
@@ -101,7 +102,7 @@ if iCommands == nil then
 	{
 
 		-- Master Modes
-		MM_NAV = 105,
+		MM_Nav = 105,
 		MM_FI0 = 110,  -- Longitudinal Missile Aiming Mode
 		MM_Ground = 111,
 		MM_NextTarget = 102,  -- Next Waypoint, Airfield or Target
@@ -119,8 +120,8 @@ if iCommands == nil then
 		CM_Jamming = 136,  -- ECM
 
 		-- LASTE / AP
-		AP_EAC_ARM = 1050,
-		AP_EAC_OFF = 1051,
+		AP_EAC_Arm = 1050,
+		AP_EAC_Off = 1051,
 		AP_Toggle = 62,
 		AP_AltBankMode = 387,  -- Altitude / Bank Hold
 		AP_AltHdgMode = 636,  -- Altitude / Heading Hold
