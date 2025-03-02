@@ -1,24 +1,20 @@
--- This will house all universal clickable logic
--- eg: Canopy, Gear, Flaps, Mirrors, HUD brightness, etc
+-- This handles all default clickable logic, if an aircraft requires more specific implementation
+-- it will be in its clickable_xxx.lua file
 
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")
 dofile(LockOn_Options.script_path.."device_commands.lua")
 
 local self = GetSelf()
-
 local sensor_data = get_base_data()
-local update_time_step = 0.2  -- Update will be called 5 times per second
+-- Timestep has to be fairly small, otherwise view adjustments will stutter
+local update_time_step = 0.02  -- Update will be called 50 times per second
 make_default_activity(update_time_step)
 
--- Register all device_commands that will be handled in this file
--- If it's not in this list, it cannot trigger SetCommand()
--- self:listen_command(device_commands.CANOPY)
--- self:listen_command(device_commands.ENGL_OFF)
--- self:listen_command(device_commands.ENGR_OFF)
+seat_stopped = true  -- Used by view_adjust() to avoid running unnecessarily
 
 ---This is called by the button handlers assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
----@param value number unknown
+---@param value number The current value of the clickable element, specifically the arg tied to it
 function SetCommand(command, value)
   FCCLOG.info("Command triggered: " .. command .. ", " .. value)
 
@@ -75,14 +71,17 @@ function SetCommand(command, value)
 
   elseif command == device_commands.FLAPS then
     if value > 0 then
-      dispatch_action(nil, iCommands.SYS_FlapsOn)
-    else
       dispatch_action(nil, iCommands.SYS_FlapsOff)
+    elseif value < 0 then
+      dispatch_action(nil, iCommands.SYS_FlapsOn)
     end
 
   elseif command == device_commands.GEAR then
-    -- Should update this to be a springloaded_3_pos switch, signals for gear down and up
-    dispatch_action(nil, iCommands.SYS_GearCycle)
+    if value > 0 then
+      dispatch_action(nil, iCommands.SYS_GearUp)
+    elseif value < 0 then
+      dispatch_action(nil, iCommands.SYS_GearDown)
+    end
 
   elseif command == device_commands.HUD_BRT then
     if value > 0 then
@@ -110,7 +109,7 @@ function SetCommand(command, value)
     dispatch_action(nil, iCommands.MM_Ground)
 
   elseif command == device_commands.MM_NAV then
-    dispatch_action(nil, iCommands.MM_NAV)
+    dispatch_action(nil, iCommands.MM_Nav)
 
   elseif command == device_commands.POWER_TGL then
     dispatch_action(nil, iCommands.SYS_Power)
@@ -118,7 +117,7 @@ function SetCommand(command, value)
   elseif command == device_commands.WEP_RIP_INT then
     if value > 0 then
       dispatch_action(nil, iCommands.W_RippleIntervalUp)
-    else
+    elseif value < 0 then
       dispatch_action(nil, iCommands.W_RippleIntervalDown)
     end
 
@@ -138,27 +137,46 @@ function SetCommand(command, value)
   elseif command == device_commands.RWR_MODE then
     dispatch_action(nil, iCommands.RWR_Mode)
 
+  -- The actual view adjustment is handled in update()
   elseif command == device_commands.VIEW_VERT then
-    if value > 0 then
-      dispatch_action(nil, iCommands.VIEW_CameraMoveUp)
-    else
-      dispatch_action(nil, iCommands.VIEW_CameraMoveDown)
-    end
-
-  elseif command == device_commands.STICK_TGL then
-    FCCLOG.info("SHOW/HIDE STICK")
+    seat_adj = value
+    seat_stopped = false
 
   elseif command == device_commands.WEP_CYCLE then
     dispatch_action(nil, iCommands.W_ChangeWeapon)
 
   end
 
+  -- Not implemented in FC3 planes
+  -- elseif command == device_commands.STICK_TGL then
+  --   FCCLOG.info("SHOW/HIDE STICK")
+
 
 end
 
--- This gets called every update_time_step, but we may not need it
--- since we're not implementing new features.
+---Handles camera adjustments (scootch up, down, forward, back)
+---Adjustment speed is DIRECTLY dependent on the update_time_step!
+function view_adjust()
+  if seat_stopped then
+    -- Return early if we aren't moving the camera right now
+    return
+  end
+
+  FCCLOG.info("view_adjust()")
+  if seat_adj == 0 then
+    dispatch_action(nil, iCommands.VIEW_CameraMoveStop)
+    seat_stopped = true
+  elseif seat_adj > 0 then
+    dispatch_action(nil, iCommands.VIEW_CameraMoveUp)
+  elseif seat_adj < 0 then
+    dispatch_action(nil, iCommands.VIEW_CameraMoveDown)
+  end
+
+end
+
+-- This gets called every update_time_step
 function update()
+  view_adjust()
 end
 
 -- Called automatically after the cockpit has been initialized, maybe?  Not sure on the exact timing

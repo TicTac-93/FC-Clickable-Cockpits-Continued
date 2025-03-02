@@ -7,7 +7,7 @@ dofile(LockOn_Options.script_path.."clickable_defs.lua")  -- Clickable element h
 dofile(LockOn_Options.script_path.."device_commands.lua")  -- Command codes to be sent to devices
 dofile(LockOn_Options.script_path.."devices.lua")  -- Device IDs, bound to .lua files in device_init
 
--- Not used directly, but possibly a requirement?
+-- Localization function
 local gettext = require("i_18n")
 _ = gettext.translate
 
@@ -30,8 +30,8 @@ elements["PNT_ENGL_OFF"] = fcc_button(_("Shutdown Left Engine"), devices.FCC_COM
 elements["PNT_ENGL_ON"] = fcc_button(_("Start Left Engine"), devices.FCC_COMMON, device_commands.ENGL_ON)
 elements["PNT_ENGR_OFF"] = fcc_button(_("Shutdown Right Engine"), devices.FCC_COMMON, device_commands.ENGR_OFF)
 elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON, device_commands.ENGR_ON)
-elements["PNT_FLAPS"] = springloaded_3_pos_tumb(_("Flaps INC/DEC"), devices.FCC_COMMON, device_commands.FLAPS, 1)
-elements["PNT_GEAR"] = fcc_button(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
+elements["PNT_FLAPS"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS)
+elements["PNT_GEAR"] = fcc_switch(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
 elements["PNT_LGT_EXT"] = fcc_button(_("Navigation Lights"), devices.FCC_COMMON, device_commands.LGT_NAV)
 elements["PNT_LGT_INT"] = fcc_button(_("Instrument Lights"), devices.FCC_COMMON, device_commands.LGT_INT)
@@ -43,27 +43,54 @@ elements["PNT_MODE_AA"] = fcc_button(_("Air-to-Air Master Modes"), devices.FCC_C
 elements["PNT_MODE_AG"] = fcc_button(_("Air-to-Ground Master Modes"), devices.FCC_COMMON, device_commands.MM_AG)
 elements["PNT_MODE_NAV"] = fcc_button(_("Navigation Master Modes"), devices.FCC_COMMON, device_commands.MM_NAV)
 elements["PNT_POWER"] = fcc_button(_("Electrical Systems ON/OFF"), devices.FCC_COMMON, device_commands.POWER_TGL)
-elements["PNT_RIP_INT"] = fcc_rotary_switch(_("Ripple Interval"), devices.FCC_COMMON, device_commands.WEP_RIP_INT)
+elements["PNT_RIP_INT"] = fcc_switch_scrollable(_("Ripple Interval"), devices.FCC_COMMON, device_commands.WEP_RIP_INT)
 elements["PNT_RIP_MODE"] = fcc_knob(_("Weapon Release Mode"), devices.FCC_COMMON, device_commands.WEP_RIP_MODE)
-elements["PNT_RIP_QTY"] = fcc_rotary_switch(_("Ripple Quantity"), devices.FCC_COMMON, device_commands.WEP_RIP_QTY)
+elements["PNT_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity"), devices.FCC_COMMON, device_commands.WEP_RIP_QTY)
 elements["PNT_RWR_VOL"] = fcc_knob(_("Set RWR Volume"), devices.FCC_COMMON, device_commands.RWR_VOL)
 elements["PNT_RWR_MODE"] = fcc_button(_("Switch RWR Mode"), devices.FCC_COMMON, device_commands.RWR_MODE)
-elements["PNT_SEAT_VERT"] = springloaded_3_pos_tumb(_("Adjust Seat UP/DOWN"), devices.FCC_COMMON, device_commands.VIEW_VERT)
-elements["PNT_STICK_VIS"] = fcc_button(_("Stick SHOW/HIDE"), devices.FCC_COMMON, device_commands.STICK_TGL)
+elements["PNT_SEAT_VERT"] = fcc_switch(_("Adjust Seat UP/DOWN"), devices.FCC_COMMON, device_commands.VIEW_VERT, true)
 elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
 -- Add to this with other shared basic features
+
+-- Not implemented in FC aircraft :(
+-- elements["PNT_STICK_VIS"] = fcc_button(_("Stick SHOW/HIDE"), devices.FCC_COMMON, device_commands.STICK_TGL)
 
 -- A-10A specific features
 if current_aircraft == "A-10A" then
   -- The A-10A autopilot system is a little odd, may need special treatment
-  elements["A10A_AP_MODE"] = springloaded_3_pos_tumb(_("Autopilot Mode"), devices.FCC_A10A, device_commands.AP_MODE)
-  elements["A10A_AP_TGL"] = fcc_button(_("Autopilot ON/OFF"), devices.FCC_A10A, device_commands.AP_TGL)  
-  elements["A10A_AA_FUEL"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_A10A, device_commands.FUEL_AA_TGL)
+  elements["A10A_AP_EAC_ARM"] = fcc_switch(_("Autopilot EAC ARM/OFF"), devices.FCC_A10A, device_commands.AP_ARM)
+  elements["A10A_AP_MODE"] = fcc_switch(_("Autopilot Mode"), devices.FCC_A10A, device_commands.AP_MODE)
+  elements["A10A_AP_TGL"] = fcc_button(_("Autopilot ON/OFF"), devices.FCC_A10A, device_commands.AP_TGL)
+  elements["A10A_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_A10A, device_commands.FUEL_AA_TGL)
   -- These are just extra buttons for standard behavior
-  elements["A10A_ENGL_OFF_FIRE"] = fcc_button("Left Engine OFF", devices.FCC_COMMON, device_commands.ENGL_OFF)
-  elements["A10A_ENGR_OFF_FIRE"] = fcc_button("Right Engine OFF", devices.FCC_COMMON, device_commands.ENGR_OFF)
+  elements["A10A_ENGL_OFF_FIRE"] = fcc_button(_("Left Engine OFF"), devices.FCC_COMMON, device_commands.ENGL_OFF)
+  elements["A10A_ENGR_OFF_FIRE"] = fcc_button(_("Right Engine OFF"), devices.FCC_COMMON, device_commands.ENGR_OFF)
   elements["A10A_WEP_CYC_2"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
 end
 
+-- DEBUG
+-- function table_dump(input)
+--   local output = "{"
+--   for k, v in pairs(input) do
+--     output = output .. k .. ":"
+--     if type(v) == "table" then
+--       output = output .. table_dump(v) .. ", "
+--     else
+--       output = output .. v
+--     end
+--   end
+--   output = output .. "}"
+--   return output
+-- end
+
+-- function element_dump(element)
+--   for k, v in pairs(element) do
+--     if type(v) == "table" then
+--       FCCLOG.info(k .. ": " .. table_dump(v))
+--     else
+--       FCCLOG.info(k .. ": " .. v)
+--     end
+--   end
+-- end
 
 FCCLOG.info("clickabledata INIT")
