@@ -32,7 +32,7 @@ function SetCommand(command, value)
     dispatch_action(nil, iCommands.SYS_ResetMasterCaution)
 
   elseif command == device_commands.CM_AUTO then
-    dispatch_action(nil, iCommands.CM_ContinuousStart)
+    dispatch_action(nil, iCommands.CM_ContinuousRelease)
 
   elseif command == device_commands.CM_CHAFF then
     dispatch_action(nil, iCommands.CM_DropChaffOnce)

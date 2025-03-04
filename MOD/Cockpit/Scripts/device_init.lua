@@ -12,18 +12,18 @@ current_aircraft = get_aircraft_type()
 local abort = true
 local whitelist = {
   "A-10A",
-  "F-15C",
-  "J-11A",
-  "MiG-29A",
-  "MiG-29G",
-  "MiG-29S",
-  "Su-25",
-  "Su-25T",
-  "Su-27",
-  "Su-33",
-  "F-5E-3_FC",
-  "F-86F_FC",
-  "MiG-15bis_FC",
+  -- "F-15C",
+  -- "J-11A",
+  -- "MiG-29A",
+  -- "MiG-29G",
+  -- "MiG-29S",
+  -- "Su-25",
+  -- "Su-25T",
+  -- "Su-27",
+  -- "Su-33",
+  -- "F-5E-3_FC",
+  -- "F-86F_FC",
+  -- "MiG-15bis_FC",
 }
 for index= 0, table.getn(whitelist), 1 do
   if whitelist[index] == current_aircraft then

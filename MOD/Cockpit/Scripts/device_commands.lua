@@ -1,7 +1,9 @@
 -- Stores command values for both internal use and for sending to the game engine
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")  -- Mod logging functions
 
-local count = 3500  -- Adjust starting value to deconflict with other systems in the game.  Our range of values HAS to be unique!
+-- Adjust starting value to deconflict with other systems in the game.  Our range of values HAS to be unique!
+-- Reserved range for Cockpit commands is 3001-3998
+local count = 3500
 local function counter()
 	count = count + 1
 	return count
@@ -95,6 +97,11 @@ end
 -- ==============
 -- Currently populated with binds from:
 	-- A-10A
+	-- F-15C
+	-- F-5E
+	-- F-86
+	-- MiG-15bis
+	-- MiG-29
 
 if iCommands == nil then
 	---iCommand values, sent to the game engine to interact with aircraft systems.
@@ -103,8 +110,13 @@ if iCommands == nil then
 
 		-- Master Modes
 		MM_Nav = 105,
+		MM_Air_BVR = 106,
+		MM_Air_VerticalScan = 107,
+		MM_Air_Boresight = 108,
+		MM_Air_HelmetCue = 109,
 		MM_FI0 = 110,  -- Longitudinal Missile Aiming Mode
 		MM_Ground = 111,
+		MM_Gunsight = 112,
 		MM_NextTarget = 102,  -- Next Waypoint, Airfield or Target
 		MM_PrevTarget = 1315,  -- Previous Waypoint, Airfield or Target
 
@@ -114,32 +126,59 @@ if iCommands == nil then
 		-- Countermeasures
 		CM_DropFlareOnce = 357,
 		CM_DropChaffOnce = 358,
-		CM_ContinuousStart = 77,  -- Continuously dispense
+		CM_ContinuousRelease = 77,
 		CM_ReleaseOnce = 176,  -- Countermeasures release
 		CM_ReleaseOnceOff = 536,  -- Countermeasures stop
 		CM_Jamming = 136,  -- ECM
 
-		-- LASTE / AP
-		AP_EAC_Arm = 1050,
-		AP_EAC_Off = 1051,
+		-- Autopilot
+		AP_EAC_Arm = 1050,  -- The A-10A's AP computer
+		AP_EAC_Off = 1051,  -- The A-10A's AP computer
 		AP_Toggle = 62,
-		AP_AltBankMode = 387,  -- Altitude / Bank Hold
+		AP_Disengage = 408,
+		AP_Reset = 629,
+		AP_AttitudeMode = 386,
+		AP_AltBankMode = 387,  -- Altitude / Bank Hold, or Damper
+		AP_LevelMode = 388,  -- Transition to Level Flight
+		AP_AltMode = 389,  -- Pressure Altitude Hold
+		AP_AltModeH = 59,  -- Pressure ALtitude Hold 'H' bind
 		AP_AltHdgMode = 636,  -- Altitude / Heading Hold
+		AP_RouteMode = 429,  -- Russian Path Hold
 		AP_PathMode = 637,  -- Path Hold
+		AP_Reapproach = 390,
+		AP_GroundAvoidance = 60,
+		AP_MIG29_MinAlt = 64,
+		AP_F15_CASRoll = 301,
+		AP_F15_CASYaw = 302,
+		AP_F15_CASPitch = 303,
 
 		-- Sensors
-		TGT_EOSOnOff = 87,  -- CCRP Steering in A-10A
-		TGT_ZoomIn = 103,  -- Radar zoom in
-		TGT_ZoomOut = 104,  -- Radar zoom out
-		TGT_DesignatorLeft = 88,  -- Target designator left
-		TGT_DesignatorRight = 89,  -- Target designator right
-		TGT_DesignatorUp = 90,  -- Target designator up
-		TGT_DesignatorDown = 91,  -- Target designator down
-		TGT_DesignatorCenter = 92,  -- Target designator center
-		TGT_DesignatorStop = 235,  -- Target designator release
+		TGT_EOSOnOff = 87,  -- A-10A CCRP Steering
+		TGT_PredictedRangeDec = 262,
+		TGT_PredictedRangeInc = 263,
+		TGT_WingspanInc = 412,
+		TGT_WingspanDec = 413,
+		TGT_SelectorLeft = 139,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		TGT_SelectorRight = 140,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		TGT_SelectorUp = 141,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		TGT_SelectorDown = 142,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		TGT_SelectorStop = 230,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		TGT_ChangeLock = 100,  -- Target Lock / AA Refuel Disconnect
 		TGT_ChangeLockStop = 1627,  -- Target Lock release
-		TGT_ResetLock = 1635,  -- Target Unlock
+		TGT_ResetLock = 1635,  -- Target Unlock / Return to Search
+
+		RADAR_Toggle = 86,
+		RADAR_ZoomIn = 103,
+		RADAR_ZoomOut = 104,
+		RADAR_MoveLeft = 88,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		RADAR_MoveRight = 89,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		RADAR_MoveUp = 90,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		RADAR_MoveDown = 91,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		RADAR_MoveCenter = 92,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		RADAR_MoveStop = 235,  -- Sometimes used to swivel the radar itself, sometimes for target designator
+		RADAR_Mode = 285,  -- F-5E uses this for gunsight modes
+		RADAR_PulseWidth = 394,
+		RADAR_ResetTWS = 143,  -- TWS Target Unlock
 
 		RWR_Mode = 286,
 		RWR_VolumeDown = 409,  -- RWR Vol Down
@@ -150,40 +189,57 @@ if iCommands == nil then
 		SYS_AltIncrease = 316,
 		SYS_AltDecrease = 317,
 		SYS_AltStop = 318,
+		SYS_F86_ResetADI = 24,
+		SYS_MIG15_ResetADI = 25,
 		SYS_ResetMasterCaution = 144,
 		SYS_ClockElapsedTimeReset = 1629,
 		SYS_FlightClockReset = 288,
 		
 		SYS_Canopy = 71,  -- Canopy Open/Close
 		SYS_Eject = 83,
-		SYS_JettisonWeapons = 82,
-		SYS_JettisonWeaponsStop = 171,  -- Jettison Weapons release
 
-		SYS_Power = 315,
 		SYS_EnginesStart = 309,
 		SYS_EnginesStop = 310,
 		SYS_LeftEngineStart = 311,
 		SYS_RightEngineStart = 312,
 		SYS_LeftEngineStop = 313,
 		SYS_RightEngineStop = 314,
+		SYS_Power = 315,
 
-		SYS_FlapsOn = 145,  -- Landing Flaps
-		SYS_FlapsOff = 146,  -- Raise Flaps
-		SYS_FlapsCycle = 72, -- Cycle Flaps
+		SYS_FlapsOn = 145,
+		SYS_FlapsOff = 146,
+		SYS_FlapsCycle = 72,
+		SYS_AirbrakeOn = 147,
+		SYS_AirbrakeOff = 148,
+		SYS_AirbrakeCycle = 73,
+		SYS_Parachute = 76,
+
 		SYS_GearUp = 430,
 		SYS_GearDown = 431,
-		SYS_GearCycle = 68,  -- Cycle gear
-		SYS_AirRefuel = 155,  -- Refueling bay Open/Close
+		SYS_GearCycle = 68,
+		SYS_WheelBrakeOn = 74,
+		SYS_WheelBrakeOff = 75,
+		SYS_NoseWheelSteeringRange = 562,  -- Sometimes used as NWS toggle
+		SYS_NoseWheelSteering = 606,  -- F-5E Nose wheel strut EXTEND/RETRACT
 
-		SYS_DumpFuel = 79,  -- Dump Fuel
-		SYS_DumpFuelStop = 80,  -- Dump Fuel release
+		SYS_AirRefuel = 155,  -- Refueling bay Open/Close
+		SYS_DumpFuel = 79,
+		SYS_DumpFuelStop = 80,
+		SYS_JettisonWeapons = 82,
+		SYS_JettisonWeaponsStop = 171,  -- Jettison Weapons release
+		SYS_JettisonFuel = 178,
+		SYS_F15_BingoIndex = 1092,  -- Used for both up and down
+		SYS_F15_FuelQtySource = 1093,  -- Cycle which tank is shown in the fuel gauge
+		SYS_F15_FuelBitTest = 1097,
 
 		SYS_LightsNav = 175,  -- Cycle Nav lights
-		SYS_LightsLanding = 328,  -- Cycle gear lights
+		SYS_LightsLanding = 328,  -- Cycle landing lights
 		SYS_LightsCockpit = 300,
+		SYS_LightsAntiCollision = 518,
 		SYS_HUDBrightnessUp = 746,
 		SYS_HUDBrightnessDown = 747,
-		SYS_HUDColor = 156,  -- HUD color
+		SYS_HUDColor = 156,  -- Cycle HUD colors
+		SYS_HUDFilter = 247,
 
 		-- View
 		VIEW_Mirrors = 1625,
@@ -195,9 +251,12 @@ if iCommands == nil then
 		W_ReleaseModeCycle = 284,  -- Cycles Ripple, Single, etc
 		W_RippleIntervalUp = 282,  -- Release interval up
 		W_RippleIntervalDown = 308,  -- Release interval down
-		W_RippleQuantityCycle = 281,
+		W_RippleQuantityCycle = 281,  -- MiG-15 Gun Selector
 		W_SalvoOnOff = 81,
 		W_ChangeWeapon = 101,
+		W_CannonBurst = 280,
+		W_LaunchPermissionOverride = 349,
+
 
 	}
 
