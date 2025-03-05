@@ -40,6 +40,7 @@ use_pointer_name = true
 anim_speed_default = 16
 
 ---Modified version of default_button.
+---
 ---Suitable for buttons that initiate an action, this does not emit a signal on release.
 ---@param hint_ string
 ---@param device_ integer
@@ -61,7 +62,9 @@ function fcc_button(hint_, device_, command_)
 end
 
 ---Modified version of default_axis.
+---
 ---A simple knob, can be click-dragged or interacted with using the scroll wheel.
+---
 ---Scroll-up / Drag-right > 0, down / left < 0
 ---@param hint_ string
 ---@param device_ integer
@@ -83,7 +86,9 @@ function fcc_knob(hint_, device_, command_)
 end
 
 ---Useful for any rotary / multiposition switches, outputs 1 on left-click, -1 on right-click
+---
 ---If on_release_ == true, also output 0 when the switch is released.  Useful for commands that require a second stopping-command.
+---
 ---If inversed_ == true, swap left and right click behaviors.
 ---@param hint_ string
 ---@param device_ integer
@@ -121,7 +126,9 @@ function fcc_switch(hint_, device_, command_, on_release_, inversed_)
 end
 
 ---Useful for any rotary / multiposition switches, outputs 1 on left-click, -1 on right-click, >0 on scroll-up, <0 on scroll-down.
+---
 ---Does NOT support stop_action, since scrolling has no signal for it.
+---
 ---Does NOT support inversed, since scrolling always produces positive for scroll-up and negative for scroll-down.
 ---@param hint_ string
 ---@param device_ integer

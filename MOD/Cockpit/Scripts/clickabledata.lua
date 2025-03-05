@@ -16,21 +16,25 @@ _ = gettext.translate
 elements = {}
 local current_aircraft = get_aircraft_type()
 
--- Common elements, baseline used by all FC aircraft.  May be replaced by more specific commands in aircraft sections further down
+-- Common elements, a baseline for all FC aircraft.  May be replaced by more specific commands in aircraft sections further down
 elements["PNT_ALT"] = fcc_knob(_("Set Altimeter"), devices.FCC_COMMON, device_commands.ALT_SET)
 elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 elements["PNT_CAUTION_CLR"] = fcc_button(_("Reset Master Caution"), devices.FCC_COMMON, device_commands.CAUTION_CLR)
+elements["PNT_CLOCK"] = fcc_button(_("Clock Start/Stop/Reset"), devices.FCC_COMMON, device_commands.CLOCK)
 elements["PNT_CM_AUTO"] = fcc_button(_("Countermeasures Periodic Dispense"), devices.FCC_COMMON, device_commands.CM_AUTO)
 elements["PNT_CM_CHAFF"] = fcc_button(_("Dispense Chaff"), devices.FCC_COMMON, device_commands.CM_CHAFF)
 elements["PNT_CM_FLARE"] = fcc_button(_("Dispense Flare"), devices.FCC_COMMON, device_commands.CM_FLARE)
 elements["PNT_CYCLE_WP"] = fcc_knob(_("Cycle Waypoint / Airfield / Target"), devices.FCC_COMMON, device_commands.WPT_CYCLE)
 elements["PNT_DROP_EXT"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
 elements["PNT_ECM"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)
+elements["PNT_EJECT_1"] = fcc_button(_("EJECT x3"), devices.FCC_COMMON, device_commands.EJECT)
+elements["PNT_EJECT_2"] = fcc_button(_("EJECT x3"), devices.FCC_COMMON, device_commands.EJECT)
 elements["PNT_ENGL_OFF"] = fcc_button(_("Shutdown Left Engine"), devices.FCC_COMMON, device_commands.ENGL_OFF)
 elements["PNT_ENGL_ON"] = fcc_button(_("Start Left Engine"), devices.FCC_COMMON, device_commands.ENGL_ON)
 elements["PNT_ENGR_OFF"] = fcc_button(_("Shutdown Right Engine"), devices.FCC_COMMON, device_commands.ENGR_OFF)
 elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON, device_commands.ENGR_ON)
 elements["PNT_FLAPS"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS)
+elements["PNT_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
 elements["PNT_GEAR"] = fcc_switch(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
 elements["PNT_LGT_EXT"] = fcc_button(_("Navigation Lights"), devices.FCC_COMMON, device_commands.LGT_NAV)
@@ -61,11 +65,13 @@ if current_aircraft == "A-10A" then
   elements["A10A_AP_EAC_ARM"] = fcc_switch(_("Autopilot EAC ARM/OFF"), devices.FCC_A10A, device_commands.AP_ARM)
   elements["A10A_AP_MODE"] = fcc_switch(_("Autopilot Mode"), devices.FCC_A10A, device_commands.AP_MODE)
   elements["A10A_AP_TGL"] = fcc_button(_("Autopilot ON/OFF"), devices.FCC_A10A, device_commands.AP_TGL)
-  elements["A10A_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_A10A, device_commands.FUEL_AA_TGL)
+  -- Left click to enter A2G mode, right click for CCRP Steering
+  elements["A10A_MODE_AG"] = fcc_switch(_("Air-to-Ground CCIP/CCRP"), devices.FCC_A10A, device_commands.MM_AG)
   -- These are just extra buttons for standard behavior
   elements["A10A_ENGL_OFF_FIRE"] = fcc_button(_("Left Engine OFF"), devices.FCC_COMMON, device_commands.ENGL_OFF)
   elements["A10A_ENGR_OFF_FIRE"] = fcc_button(_("Right Engine OFF"), devices.FCC_COMMON, device_commands.ENGR_OFF)
   elements["A10A_WEP_CYC_2"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
+  elements["A10A_DROP_EXT_2"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
 end
 
 -- DEBUG

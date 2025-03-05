@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 local mod_ID = "FC Clickable Cockpits Continued"
 
 declare_plugin(mod_ID,

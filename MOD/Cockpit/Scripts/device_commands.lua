@@ -9,9 +9,9 @@ local function counter()
 	return count
 end
 
--- ========================
---  Internal command codes
--- ========================
+-- ==========================
+--   Internal command codes
+-- ==========================
 if device_commands == nil then
 	---Internal command codes identifying what was interacted with.
 	device_commands =
@@ -23,10 +23,12 @@ if device_commands == nil then
 		AP_ARM = counter(),  -- Used by the A-10A to arm the autopilot system
 		CANOPY = counter(),
 		CAUTION_CLR = counter(),
+		CLOCK = counter(),
 		CM_AUTO = counter(),
 		CM_CHAFF = counter(),
 		CM_FLARE = counter(),
 		ECM_TGL = counter(),
+		EJECT = counter(),
 		ENGL_OFF = counter(),
 		ENGR_OFF = counter(),
 		ENGL_ON = counter(),
@@ -68,6 +70,19 @@ if device_commands == nil then
 	FCCLOG.info("device_commands INIT")
 end
 
+-- ================
+--   DCS commands
+-- ================
+-- Currently populated with binds from:
+	-- A-10A
+	-- F-15C
+	-- F-5E
+	-- F-86
+	-- MiG-15bis
+	-- MiG-29
+	-- Su-27
+	-- Su-33
+
 -- iCommand values, used for sending commands to the game engine as if the player pressed a key
 --
 -- Can be found by adding the following line to your Saved Games/DCS/Config/autoexec.cfg file:
@@ -92,19 +107,10 @@ end
 	-- f:close()
 	-- end
 
--- ==============
---  DCS commands
--- ==============
--- Currently populated with binds from:
-	-- A-10A
-	-- F-15C
-	-- F-5E
-	-- F-86
-	-- MiG-15bis
-	-- MiG-29
-
 if iCommands == nil then
 	---iCommand values, sent to the game engine to interact with aircraft systems.
+	---The NAMES used here are unique to the mod, the VALUES are what's important.
+	---For original names see "enumSorted.txt" in "_utilities\iCommand enums"
 	iCommands = 
 	{
 
@@ -141,16 +147,18 @@ if iCommands == nil then
 		AP_AltBankMode = 387,  -- Altitude / Bank Hold, or Damper
 		AP_LevelMode = 388,  -- Transition to Level Flight
 		AP_AltMode = 389,  -- Pressure Altitude Hold
+		AP_RadarMode = 390,  -- Radar Alt Hold / MiG-29 Reapproach mode
 		AP_AltModeH = 59,  -- Pressure ALtitude Hold 'H' bind
 		AP_AltHdgMode = 636,  -- Altitude / Heading Hold
-		AP_RouteMode = 429,  -- Russian Path Hold
 		AP_PathMode = 637,  -- Path Hold
-		AP_Reapproach = 390,
+		AP_RouteMode = 429,  -- Russian Path Hold
 		AP_GroundAvoidance = 60,
 		AP_MIG29_MinAlt = 64,
 		AP_F15_CASRoll = 301,
 		AP_F15_CASYaw = 302,
 		AP_F15_CASPitch = 303,
+		AP_SU33_AutoThrust = 63,
+		AP_SU33_AutoThrustAdj = 64,
 
 		-- Sensors
 		TGT_EOSOnOff = 87,  -- A-10A CCRP Steering
@@ -165,7 +173,7 @@ if iCommands == nil then
 		TGT_SelectorStop = 230,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		TGT_ChangeLock = 100,  -- Target Lock / AA Refuel Disconnect
 		TGT_ChangeLockStop = 1627,  -- Target Lock release
-		TGT_ResetLock = 1635,  -- Target Unlock / Return to Search
+		TGT_Unlock = 1635,  -- Target Unlock / Return to Search
 
 		RADAR_Toggle = 86,
 		RADAR_ZoomIn = 103,
@@ -176,7 +184,7 @@ if iCommands == nil then
 		RADAR_MoveDown = 91,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		RADAR_MoveCenter = 92,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		RADAR_MoveStop = 235,  -- Sometimes used to swivel the radar itself, sometimes for target designator
-		RADAR_Mode = 285,  -- F-5E uses this for gunsight modes
+		RADAR_Mode = 285,  -- F-5E gunsight modes
 		RADAR_PulseWidth = 394,
 		RADAR_ResetTWS = 143,  -- TWS Target Unlock
 
@@ -195,6 +203,8 @@ if iCommands == nil then
 		SYS_ClockElapsedTimeReset = 1629,
 		SYS_FlightClockReset = 288,
 		
+		SYS_TailHook = 69,
+		SYS_FoldWings = 70,
 		SYS_Canopy = 71,  -- Canopy Open/Close
 		SYS_Eject = 83,
 
@@ -205,6 +215,8 @@ if iCommands == nil then
 		SYS_LeftEngineStop = 313,
 		SYS_RightEngineStop = 314,
 		SYS_Power = 315,
+		SYS_IntakeScreens = 566,
+		SYS_SU33_SpecialABMode = 1601,
 
 		SYS_FlapsOn = 145,
 		SYS_FlapsOff = 146,
@@ -213,6 +225,8 @@ if iCommands == nil then
 		SYS_AirbrakeOff = 148,
 		SYS_AirbrakeCycle = 73,
 		SYS_Parachute = 76,
+		SYS_DirectControl = 121,
+		SYS_SU33_RefuelingMode = 583,
 
 		SYS_GearUp = 430,
 		SYS_GearDown = 431,
@@ -221,6 +235,7 @@ if iCommands == nil then
 		SYS_WheelBrakeOff = 75,
 		SYS_NoseWheelSteeringRange = 562,  -- Sometimes used as NWS toggle
 		SYS_NoseWheelSteering = 606,  -- F-5E Nose wheel strut EXTEND/RETRACT
+		SYS_ParkingBrake = 855,
 
 		SYS_AirRefuel = 155,  -- Refueling bay Open/Close
 		SYS_DumpFuel = 79,
@@ -236,6 +251,8 @@ if iCommands == nil then
 		SYS_LightsLanding = 328,  -- Cycle landing lights
 		SYS_LightsCockpit = 300,
 		SYS_LightsAntiCollision = 518,
+		SYS_SU33_LightsRefuelling = 588,
+		SYS_SU27_HUDonHDD = 672,
 		SYS_HUDBrightnessUp = 746,
 		SYS_HUDBrightnessDown = 747,
 		SYS_HUDColor = 156,  -- Cycle HUD colors

@@ -31,6 +31,9 @@ function SetCommand(command, value)
   elseif command == device_commands.CAUTION_CLR then
     dispatch_action(nil, iCommands.SYS_ResetMasterCaution)
 
+  elseif command == device_commands.CLOCK then
+    dispatch_action(nil, iCommands.SYS_ClockElapsedTimeReset)
+
   elseif command == device_commands.CM_AUTO then
     dispatch_action(nil, iCommands.CM_ContinuousRelease)
 
@@ -40,22 +43,11 @@ function SetCommand(command, value)
   elseif command == device_commands.CM_FLARE then
     dispatch_action(nil, iCommands.CM_DropFlareOnce)
 
-  elseif command == device_commands.WPT_CYCLE then
-    if value > 0 then
-      dispatch_action(nil, iCommands.MM_NextTarget)
-    else
-      dispatch_action(nil, iCommands.MM_PrevTarget)
-    end
-
-  elseif command == device_commands.JET_EXT then
-    if value == 1 then
-      dispatch_action(nil, iCommands.SYS_JettisonWeapons)
-    else
-      dispatch_action(nil, iCommands.SYS_JettisonWeaponsStop)
-    end
-
   elseif command == device_commands.ECM_TGL then
     dispatch_action(nil, iCommands.CM_Jamming)
+
+  elseif command == device_commands.EJECT then
+    dispatch_action(nil, iCommands.SYS_Eject)
 
   elseif command == device_commands.ENGL_OFF then
     dispatch_action(nil, iCommands.SYS_LeftEngineStop)
@@ -75,6 +67,9 @@ function SetCommand(command, value)
     elseif value < 0 then
       dispatch_action(nil, iCommands.SYS_FlapsOn)
     end
+
+  elseif command == device_commands.FUEL_AA_TGL then
+    dispatch_action(nil, iCommands.SYS_AirRefuel)
 
   elseif command == device_commands.GEAR then
     if value > 0 then
@@ -111,6 +106,13 @@ function SetCommand(command, value)
   elseif command == device_commands.MM_NAV then
     dispatch_action(nil, iCommands.MM_Nav)
 
+  elseif command == device_commands.WPT_CYCLE then
+    if value > 0 then
+      dispatch_action(nil, iCommands.MM_NextTarget)
+    else
+      dispatch_action(nil, iCommands.MM_PrevTarget)
+    end
+
   elseif command == device_commands.POWER_TGL then
     dispatch_action(nil, iCommands.SYS_Power)
 
@@ -126,6 +128,13 @@ function SetCommand(command, value)
 
   elseif command == device_commands.WEP_RIP_QTY then
     dispatch_action(nil, iCommands.W_RippleQuantityCycle)
+
+  elseif command == device_commands.JET_EXT then
+    if value == 1 then
+      dispatch_action(nil, iCommands.SYS_JettisonWeapons)
+    else
+      dispatch_action(nil, iCommands.SYS_JettisonWeaponsStop)
+    end
 
   elseif command == device_commands.RWR_VOL then
     if value > 0 then
