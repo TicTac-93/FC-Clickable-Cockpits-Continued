@@ -21,7 +21,7 @@ local whitelist = {
   -- "Su-25T",
   -- "Su-27",
   -- "Su-33",
-  -- "F-5E-3_FC",
+  "F-5E-3_FC",
   -- "F-86F_FC",
   -- "MiG-15bis_FC",
 }

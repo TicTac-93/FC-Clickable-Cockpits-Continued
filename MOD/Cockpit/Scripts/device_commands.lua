@@ -23,6 +23,7 @@ if device_commands == nil then
 		AP_ARM = counter(),  -- Used by the A-10A to arm the autopilot system
 		CANOPY = counter(),
 		CAUTION_CLR = counter(),
+		CHUTE = counter(),
 		CLOCK = counter(),
 		CM_AUTO = counter(),
 		CM_CHAFF = counter(),
@@ -39,6 +40,7 @@ if device_commands == nil then
 		HUD_CLR = counter(),
 		JET_EXT = counter(),
 		JET_FUEL = counter(),
+		LGT_COLLISION = counter(),
 		LGT_NAV = counter(),
 		LGT_INT = counter(),
 		LGT_LANDING = counter(),
@@ -46,12 +48,19 @@ if device_commands == nil then
 		MM_AA = counter(),  -- Master Mode: Air-to-Air
 		MM_AG = counter(),  -- Master Mode: Air-to-Ground
 		MM_NAV = counter(),  -- Master Mode: Navigation
+		NWS_STRUT = counter(),
+		NWS_TGL = counter(),
 		POWER_TGL = counter(),
 		POWER_ON = counter(),
 		POWER_OFF = counter(),
 		RWR_VOL = counter(),
 		RWR_MODE = counter(),
 		WPT_CYCLE = counter(),  -- Waypoint / Airfield selection
+
+		RDR_TGL = counter(),
+		RDR_RANGE = counter(),
+		RDR_VERT = counter(),  -- Adjust radar elevation
+		RDR_HORZ = counter(),  -- Adjust radar horizontal angle
 
 		WEP_CYCLE = counter(),
 		WEP_RIP_INT = counter(),
