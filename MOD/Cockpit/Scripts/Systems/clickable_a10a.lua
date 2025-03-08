@@ -14,7 +14,7 @@ make_default_activity(update_time_step)
 
 local a10a_ap_mode = 1
 
----This is called by the button handlers assigned in clickabledata.lua
+---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
 ---@param value number The current value of the clickable element, specifically the arg tied to it
 function SetCommand(command, value)
@@ -50,9 +50,12 @@ function SetCommand(command, value)
       print_message_to_user(_("AP Mode: PATH"))
     end
 
-  elseif command == device_commands.FUEL_AA_TGL then
-    dispatch_action(nil, iCommands.SYS_AirRefuel)
-
+  elseif command == device_commands.MM_AG then
+    if value > 0 then
+      dispatch_action(nil, iCommands.MM_Ground)
+    else
+      dispatch_action(nil, iCommands.TGT_EOSOnOff)  -- This triggers CCRP Steering in the A-10A
+    end
   end
 
 end

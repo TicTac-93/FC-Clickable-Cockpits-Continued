@@ -14,28 +14,35 @@ _ = gettext.translate
 
 -- Elements table, stores all connectors as keys and their associated function calls as values
 elements = {}
-local current_aircraft = get_aircraft_type()
+local aircraft = get_aircraft_type()
 
--- Common elements, baseline used by all FC aircraft.  May be replaced by more specific commands in aircraft sections further down
+-- Common elements, a baseline for all FC aircraft.  May be replaced by more specific commands in aircraft sections further down
 elements["PNT_ALT"] = fcc_knob(_("Set Altimeter"), devices.FCC_COMMON, device_commands.ALT_SET)
 elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 elements["PNT_CAUTION_CLR"] = fcc_button(_("Reset Master Caution"), devices.FCC_COMMON, device_commands.CAUTION_CLR)
+elements["PNT_CHUTE"] = fcc_button(_("Drogue Chute DEPLOY/CUT"), devices.FCC_COMMON, device_commands.CHUTE)
+elements["PNT_CLOCK"] = fcc_button(_("Clock Start/Stop/Reset"), devices.FCC_COMMON, device_commands.CLOCK)
 elements["PNT_CM_AUTO"] = fcc_button(_("Countermeasures Periodic Dispense"), devices.FCC_COMMON, device_commands.CM_AUTO)
 elements["PNT_CM_CHAFF"] = fcc_button(_("Dispense Chaff"), devices.FCC_COMMON, device_commands.CM_CHAFF)
 elements["PNT_CM_FLARE"] = fcc_button(_("Dispense Flare"), devices.FCC_COMMON, device_commands.CM_FLARE)
 elements["PNT_CYCLE_WP"] = fcc_knob(_("Cycle Waypoint / Airfield / Target"), devices.FCC_COMMON, device_commands.WPT_CYCLE)
 elements["PNT_DROP_EXT"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
+elements["PNT_DROP_FUEL"] = fcc_button(_("Jettison External Fuel Tanks"), devices.FCC_COMMON, device_commands.JET_FUEL)
 elements["PNT_ECM"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)
+elements["PNT_EJECT_1"] = fcc_button(_("EJECT x3"), devices.FCC_COMMON, device_commands.EJECT)
+elements["PNT_EJECT_2"] = fcc_button(_("EJECT x3"), devices.FCC_COMMON, device_commands.EJECT)
 elements["PNT_ENGL_OFF"] = fcc_button(_("Shutdown Left Engine"), devices.FCC_COMMON, device_commands.ENGL_OFF)
 elements["PNT_ENGL_ON"] = fcc_button(_("Start Left Engine"), devices.FCC_COMMON, device_commands.ENGL_ON)
 elements["PNT_ENGR_OFF"] = fcc_button(_("Shutdown Right Engine"), devices.FCC_COMMON, device_commands.ENGR_OFF)
 elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON, device_commands.ENGR_ON)
 elements["PNT_FLAPS"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS)
+elements["PNT_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
 elements["PNT_GEAR"] = fcc_switch(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
-elements["PNT_LGT_EXT"] = fcc_button(_("Navigation Lights"), devices.FCC_COMMON, device_commands.LGT_NAV)
+elements["PNT_LGT_COL"] = fcc_button(_("Anti-Collision Lights"), devices.FCC_COMMON, device_commands.LGT_COLLISION)
 elements["PNT_LGT_INT"] = fcc_button(_("Instrument Lights"), devices.FCC_COMMON, device_commands.LGT_INT)
 elements["PNT_LGT_LAND"] = fcc_button(_("Landing Lights"), devices.FCC_COMMON, device_commands.LGT_LANDING)
+elements["PNT_LGT_NAV"] = fcc_button(_("Navigation Lights"), devices.FCC_COMMON, device_commands.LGT_NAV)
 elements["PNT_MIRROR_L"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
 elements["PNT_MIRROR_U"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
 elements["PNT_MIRROR_R"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
@@ -56,41 +63,28 @@ elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, dev
 -- elements["PNT_STICK_VIS"] = fcc_button(_("Stick SHOW/HIDE"), devices.FCC_COMMON, device_commands.STICK_TGL)
 
 -- A-10A specific features
-if current_aircraft == "A-10A" then
+if aircraft == "A-10A" then
   -- The A-10A autopilot system is a little odd, may need special treatment
   elements["A10A_AP_EAC_ARM"] = fcc_switch(_("Autopilot EAC ARM/OFF"), devices.FCC_A10A, device_commands.AP_ARM)
   elements["A10A_AP_MODE"] = fcc_switch(_("Autopilot Mode"), devices.FCC_A10A, device_commands.AP_MODE)
   elements["A10A_AP_TGL"] = fcc_button(_("Autopilot ON/OFF"), devices.FCC_A10A, device_commands.AP_TGL)
-  elements["A10A_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_A10A, device_commands.FUEL_AA_TGL)
+  -- Left click to enter A2G mode, right click for CCRP Steering
+  elements["A10A_MODE_AG"] = fcc_switch(_("Air-to-Ground CCIP/CCRP"), devices.FCC_A10A, device_commands.MM_AG)
   -- These are just extra buttons for standard behavior
   elements["A10A_ENGL_OFF_FIRE"] = fcc_button(_("Left Engine OFF"), devices.FCC_COMMON, device_commands.ENGL_OFF)
   elements["A10A_ENGR_OFF_FIRE"] = fcc_button(_("Right Engine OFF"), devices.FCC_COMMON, device_commands.ENGR_OFF)
   elements["A10A_WEP_CYC_2"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
+  elements["A10A_DROP_EXT_2"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
+
+-- F-5E specific features
+elseif aircraft == "F-5E-3_FC" then
+  elements["F5E_NOSE_STRUT"] = fcc_button(_("Nosewheel Strut EXTEND/RETRACT"), devices.FCC_F5E, device_commands.NWS_STRUT)
+  elements["F5E_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_F5E, device_commands.RDR_TGL)
+  elements["F5E_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_F5E, device_commands.RDR_VERT, true)
+  elements["F5E_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F5E, device_commands.RDR_RANGE)
+  elements["F5E_SIGHT_MODE"] = fcc_switch_scrollable(_("Master Modes"), devices.FCC_F5E, device_commands.MM_AA)
+
 end
 
--- DEBUG
--- function table_dump(input)
---   local output = "{"
---   for k, v in pairs(input) do
---     output = output .. k .. ":"
---     if type(v) == "table" then
---       output = output .. table_dump(v) .. ", "
---     else
---       output = output .. v
---     end
---   end
---   output = output .. "}"
---   return output
--- end
-
--- function element_dump(element)
---   for k, v in pairs(element) do
---     if type(v) == "table" then
---       FCCLOG.info(k .. ": " .. table_dump(v))
---     else
---       FCCLOG.info(k .. ": " .. v)
---     end
---   end
--- end
 
 FCCLOG.info("clickabledata INIT")

@@ -4,7 +4,7 @@
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")  -- Mod logging functions
 
 local scripts = LockOn_Options.script_path
-current_aircraft = get_aircraft_type()
+aircraft = get_aircraft_type()
 
 -- You might think that this plugin would only be run for the aircraft in entry.lua's add_plugin_system()
 -- You would be wrong.
@@ -12,21 +12,21 @@ current_aircraft = get_aircraft_type()
 local abort = true
 local whitelist = {
   "A-10A",
-  "F-15C",
-  "J-11A",
-  "MiG-29A",
-  "MiG-29G",
-  "MiG-29S",
-  "Su-25",
-  "Su-25T",
-  "Su-27",
-  "Su-33",
+  -- "F-15C",
+  -- "J-11A",
+  -- "MiG-29A",
+  -- "MiG-29G",
+  -- "MiG-29S",
+  -- "Su-25",
+  -- "Su-25T",
+  -- "Su-27",
+  -- "Su-33",
   "F-5E-3_FC",
-  "F-86F_FC",
-  "MiG-15bis_FC",
+  -- "F-86F_FC",
+  -- "MiG-15bis_FC",
 }
 for index= 0, table.getn(whitelist), 1 do
-  if whitelist[index] == current_aircraft then
+  if whitelist[index] == aircraft then
     abort = false
     break
   end
@@ -48,8 +48,12 @@ creators = {}
 creators[devices.FCC_COMMON] = {"avLuaDevice", scripts.."Systems/clickable_common.lua"}
 
 -- Aircraft-specific scripts will be added to creators[] here via conditional statements
-if current_aircraft == "A-10A" then
+if aircraft == "A-10A" then
   creators[devices.FCC_A10A] = {"avLuaDevice", scripts.."Systems/clickable_a10a.lua"}
+
+elseif aircraft == "F-5E-3_FC" then
+  creators[devices.FCC_F5E] = {"avLuaDevice", scripts.."Systems/clickable_f5e.lua"}
+
 end
 
 FCCLOG.info("device_init INIT")
