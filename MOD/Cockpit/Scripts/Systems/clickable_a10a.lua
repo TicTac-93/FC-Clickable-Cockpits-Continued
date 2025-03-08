@@ -14,7 +14,7 @@ make_default_activity(update_time_step)
 
 local a10a_ap_mode = 1
 
----This is called by the button handlers assigned in clickabledata.lua
+---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
 ---@param value number The current value of the clickable element, specifically the arg tied to it
 function SetCommand(command, value)

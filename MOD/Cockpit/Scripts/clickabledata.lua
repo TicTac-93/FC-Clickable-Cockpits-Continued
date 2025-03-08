@@ -14,7 +14,7 @@ _ = gettext.translate
 
 -- Elements table, stores all connectors as keys and their associated function calls as values
 elements = {}
-local current_aircraft = get_aircraft_type()
+local aircraft = get_aircraft_type()
 
 -- Common elements, a baseline for all FC aircraft.  May be replaced by more specific commands in aircraft sections further down
 elements["PNT_ALT"] = fcc_knob(_("Set Altimeter"), devices.FCC_COMMON, device_commands.ALT_SET)
@@ -63,7 +63,7 @@ elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, dev
 -- elements["PNT_STICK_VIS"] = fcc_button(_("Stick SHOW/HIDE"), devices.FCC_COMMON, device_commands.STICK_TGL)
 
 -- A-10A specific features
-if current_aircraft == "A-10A" then
+if aircraft == "A-10A" then
   -- The A-10A autopilot system is a little odd, may need special treatment
   elements["A10A_AP_EAC_ARM"] = fcc_switch(_("Autopilot EAC ARM/OFF"), devices.FCC_A10A, device_commands.AP_ARM)
   elements["A10A_AP_MODE"] = fcc_switch(_("Autopilot Mode"), devices.FCC_A10A, device_commands.AP_MODE)
@@ -77,12 +77,12 @@ if current_aircraft == "A-10A" then
   elements["A10A_DROP_EXT_2"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
 
 -- F-5E specific features
-elseif current_aircraft == "F-5E_FC" then
+elseif aircraft == "F-5E-3_FC" then
   elements["F5E_NOSE_STRUT"] = fcc_button(_("Nosewheel Strut EXTEND/RETRACT"), devices.FCC_F5E, device_commands.NWS_STRUT)
   elements["F5E_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_F5E, device_commands.RDR_TGL)
-  elements["F5E_RADAR_ELEV"] = fcc_switch_scrollable(_("Radar Elevation UP/DOWN"), devices.FCC_F5E, device_commands.RDR_VERT)
-  elements["F5E_RADAR_RANGE"] = fcc_switch(_("Radar Display Range INC/DEC"), devices.FCC_F5E, device_commands.RDR_RANGE)
-  elements["F5E_SIGHT_MODE"] = fcc_switch(_("Air-to-Air Master Modes"), devices.FCC_F5E, device_commands.MM_AA)
+  elements["F5E_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_F5E, device_commands.RDR_VERT, true)
+  elements["F5E_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F5E, device_commands.RDR_RANGE)
+  elements["F5E_SIGHT_MODE"] = fcc_switch_scrollable(_("Master Modes"), devices.FCC_F5E, device_commands.MM_AA)
 
 end
 

@@ -274,6 +274,7 @@ if iCommands == nil then
 		VIEW_CameraMoveStop = 490,
 
 		-- Weapons
+		W_Cannon = 113,
 		W_ReleaseModeCycle = 284,  -- Cycles Ripple, Single, etc
 		W_RippleIntervalUp = 282,  -- Release interval up
 		W_RippleIntervalDown = 308,  -- Release interval down

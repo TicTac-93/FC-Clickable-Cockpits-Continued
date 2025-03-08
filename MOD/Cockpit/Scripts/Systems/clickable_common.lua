@@ -18,7 +18,7 @@ seat_stopped = true  -- Used by view_adjust() to avoid running unnecessarily
 
 -- NOTE: Consider refactoring this with a table lookup?  There are a LOT of if...else statements to run through.
 
----This is called by the button handlers assigned in clickabledata.lua
+---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
 ---@param value number The current value of the clickable element, specifically the arg tied to it
 function SetCommand(command, value)

@@ -8,6 +8,7 @@ dofile(LockOn_Options.script_path.."/Utilities/dump_data.lua")  -- Debug scripts
 local aircraft = get_aircraft_type()
 shape_name = ""
 
+-- Set the clickable cockpit model based on the current aircraft
 if aircraft == "A-10A" then
   shape_name = "FCClickable_A-10A"
 elseif aircraft == "F-5E-3_FC" then
