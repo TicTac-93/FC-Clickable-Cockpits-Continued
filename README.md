@@ -9,7 +9,7 @@
 This mod aims to add basic clickable functionality to all Flaming Cliffs aircraft in DCS, including FC24, with a later goal being to enhance some of it where possible. Basic support meaning you can trigger most keybinds by clicking an appropriate part of the cockpit, but with no added features.  All aircraft and their level of support are listed below:
 
 - **A-10A:**  Basic
-- **F-5E:**  Work in Progress
+- **F-5E:**  Basic
 - **F-15C:**  Work in Progress
 - **F-86:**  Work in Progress
 - **MiG-15bis:**  Work in Progress
