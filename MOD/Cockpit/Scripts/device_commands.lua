@@ -14,65 +14,92 @@ end
 -- ==========================
 if device_commands == nil then
 	---Internal command codes identifying what was interacted with.
+	---Used by SetCommand() in clickable_xxx.lua devices to decide what to do next.
 	device_commands =
 	{
 
+		-- Master Modes
+		MM_AA = counter(),  -- Master Mode: Air-to-Air
+		MM_AG = counter(),  -- Master Mode: Air-to-Ground
+		MM_NAV = counter(),  -- Master Mode: Navigation
+		WPT_CYCLE = counter(),  -- Waypoint / Airfield selection
+
+		-- Autopilot
 		ALT_SET = counter(),
 		AP_MODE = counter(),  -- Autopilot: Cycle modes
+		AP_MODE_ALT = counter(),
 		AP_TGL = counter(),
+		AP_CAS_PITCH = counter(),
+		AP_CAS_ROLL = counter(),
+		AP_CAS_YAW = counter(),
 		AP_ARM = counter(),  -- Used by the A-10A to arm the autopilot system
+
+		-- Misc
 		CANOPY = counter(),
 		CAUTION_CLR = counter(),
 		CHUTE = counter(),
 		CLOCK = counter(),
+		FLAPS = counter(),
+		GEAR = counter(),
+		MIRROR = counter(),
+		NWS_STRUT = counter(),
+		NWS_TGL = counter(),
+		TRIM_PITCH = counter(),
+		TRIM_ROLL = counter(),
+		TRIM_YAW = counter(),
+		TRIM_TO = counter(),  -- F15C Take-off trim
+		VIEW_VERT = counter(),
+		VIEW_FWD = counter(),
+		STICK_TGL = counter(),
+
+		-- Countermeasures
 		CM_AUTO = counter(),
 		CM_CHAFF = counter(),
 		CM_FLARE = counter(),
 		ECM_TGL = counter(),
 		EJECT = counter(),
+		RWR_VOL = counter(),
+		RWR_MODE = counter(),
+
+		-- Engines / Power
+		ENGL_TGL = counter(),
+		ENGR_TGL = counter(),
 		ENGL_OFF = counter(),
 		ENGR_OFF = counter(),
 		ENGL_ON = counter(),
 		ENGR_ON = counter(),
-		FLAPS = counter(),
-		GEAR = counter(),
-		HUD_BRT = counter(),
-		HUD_CLR = counter(),
-		JET_EXT = counter(),
-		JET_FUEL = counter(),
-		LGT_COLLISION = counter(),
-		LGT_NAV = counter(),
-		LGT_INT = counter(),
-		LGT_LANDING = counter(),
-		MIRROR = counter(),
-		MM_AA = counter(),  -- Master Mode: Air-to-Air
-		MM_AG = counter(),  -- Master Mode: Air-to-Ground
-		MM_NAV = counter(),  -- Master Mode: Navigation
-		NWS_STRUT = counter(),
-		NWS_TGL = counter(),
 		POWER_TGL = counter(),
 		POWER_ON = counter(),
 		POWER_OFF = counter(),
-		RWR_VOL = counter(),
-		RWR_MODE = counter(),
-		WPT_CYCLE = counter(),  -- Waypoint / Airfield selection
 
+		-- Lights
+		HUD_BRT = counter(),
+		HUD_CLR = counter(),
+		LGT_BCN = counter(),
+		LGT_NAV = counter(),
+		LGT_INT = counter(),
+		LGT_LANDING = counter(),
+
+		-- Radar
+		RDR_MODE = counter(),
 		RDR_TGL = counter(),
 		RDR_RANGE = counter(),
 		RDR_VERT = counter(),  -- Adjust radar elevation
 		RDR_HORZ = counter(),  -- Adjust radar horizontal angle
 
+		-- Weapons / Pylons
+		JET_EXT = counter(),
+		JET_FUEL = counter(),
 		WEP_CYCLE = counter(),
 		WEP_RIP_INT = counter(),
 		WEP_RIP_MODE = counter(),
 		WEP_RIP_QTY = counter(),
 
+		-- Fuel
 		FUEL_AA_TGL = counter(),
 		FUEL_DUMP = counter(),
-
-		VIEW_VERT = counter(),
-		VIEW_FWD = counter(),
-		STICK_TGL = counter(),
+		FUEL_BINGO = counter(),  -- Adjust Bingo fuel value
+		FUEL_SEL = counter(),
 
 	}
 	
@@ -233,6 +260,11 @@ if iCommands == nil then
 		SYS_AirbrakeOn = 147,
 		SYS_AirbrakeOff = 148,
 		SYS_AirbrakeCycle = 73,
+		SYS_TrimRudderLeft = 98,
+		SYS_TrimRudderRight = 99,
+		SYS_TrimStop = 215,
+		SYS_TrimOn = 957,
+		SYS_TrimOff = 958,
 		SYS_Parachute = 76,
 		SYS_DirectControl = 121,
 		SYS_SU33_RefuelingMode = 583,
@@ -253,7 +285,7 @@ if iCommands == nil then
 		SYS_JettisonWeaponsStop = 171,  -- Jettison Weapons release
 		SYS_JettisonFuel = 178,
 		SYS_F15_BingoIndex = 1092,  -- Used for both up and down
-		SYS_F15_FuelQtySource = 1093,  -- Cycle which tank is shown in the fuel gauge
+		SYS_F15_FuelQtySel = 1093,  -- Cycle which tank is shown in the fuel gauge
 		SYS_F15_FuelBitTest = 1097,
 
 		SYS_LightsNav = 175,  -- Cycle Nav lights

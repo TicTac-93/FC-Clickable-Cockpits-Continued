@@ -12,7 +12,7 @@ aircraft = get_aircraft_type()
 local abort = true
 local whitelist = {
   "A-10A",
-  -- "F-15C",
+  "F-15C",
   -- "J-11A",
   -- "MiG-29A",
   -- "MiG-29G",
@@ -53,6 +53,9 @@ if aircraft == "A-10A" then
 
 elseif aircraft == "F-5E-3_FC" then
   creators[devices.FCC_F5E] = {"avLuaDevice", scripts.."Systems/clickable_f5e.lua"}
+
+elseif aircraft == "F-15C" then
+  creators[devices.FCC_F15C] = {"avLuaDevice", scripts.."Systems/clickable_f15c.lua"}
 
 end
 
