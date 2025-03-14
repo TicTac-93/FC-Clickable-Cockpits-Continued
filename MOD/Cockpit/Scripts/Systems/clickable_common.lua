@@ -84,6 +84,13 @@ function SetCommand(command, value)
   elseif command == device_commands.FUEL_AA_TGL then
     dispatch_action(nil, iCommands.SYS_AirRefuel)
 
+  elseif command == device_commands.FUEL_DUMP then
+    if value > 0 then
+      dispatch_action(nil, iCommands.SYS_DumpFuel)
+    else
+      dispatch_action(nil, iCommands.SYS_DumpFuelStop)
+    end
+
   elseif command == device_commands.MIRROR then
     dispatch_action(nil, iCommands.VIEW_Mirrors)
 

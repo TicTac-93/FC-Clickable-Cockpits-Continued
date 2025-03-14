@@ -23,8 +23,8 @@ elements["PNT_CAUTION_CLR"] = fcc_button(_("Reset Master Caution"), devices.FCC_
 elements["PNT_CHUTE"] = fcc_button(_("Drogue Chute DEPLOY/CUT"), devices.FCC_COMMON, device_commands.CHUTE)
 elements["PNT_CLOCK"] = fcc_button(_("Clock Start/Stop/Reset"), devices.FCC_COMMON, device_commands.CLOCK)
 elements["PNT_CM_AUTO"] = fcc_button(_("Countermeasures Periodic Dispense"), devices.FCC_COMMON, device_commands.CM_AUTO)
-elements["PNT_CM_CHAFF"] = fcc_button(_("Dispense Chaff"), devices.FCC_COMMON, device_commands.CM_CHAFF)
-elements["PNT_CM_FLARE"] = fcc_button(_("Dispense Flare"), devices.FCC_COMMON, device_commands.CM_FLARE)
+-- elements["PNT_CM_CHAFF"] = fcc_button(_("Dispense Chaff"), devices.FCC_COMMON, device_commands.CM_CHAFF)
+-- elements["PNT_CM_FLARE"] = fcc_button(_("Dispense Flare"), devices.FCC_COMMON, device_commands.CM_FLARE)
 elements["PNT_CYCLE_WP"] = fcc_knob(_("Cycle Waypoint / Airfield / Target"), devices.FCC_COMMON, device_commands.WPT_CYCLE)
 elements["PNT_DROP_EXT"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
 elements["PNT_DROP_FUEL"] = fcc_button(_("Jettison External Fuel Tanks"), devices.FCC_COMMON, device_commands.JET_FUEL)
@@ -37,9 +37,10 @@ elements["PNT_ENGR_OFF"] = fcc_button(_("Shutdown Right Engine"), devices.FCC_CO
 elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON, device_commands.ENGR_ON)
 elements["PNT_FLAPS"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS)
 elements["PNT_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
+elements["PNT_FUEL_DUMP"] = fcc_momentary_button(_("Dump Fuel"), devices.FCC_COMMON, device_commands.FUEL_DUMP)
 elements["PNT_GEAR"] = fcc_switch(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
-elements["PNT_LGT_COL"] = fcc_button(_("Anti-Collision Lights"), devices.FCC_COMMON, device_commands.LGT_COLLISION)
+elements["PNT_LGT_BCN"] = fcc_button(_("Beacon Light"), devices.FCC_COMMON, device_commands.LGT_BCN)
 elements["PNT_LGT_INT"] = fcc_button(_("Instrument Lights"), devices.FCC_COMMON, device_commands.LGT_INT)
 elements["PNT_LGT_LAND"] = fcc_button(_("Landing Lights"), devices.FCC_COMMON, device_commands.LGT_LANDING)
 elements["PNT_LGT_NAV"] = fcc_button(_("Navigation Lights"), devices.FCC_COMMON, device_commands.LGT_NAV)
@@ -84,7 +85,27 @@ elseif aircraft == "F-5E-3_FC" then
   elements["F5E_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F5E, device_commands.RDR_RANGE)
   elements["F5E_SIGHT_MODE"] = fcc_switch_scrollable(_("Master Modes"), devices.FCC_F5E, device_commands.MM_AA)
 
+-- F-15C specific features, need to be tested
+elseif aircraft == "F-15C" then
+  elements["F15_AP_ALT"] = fcc_button(_("Autopilot Altitude Hold ON/OFF"), devices.FCC_F15C, device_commands.AP_MODE_ALT)
+  elements["F15_AP_ATT"] = fcc_button(_("Autopilot ON/OFF, Attitude Hold"), devices.FCC_F15C, device_commands.AP_TGL)
+  elements["F15_BINGO"] = fcc_switch(_("Bingo Fuel INC/DEC"), devices.FCC_F15C, device_commands.FUEL_BINGO, true)
+  elements["F15_CAS_PITCH"] = fcc_button(_("CAS Pitch ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_PITCH)
+  elements["F15_CAS_ROLL"] = fcc_button(_("CAS Roll ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_ROLL)
+  elements["F15_CAS_YAW"] = fcc_button(_("CAS Yaw ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_YAW)
+  elements["F15_ENGL_MASTER"] = fcc_switch(_("Left Engine ON/OFF"), devices.FCC_F15C, device_commands.ENGL_TGL)
+  elements["F15_ENGR_MASTER"] = fcc_switch(_("Right Engine ON/OFF"), devices.FCC_F15C, device_commands.ENGR_TGL)
+  elements["F15_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_F15C, device_commands.RDR_TGL)
+  elements["F15_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_F15C, device_commands.RDR_VERT, true)
+  elements["F15_RADAR_HORZ"] = fcc_switch(_("Radar Scan Zone INC/DEC"), devices.FCC_F15C, device_commands.RDR_HORZ)
+  elements["F15_RADAR_MODE"] = fcc_button(_("Radar Mode TWS/STT"), devices.FCC_F15C, device_commands.RDR_MODE)
+  elements["F15_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F15C, device_commands.RDR_RANGE)
+  elements["F15_TANK_SEL"] = fcc_switch_scrollable(_("Fuel Gauge Tank Selection"), devices.FCC_F15C, device_commands.FUEL_SEL)
+  elements["F15_TRIM_RUDDER"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_F15C, device_commands.TRIM_YAW, true)
+  elements["F15_TRIM_TO"] = fcc_button(_("Take-off Trim"), devices.FCC_F15C, device_commands.TRIM_TO)
+
+
 end
 
 
-FCCLOG.info("clickabledata INIT")
+-- FCCLOG.info("clickabledata INIT")

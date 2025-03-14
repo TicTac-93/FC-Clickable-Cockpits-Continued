@@ -63,6 +63,29 @@ function fcc_button(hint_, device_, command_)
 	}
 end
 
+---Modified version of default_button.
+---
+---Suitable for momentary buttons, this emits 1 on press and 0 on release.
+---@param hint_ string
+---@param device_ integer
+---@param command_ integer
+---@return table
+function fcc_momentary_button(hint_, device_, command_)
+	local arg_val_ = 1
+	local arg_lim_ = {0, 1}
+
+	return {
+		class         = {class_type.TUMB},
+		hint          = hint_,
+		device        = device_,
+		action        = {command_},
+		stop_action   = {command_},
+		arg           = {nil},
+		arg_value     = {arg_val_},
+		arg_lim       = {arg_lim_},
+	}
+end
+
 ---Modified version of default_axis.
 ---
 ---A simple knob, can be click-dragged or interacted with using the scroll wheel.
