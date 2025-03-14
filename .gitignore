@@ -1,12 +1,8 @@
 FC-Clickable-Cockpits-Continued.code-workspace
 .vscode
 *.blend1
+_release staging
+_docs working
 _cockpit-shapes/*/*.edm
-_cockpit-shapes/F-15C/dcs_F-15C_clickableCockpit_01.blend
-_cockpit-shapes/F-5E_FC/dcs_F-5E_FC_clickableCockpit_01.blend
-_cockpit-shapes/F-86_FC/dcs_F-86_FC_clickableCockpit_01.blend
-_cockpit-shapes/MiG-15bis_FC/dcs_MiG-15bis_FC_clickableCockpit_01.blend
-_cockpit-shapes/MiG-29/dcs_MiG-29_clickableCockpit_01.blend
-_cockpit-shapes/SU-27/dcs_SU-27_clickableCockpit_01.blend
-_cockpit-shapes/SU-33/dcs_SU-33_clickableCockpit_01.blend
+_cockpit-shapes/*/*_01.blend
 _cockpit-shapes/F-5E_FC/dcs_F-5E_FC_clickableCockpit_02.blend
