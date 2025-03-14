@@ -2,11 +2,11 @@ cdata =
 {
 
   FCC_PLUGIN_NAME                   = _("FC Clickable Cockpits Continued"),
-  FCC_PROJECT_URL                   = _("Placeholder for Github repo URL"),
+  FCC_PROJECT_URL                   = _("https://github.com/TicTac-93/FC-Clickable-Cockpits-Continued"),
 
   FCC_FC3_HEADER                    = _("Flaming Cliffs 3 Aircraft"),
   FCC_FC24_HEADER                   = _("Flaming Cliffs 2024 Aircraft"),
-  FCC_TOGGLES_HEADER_HELP           = _("Uncheck the box next to an aircraft type to disable this mod when flying it.  Greyed out options are not available."),
+  FCC_TOGGLES_HEADER_HELP           = _("Enable or Disable this mod for supported aircraft"),
   FCC_TOGGLES_HINT                  = _("Uncheck to disable for this aircraft"),
 
   FCC_TOGGLE_A10A     = _("A-10A"),
