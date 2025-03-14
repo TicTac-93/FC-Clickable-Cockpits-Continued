@@ -103,7 +103,7 @@ if device_commands == nil then
 
 	}
 	
-	FCCLOG.info("device_commands INIT")
+	-- FCCLOG.info("device_commands INIT")
 end
 
 -- ================
@@ -319,5 +319,5 @@ if iCommands == nil then
 
 	}
 
-	FCCLOG.info("iCommands INIT")
+	-- FCCLOG.info("iCommands INIT")
 end

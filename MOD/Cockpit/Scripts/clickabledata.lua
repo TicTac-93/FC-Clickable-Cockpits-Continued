@@ -37,7 +37,7 @@ elements["PNT_ENGR_OFF"] = fcc_button(_("Shutdown Right Engine"), devices.FCC_CO
 elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON, device_commands.ENGR_ON)
 elements["PNT_FLAPS"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS)
 elements["PNT_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
-elements["PNT_FUEL_DUMP"] = fcc_momentary_button(_("Dump Fuel (HOLD)"), devices.FCC_COMMON, device_commands.FUEL_DUMP)
+elements["PNT_FUEL_DUMP"] = fcc_momentary_button(_("Dump Fuel"), devices.FCC_COMMON, device_commands.FUEL_DUMP)
 elements["PNT_GEAR"] = fcc_switch(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
 elements["PNT_LGT_BCN"] = fcc_button(_("Beacon Light"), devices.FCC_COMMON, device_commands.LGT_BCN)
@@ -108,4 +108,4 @@ elseif aircraft == "F-15C" then
 end
 
 
-FCCLOG.info("clickabledata INIT")
+-- FCCLOG.info("clickabledata INIT")

@@ -59,4 +59,4 @@ elseif aircraft == "F-15C" then
 
 end
 
-FCCLOG.info("device_init INIT")
+-- FCCLOG.info("device_init INIT")

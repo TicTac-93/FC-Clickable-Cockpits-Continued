@@ -38,6 +38,6 @@ local controllers = LoRegisterPanelControls()
 -- FCC_CANOPY.controller      = controllers.base_gauge_CanopyPos
 
 
-FCCLOG.info("mainpanel_init INIT")
+-- FCCLOG.info("mainpanel_init INIT")
 
 need_to_be_closed = true
