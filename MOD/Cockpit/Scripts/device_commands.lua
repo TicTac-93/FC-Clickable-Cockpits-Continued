@@ -35,6 +35,7 @@ if device_commands == nil then
 		AP_ARM = counter(),  -- Used by the A-10A to arm the autopilot system
 
 		-- Misc
+		ADI_RESET = counter(),
 		CANOPY = counter(),
 		CAUTION_CLR = counter(),
 		CHUTE = counter(),
@@ -64,6 +65,7 @@ if device_commands == nil then
 		-- Engines / Power
 		ENGL_TGL = counter(),
 		ENGR_TGL = counter(),
+		ENG_TGL = counter(),
 		ENGL_OFF = counter(),
 		ENGR_OFF = counter(),
 		ENGL_ON = counter(),
@@ -233,7 +235,7 @@ if iCommands == nil then
 		SYS_AltIncrease = 316,
 		SYS_AltDecrease = 317,
 		SYS_AltStop = 318,
-		SYS_F86_ResetADI = 24,
+		SYS_F86_ResetADI = 3001,  -- Used for both up and down
 		SYS_MIG15_ResetADI = 25,
 		SYS_ResetMasterCaution = 144,
 		SYS_ClockElapsedTimeReset = 1629,

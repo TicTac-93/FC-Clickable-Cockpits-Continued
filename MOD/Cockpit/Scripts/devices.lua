@@ -12,6 +12,7 @@ if devices == nil then
 		FCC_A10A = counter(),
 		FCC_F5E = counter(),
 		FCC_F15C = counter(),
+		FCC_F86 = counter(),
 	}
 	
 end

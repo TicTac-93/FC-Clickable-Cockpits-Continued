@@ -15,6 +15,8 @@ elseif aircraft == "F-5E-3_FC" then
   shape_name = "FCClickable_F-5E"
 elseif aircraft == "F-15C" then
   shape_name = "FCClickable_F-15C"
+elseif aircraft == "F-86F_FC" then
+  shape_name = "FCClickable_F-86"
 end
 
 FCCLOG.info("SHAPE set to " .. shape_name)

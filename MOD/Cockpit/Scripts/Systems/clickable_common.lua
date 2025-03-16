@@ -13,7 +13,11 @@ local sensor_data = get_base_data()
 local update_time_step = 0.02  -- Update will be called 50 times per second
 make_default_activity(update_time_step)
 
-seat_stopped = true  -- Used by view_adjust() to avoid running unnecessarily
+-- Used to drive behavior in update()
+seat_stopped = true
+
+local trim_yaw_value = 0
+local trim_yaw_stopped = true
 
 
 -- NOTE: Consider refactoring this with a table lookup?  There are a LOT of if...else statements to run through.
@@ -196,6 +200,10 @@ function SetCommand(command, value)
   elseif command == device_commands.JET_FUEL then
     dispatch_action(nil, iCommands.SYS_JettisonFuel)
 
+  elseif command == device_commands.TRIM_YAW then
+    trim_yaw_value = value
+    trim_yaw_stopped = false
+
   elseif command == device_commands.WEP_CYCLE then
     dispatch_action(nil, iCommands.W_ChangeWeapon)
 
@@ -214,8 +222,7 @@ function view_adjust()
     -- Return early if we aren't moving the camera right now
     return
   end
-
-  FCCLOG.info("view_adjust()")
+  
   if seat_adj == 0 then
     dispatch_action(nil, iCommands.VIEW_CameraMoveStop)
     seat_stopped = true
@@ -227,9 +234,28 @@ function view_adjust()
 
 end
 
+---Handles rudder trim
+---Adjustment speed is DIRECTLY dependent on the update_time_step!
+function trim_rudder_adjust()
+  if trim_yaw_stopped then
+    -- Return early if we aren't moving the trim right now
+    return
+  end
+
+  if trim_yaw_value == 0 then
+    dispatch_action(nil, iCommands.SYS_TrimStop)
+    trim_yaw_stopped = true
+  elseif trim_yaw_value > 0 then
+    dispatch_action(nil, iCommands.SYS_TrimRudderLeft)
+  else  -- < 0
+    dispatch_action(nil, iCommands.SYS_TrimRudderRight)
+  end
+end
+
 -- This gets called every update_time_step
 function update()
   view_adjust()
+  trim_rudder_adjust()
 end
 
 -- Called automatically after the cockpit has been initialized, maybe?  Not sure on the exact timing

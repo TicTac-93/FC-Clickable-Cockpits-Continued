@@ -57,6 +57,7 @@ elements["PNT_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity"), devices.FC
 elements["PNT_RWR_VOL"] = fcc_knob(_("Set RWR Volume"), devices.FCC_COMMON, device_commands.RWR_VOL)
 elements["PNT_RWR_MODE"] = fcc_button(_("Switch RWR Mode"), devices.FCC_COMMON, device_commands.RWR_MODE)
 elements["PNT_SEAT_VERT"] = fcc_switch(_("Adjust Seat UP/DOWN"), devices.FCC_COMMON, device_commands.VIEW_VERT, true)
+elements["PNT_TRIM_RUDDER"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_YAW, true)
 elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
 -- Add to this with other shared basic features
 
@@ -85,7 +86,7 @@ elseif aircraft == "F-5E-3_FC" then
   elements["F5E_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F5E, device_commands.RDR_RANGE)
   elements["F5E_SIGHT_MODE"] = fcc_switch_scrollable(_("Master Modes"), devices.FCC_F5E, device_commands.MM_AA)
 
--- F-15C specific features, need to be tested
+-- F-15C specific features
 elseif aircraft == "F-15C" then
   elements["F15_AP_ALT"] = fcc_button(_("Autopilot Altitude Hold ON/OFF"), devices.FCC_F15C, device_commands.AP_MODE_ALT)
   elements["F15_AP_ATT"] = fcc_button(_("Autopilot ON/OFF, Attitude Hold"), devices.FCC_F15C, device_commands.AP_TGL)
@@ -93,16 +94,22 @@ elseif aircraft == "F-15C" then
   elements["F15_CAS_PITCH"] = fcc_button(_("CAS Pitch ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_PITCH)
   elements["F15_CAS_ROLL"] = fcc_button(_("CAS Roll ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_ROLL)
   elements["F15_CAS_YAW"] = fcc_button(_("CAS Yaw ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_YAW)
-  elements["F15_ENGL_MASTER"] = fcc_switch(_("Left Engine ON/OFF"), devices.FCC_F15C, device_commands.ENGL_TGL)
-  elements["F15_ENGR_MASTER"] = fcc_switch(_("Right Engine ON/OFF"), devices.FCC_F15C, device_commands.ENGR_TGL)
+  elements["F15_ENGL_MASTER"] = fcc_switch(_("Left Engine START/STOP"), devices.FCC_F15C, device_commands.ENGL_TGL)
+  elements["F15_ENGR_MASTER"] = fcc_switch(_("Right Engine START/STOP"), devices.FCC_F15C, device_commands.ENGR_TGL)
   elements["F15_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_F15C, device_commands.RDR_TGL)
   elements["F15_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_F15C, device_commands.RDR_VERT, true)
   elements["F15_RADAR_HORZ"] = fcc_switch(_("Radar Scan Zone INC/DEC"), devices.FCC_F15C, device_commands.RDR_HORZ)
   elements["F15_RADAR_MODE"] = fcc_button(_("Radar Mode TWS/STT"), devices.FCC_F15C, device_commands.RDR_MODE)
   elements["F15_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F15C, device_commands.RDR_RANGE)
   elements["F15_TANK_SEL"] = fcc_switch_scrollable(_("Fuel Gauge Tank Selection"), devices.FCC_F15C, device_commands.FUEL_SEL)
-  elements["F15_TRIM_RUDDER"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_F15C, device_commands.TRIM_YAW, true)
   elements["F15_TRIM_TO"] = fcc_button(_("Take-off Trim"), devices.FCC_F15C, device_commands.TRIM_TO)
+
+-- F-86 specific features
+elseif aircraft == "F-86F_FC" then
+  elements["F86_ENG_TGL"] = fcc_switch(_("Engine START/STOP"), devices.FCC_F86, device_commands.ENG_TGL)
+  elements["F86_MODE_AA"] = fcc_switch(_("Air-to-Air Weapons / Nav Mode"), devices.FCC_F86, device_commands.MM_AA)
+  elements["F86_MODE_AG"] = fcc_switch(_("Air-to-Ground Weapons / Cannons"), devices.FCC_F86, device_commands.MM_AG)
+  elements["F86_ADI_RESET"] = fcc_momentary_button(_("Reset ADI"), devices.FCC_F86, device_commands.ADI_RESET)
 
 
 end
