@@ -11,8 +11,8 @@ This mod aims to add basic clickable functionality to all Flaming Cliffs aircraf
 - **A-10A:**  Basic
 - **F-5E:**  Basic
 - **F-15C:**  Basic
-- **F-86:**  Work in Progress
-- **MiG-15bis:**  Work in Progress
+- **F-86:**  Basic
+- **MiG-15bis:**  Basic
 - **MiG-29:**  Work in Progress
 - **SU-25A:**  Waiting for update from ED
 - **SU-25T:**  Waiting for update from ED
@@ -24,7 +24,7 @@ Due to the lack of licensing on the original mod, and to my lack of experience w
 
 ## Installation
 - Download the latest **[Release](https://github.com/TicTac-93/FC-Clickable-Cockpits-Continued/releases)** version
-- Copy the **FC-Clickable-Cockpits-Continued** folder to your **DCS/Mods/tech/** directory
+- Copy the **FC-Clickable-Cockpits-Continued** folder to your **%UserProfile%/Saved Games/DCS/Mods/tech/** directory, NOT to your DCS installation directory
 - Check for an **FC Clickable Cockpits** menu under **Options** > **Special**
   - If installed correctly, you should see that menu with options to enable or disable the mod for each aircraft
 
