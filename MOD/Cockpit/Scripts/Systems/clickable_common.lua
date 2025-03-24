@@ -18,6 +18,10 @@ seat_stopped = true
 
 local trim_yaw_value = 0
 local trim_yaw_stopped = true
+local trim_pitch_value = 0
+local trim_pitch_stopped = true
+local trim_roll_value = 0
+local trim_roll_stopped = true
 
 
 -- NOTE: Consider refactoring this with a table lookup?  There are a LOT of if...else statements to run through.
@@ -134,7 +138,7 @@ function SetCommand(command, value)
 
 
   -- ==================================================
-  -- Lights
+  -- Lights / HUD
 
   elseif command == device_commands.HUD_BRT then
     if value > 0 then
@@ -142,6 +146,9 @@ function SetCommand(command, value)
     else
       dispatch_action(nil, iCommands.SYS_HUDBrightnessDown)
     end
+    
+  elseif command == device_commands.HUD_FILTER then
+    dispatch_action(nil, iCommands.SYS_HUDFilter)
 
   elseif command == device_commands.LGT_COLLISION then
     dispatch_action(nil, iCommands.SYS_LightsAntiCollision)
@@ -173,6 +180,25 @@ function SetCommand(command, value)
       dispatch_action(nil, iCommands.SYS_GearDown)
     end
 
+  elseif command == device_commands.AIRBRAKE then
+    if value > 0 then
+      dispatch_action(nil, iCommands.SYS_AirbrakeOn)
+    else
+      dispatch_action(nil, iCommands.SYS_AirbrakeOff)
+    end
+
+  elseif command == device_commands.TRIM_YAW then
+    trim_yaw_value = value
+    trim_yaw_stopped = false
+
+  elseif command == device_commands.TRIM_PITCH then
+    trim_pitch_value = value
+    trim_pitch_stopped = false
+
+  elseif command == device_commands.TRIM_ROLL then
+    trim_roll_value = value
+    trim_roll_stopped = false
+
 
   -- ==================================================
   -- Weapons / Pylons
@@ -200,10 +226,6 @@ function SetCommand(command, value)
   elseif command == device_commands.JET_FUEL then
     dispatch_action(nil, iCommands.SYS_JettisonFuel)
 
-  elseif command == device_commands.TRIM_YAW then
-    trim_yaw_value = value
-    trim_yaw_stopped = false
-
   elseif command == device_commands.WEP_CYCLE then
     dispatch_action(nil, iCommands.W_ChangeWeapon)
 
@@ -214,6 +236,8 @@ function SetCommand(command, value)
   --   FCCLOG.info("SHOW/HIDE STICK")
 
 end
+
+
 
 ---Handles camera adjustments (scootch up, down, forward, back)
 ---Adjustment speed is DIRECTLY dependent on the update_time_step!
@@ -252,10 +276,48 @@ function trim_rudder_adjust()
   end
 end
 
+---Handles elevator trim
+---Adjustment speed is DIRECTLY dependent on the update_time_step!
+function trim_pitch_adjust()
+  if trim_pitch_stopped then
+    -- Return early if we aren't moving the trim right now
+    return
+  end
+
+  if trim_pitch_value == 0 then
+    dispatch_action(nil, iCommands.SYS_TrimStop)
+    trim_pitch_stopped = true
+  elseif trim_pitch_value > 0 then
+    dispatch_action(nil, iCommands.SYS_TrimPitchUp)
+  else  -- < 0
+    dispatch_action(nil, iCommands.SYS_TrimPitchDown)
+  end
+end
+
+---Handles aileron trim
+---Adjustment speed is DIRECTLY dependent on the update_time_step!
+function trim_roll_adjust()
+  if trim_roll_stopped then
+    -- Return early if we aren't moving the trim right now
+    return
+  end
+
+  if trim_roll_value == 0 then
+    dispatch_action(nil, iCommands.SYS_TrimStop)
+    trim_roll_stopped = true
+  elseif trim_roll_value > 0 then
+    dispatch_action(nil, iCommands.SYS_TrimRollLeft)
+  else  -- < 0
+    dispatch_action(nil, iCommands.SYS_TrimRollRight)
+  end
+end
+
 -- This gets called every update_time_step
 function update()
   view_adjust()
   trim_rudder_adjust()
+  trim_pitch_adjust()
+  trim_roll_adjust()
 end
 
 -- Called automatically after the cockpit has been initialized, maybe?  Not sure on the exact timing

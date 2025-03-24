@@ -3,7 +3,7 @@
 -- as well as connecting parameters to animation args via Gauges
 
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")  -- Mod logging functions
-dofile(LockOn_Options.script_path.."/Utilities/dump_data.lua")  -- Debug scripts
+-- dofile(LockOn_Options.script_path.."/Utilities/dump_data.lua")  -- Debug scripts
 
 local aircraft = get_aircraft_type()
 shape_name = ""
@@ -17,6 +17,8 @@ elseif aircraft == "F-15C" then
   shape_name = "FCClickable_F-15C"
 elseif aircraft == "F-86F_FC" then
   shape_name = "FCClickable_F-86"
+elseif aircraft == "MiG-15bis_FC" then
+  shape_name = "FCClickable_MiG-15"
 end
 
 FCCLOG.info("SHAPE set to " .. shape_name)

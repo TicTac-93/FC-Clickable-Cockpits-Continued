@@ -17,6 +17,7 @@ elements = {}
 local aircraft = get_aircraft_type()
 
 -- Common elements, a baseline for all FC aircraft.  May be replaced by more specific commands in aircraft sections further down
+elements["PNT_AIRBRAKE"] = fcc_switch(_("Airbrake DEPLOY/RETRACT"), devices.FCC_COMMON, device_commands.AIRBRAKE)
 elements["PNT_ALT"] = fcc_knob(_("Set Altimeter"), devices.FCC_COMMON, device_commands.ALT_SET)
 elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 elements["PNT_CAUTION_CLR"] = fcc_button(_("Reset Master Caution"), devices.FCC_COMMON, device_commands.CAUTION_CLR)
@@ -40,6 +41,7 @@ elements["PNT_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC
 elements["PNT_FUEL_DUMP"] = fcc_momentary_button(_("Dump Fuel"), devices.FCC_COMMON, device_commands.FUEL_DUMP)
 elements["PNT_GEAR"] = fcc_switch(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
+elements["PNT_HUD_FILTER"] = fcc_button(_("Toggle HUD Filter"), devices.FCC_COMMON, device_commands.HUD_FILTER)
 elements["PNT_LGT_BCN"] = fcc_button(_("Beacon Light"), devices.FCC_COMMON, device_commands.LGT_BCN)
 elements["PNT_LGT_INT"] = fcc_button(_("Instrument Lights"), devices.FCC_COMMON, device_commands.LGT_INT)
 elements["PNT_LGT_LAND"] = fcc_button(_("Landing Lights"), devices.FCC_COMMON, device_commands.LGT_LANDING)
@@ -57,6 +59,8 @@ elements["PNT_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity"), devices.FC
 elements["PNT_RWR_VOL"] = fcc_knob(_("Set RWR Volume"), devices.FCC_COMMON, device_commands.RWR_VOL)
 elements["PNT_RWR_MODE"] = fcc_button(_("Switch RWR Mode"), devices.FCC_COMMON, device_commands.RWR_MODE)
 elements["PNT_SEAT_VERT"] = fcc_switch(_("Adjust Seat UP/DOWN"), devices.FCC_COMMON, device_commands.VIEW_VERT, true)
+elements["PNT_TRIM_PITCH"] = fcc_switch(_("Trim Elevator UP/DOWN"), devices.FCC_COMMON, device_commands.TRIM_PITCH, true)
+elements["PNT_TRIM_ROLL"] = fcc_switch(_("Trim Ailerons LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_ROLL, true)
 elements["PNT_TRIM_RUDDER"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_YAW, true)
 elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
 -- Add to this with other shared basic features
@@ -111,6 +115,15 @@ elseif aircraft == "F-86F_FC" then
   elements["F86_MODE_AG"] = fcc_switch(_("Air-to-Ground Weapons / Cannons"), devices.FCC_F86, device_commands.MM_AG)
   elements["F86_ADI_RESET"] = fcc_momentary_button(_("Reset ADI"), devices.FCC_F86, device_commands.ADI_RESET)
 
+-- MiG-15bis specific features
+elseif aircraft == "MiG-15bis_FC" then
+  elements["MIG15_ADI_RESET"] = fcc_momentary_button(_("Reset ADI"), devices.FCC_MIG15, device_commands.ADI_RESET)
+  elements["MIG15_ENG_TGL"] = fcc_switch(_("Engine START/STOP"), devices.FCC_MIG15, device_commands.ENG_TGL)
+  elements["MIG15_MODE_AA"] = fcc_switch(_("Cannons ARM/DISARM"), devices.FCC_MIG15, device_commands.MM_AA)
+  elements["MIG15_MODE_AG"] = fcc_switch(_("Bombs ARM/DISARM"), devices.FCC_MIG15, device_commands.MM_AG)
+  elements["MIG15_POWER_2"] = fcc_button(_("Electrical Systems ON/OFF"), devices.FCC_COMMON, device_commands.POWER_TGL)
+  elements["MIG15_SIGHT_BACKUP"] = fcc_button(_("Backup Gunsight"), devices.FCC_MIG15, device_commands.HUD_MODE)
+  elements["MIG15_WINGSPAN"] = fcc_knob(_("Adjust Target Wingspan"), devices.FCC_MIG15, device_commands.RDR_HORZ)
 
 end
 
