@@ -22,8 +22,8 @@ local whitelist = {
   -- "Su-27",
   -- "Su-33",
   "F-5E-3_FC",
-  -- "F-86F_FC",
-  -- "MiG-15bis_FC",
+  "F-86F_FC",
+  "MiG-15bis_FC",
 }
 for index= 0, table.getn(whitelist), 1 do
   if whitelist[index] == aircraft then
@@ -56,6 +56,12 @@ elseif aircraft == "F-5E-3_FC" then
 
 elseif aircraft == "F-15C" then
   creators[devices.FCC_F15C] = {"avLuaDevice", scripts.."Systems/clickable_f15c.lua"}
+
+elseif aircraft == "F-86F_FC" then
+  creators[devices.FCC_F86] = {"avLuaDevice", scripts.."Systems/clickable_f86.lua"}
+
+elseif aircraft == "MiG-15bis_FC" then
+  creators[devices.FCC_MIG15] = {"avLuaDevice", scripts.."Systems/clickable_mig15.lua"}
 
 end
 

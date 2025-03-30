@@ -35,12 +35,14 @@ if device_commands == nil then
 		AP_ARM = counter(),  -- Used by the A-10A to arm the autopilot system
 
 		-- Misc
+		ADI_RESET = counter(),
 		CANOPY = counter(),
 		CAUTION_CLR = counter(),
 		CHUTE = counter(),
 		CLOCK = counter(),
 		FLAPS = counter(),
 		GEAR = counter(),
+		AIRBRAKE = counter(),
 		MIRROR = counter(),
 		NWS_STRUT = counter(),
 		NWS_TGL = counter(),
@@ -64,6 +66,7 @@ if device_commands == nil then
 		-- Engines / Power
 		ENGL_TGL = counter(),
 		ENGR_TGL = counter(),
+		ENG_TGL = counter(),
 		ENGL_OFF = counter(),
 		ENGR_OFF = counter(),
 		ENGL_ON = counter(),
@@ -72,9 +75,11 @@ if device_commands == nil then
 		POWER_ON = counter(),
 		POWER_OFF = counter(),
 
-		-- Lights
+		-- HUD / Lights
 		HUD_BRT = counter(),
 		HUD_CLR = counter(),
+		HUD_FILTER = counter(),
+		HUD_MODE = counter(),
 		LGT_BCN = counter(),
 		LGT_NAV = counter(),
 		LGT_INT = counter(),
@@ -233,7 +238,7 @@ if iCommands == nil then
 		SYS_AltIncrease = 316,
 		SYS_AltDecrease = 317,
 		SYS_AltStop = 318,
-		SYS_F86_ResetADI = 24,
+		SYS_ResetADI = 3001,  -- Used for both up and down
 		SYS_MIG15_ResetADI = 25,
 		SYS_ResetMasterCaution = 144,
 		SYS_ClockElapsedTimeReset = 1629,
@@ -260,6 +265,11 @@ if iCommands == nil then
 		SYS_AirbrakeOn = 147,
 		SYS_AirbrakeOff = 148,
 		SYS_AirbrakeCycle = 73,
+		SYS_TrimRollLeft = 93,
+		SYS_TrimRollRight = 94,
+		SYS_TrimPitchUp = 95,
+		SYS_TrimPitchDown = 96,
+		SYS_TrimReset = 97,
 		SYS_TrimRudderLeft = 98,
 		SYS_TrimRudderRight = 99,
 		SYS_TrimStop = 215,

@@ -17,16 +17,12 @@ make_default_activity(update_time_step)
 local radar_elev_value = 0
 local radar_elev_stopped = true
 
-local trim_yaw_value = 0
-local trim_yaw_stopped = true
-
 local trim_takeoff = false
 
 local bingo_index_val = 0
 local bingo_index_stopped = true
 
-
-self:listen_command(1092)
+local fuel_sel_count = 0
 
 
 ---This is called by the elements assigned in clickabledata.lua
@@ -98,16 +94,12 @@ function SetCommand(command, value)
     if value > 0 then
       dispatch_action(nil, iCommands.SYS_F15_FuelQtySel)
     else
-      count = 5
-      while count > 0 do
+      fuel_sel_count = 5
+      while fuel_sel_count > 0 do
         dispatch_action(nil, iCommands.SYS_F15_FuelQtySel)
-        count = count - 1
+        fuel_sel_count = fuel_sel_count - 1
       end
     end
-
-  elseif command == device_commands.TRIM_YAW then
-    trim_yaw_value = value
-    trim_yaw_stopped = false
 
   elseif command == device_commands.TRIM_TO then
     if trim_takeoff then
@@ -140,24 +132,6 @@ function radar_elev_adjust()
   end
 end
 
----Handles rudder trim
----Adjustment speed is DIRECTLY dependent on the update_time_step!
-function trim_rudder_adjust()
-  if trim_yaw_stopped then
-    -- Return early if we aren't moving the trim right now
-    return
-  end
-
-  if trim_yaw_value == 0 then
-    dispatch_action(nil, iCommands.SYS_TrimStop)
-    trim_yaw_stopped = true
-  elseif trim_yaw_value > 0 then
-    dispatch_action(nil, iCommands.SYS_TrimRudderLeft)
-  else  -- < 0
-    dispatch_action(nil, iCommands.SYS_TrimRudderRight)
-  end
-end
-
 ---Handles adjusting the Bingo Fuel index
 ---Adjustment speed is DIRECTLY dependent on the update_time_step!
 function bingo_index_adjust()
@@ -179,7 +153,6 @@ end
 -- This gets called every update_time_step
 function update()
   radar_elev_adjust()
-  trim_rudder_adjust()
   bingo_index_adjust()
 end
 
