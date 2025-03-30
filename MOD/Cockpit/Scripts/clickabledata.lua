@@ -61,7 +61,7 @@ elements["PNT_RWR_MODE"] = fcc_button(_("Switch RWR Mode"), devices.FCC_COMMON, 
 elements["PNT_SEAT_VERT"] = fcc_switch(_("Adjust Seat UP/DOWN"), devices.FCC_COMMON, device_commands.VIEW_VERT, true)
 elements["PNT_TRIM_PITCH"] = fcc_switch(_("Trim Elevator UP/DOWN"), devices.FCC_COMMON, device_commands.TRIM_PITCH, true)
 elements["PNT_TRIM_ROLL"] = fcc_switch(_("Trim Ailerons LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_ROLL, true)
-elements["PNT_TRIM_RUDDER"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_YAW, true)
+elements["PNT_TRIM_YAW"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_YAW, true)
 elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
 -- Add to this with other shared basic features
 
@@ -76,6 +76,7 @@ if aircraft == "A-10A" then
   elements["A10A_AP_TGL"] = fcc_button(_("Autopilot ON/OFF"), devices.FCC_A10A, device_commands.AP_TGL)
   -- Left click to enter A2G mode, right click for CCRP Steering
   elements["A10A_MODE_AG"] = fcc_switch(_("Air-to-Ground CCIP/CCRP"), devices.FCC_A10A, device_commands.MM_AG)
+  elements["A10A_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity"), devices.FCC_A10A, device_commands.WEP_RIP_QTY)
   -- These are just extra buttons for standard behavior
   elements["A10A_ENGL_OFF_FIRE"] = fcc_button(_("Left Engine OFF"), devices.FCC_COMMON, device_commands.ENGL_OFF)
   elements["A10A_ENGR_OFF_FIRE"] = fcc_button(_("Right Engine OFF"), devices.FCC_COMMON, device_commands.ENGR_OFF)
@@ -124,6 +125,7 @@ elseif aircraft == "MiG-15bis_FC" then
   elements["MIG15_POWER_2"] = fcc_button(_("Electrical Systems ON/OFF"), devices.FCC_COMMON, device_commands.POWER_TGL)
   elements["MIG15_SIGHT_BACKUP"] = fcc_button(_("Backup Gunsight"), devices.FCC_MIG15, device_commands.HUD_MODE)
   elements["MIG15_WINGSPAN"] = fcc_knob(_("Adjust Target Wingspan"), devices.FCC_MIG15, device_commands.RDR_HORZ)
+  elements["MIG15_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 
 end
 

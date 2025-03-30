@@ -22,6 +22,8 @@ local trim_takeoff = false
 local bingo_index_val = 0
 local bingo_index_stopped = true
 
+local fuel_sel_count = 0
+
 
 ---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
@@ -92,10 +94,10 @@ function SetCommand(command, value)
     if value > 0 then
       dispatch_action(nil, iCommands.SYS_F15_FuelQtySel)
     else
-      count = 5
-      while count > 0 do
+      fuel_sel_count = 5
+      while fuel_sel_count > 0 do
         dispatch_action(nil, iCommands.SYS_F15_FuelQtySel)
-        count = count - 1
+        fuel_sel_count = fuel_sel_count - 1
       end
     end
 
