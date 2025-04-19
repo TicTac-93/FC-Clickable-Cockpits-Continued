@@ -127,6 +127,29 @@ elseif aircraft == "MiG-15bis_FC" then
   elements["MIG15_WINGSPAN"] = fcc_knob(_("Adjust Target Wingspan"), devices.FCC_MIG15, device_commands.RDR_HORZ)
   elements["MIG15_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 
+-- MiG-29 A/G/S specific features
+elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" then
+  elements["MIG29_ALT_RADAR"] = fcc_knob(_("Set Radar Altimeter Warning"), devices.FCC_MIG29, device_commands.ALT_SET_RADAR)
+  elements["MIG29_AP_ALT"] = fcc_button(_("Autopilot: Altitude Hold"), devices.FCC_MIG29, device_commands.AP_MODE_ALT)
+  elements["MIG29_AP_ATT"] = fcc_button(_("Autopilot: Attitude Hold"), devices.FCC_MIG29, device_commands.AP_MODE_ATT)
+  elements["MIG29_AP_DAMPER"] = fcc_button(_("Autopilot: Damper"), devices.FCC_MIG29, device_commands.AP_MODE_DAMPER)
+  elements["MIG29_AP_LEVEL"] = fcc_button(_("Autopilot: Ground Collision Avoidance"), devices.FCC_MIG29, device_commands.AP_MODE_GCA)
+  elements["MIG29_ENG_SEL"] = fcc_switch(_("Engine Starter Mode: LEFT/AUTO/RIGHT"), devices.FCC_MIG29, device_commands.ENG_TGL)
+  elements["MIG29_ENG_START"] = fcc_button(_("Engine Starter"), devices.FCC_MIG29, device_commands.ENG_ON)
+  elements["MIG29_EOS"] = fcc_button(_("EOS ON/OFF"), devices.FCC_MIG29, device_commands.EOS_TGL)
+  elements["MIG29_MODE"] = fcc_switch_scrollable(_("Weapons System Mode"), devices.FCC_MIG29, device_commands.MM_AA)
+  elements["MIG29_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_MIG29, device_commands.RDR_TGL)
+  elements["MIG29_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_MIG29, device_commands.RDR_VERT, true)
+  elements["MIG29_RADAR_FREQ"] = fcc_button(_("Radar Frequency AUTO/MED/HIGH"), devices.FCC_MIG29, device_commands.RDR_FREQ)
+  elements["MIG29_RADAR_HORZ"] = fcc_switch(_("Radar Scan Zone LEFT/CENTER/RIGHT"), devices.FCC_MIG29, device_commands.RDR_HORZ, true)
+  elements["MIG29_RADAR_MODE"] = fcc_button(_("Radar Mode STT/TWS"), devices.FCC_MIG29, device_commands.RDR_MODE)
+  elements["MIG29_SALVO"] = fcc_button(_("Weapons and Cannons SALVO/SINGLE"), devices.FCC_MIG29, device_commands.WEP_RIP_MODE)
+  elements["MIG29_TGT_WINGSPAN"] = fcc_knob(_("Target Wingspan INC/DEC"), devices.FCC_MIG29, device_commands.TGT_SIZE)
+
+  if aircraft == "MiG-29S" then
+    elements["MIG29_ECM"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)  -- Not available in other variants
+  end
+
 end
 
 

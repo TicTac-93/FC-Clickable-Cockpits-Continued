@@ -1,4 +1,4 @@
--- This handles behavior specific to the F-86
+-- This handles behavior specific to the MiG-15bis
 
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")
 dofile(LockOn_Options.script_path.."device_commands.lua")

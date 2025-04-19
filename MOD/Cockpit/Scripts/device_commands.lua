@@ -25,9 +25,12 @@ if device_commands == nil then
 		WPT_CYCLE = counter(),  -- Waypoint / Airfield selection
 
 		-- Autopilot
-		ALT_SET = counter(),
 		AP_MODE = counter(),  -- Autopilot: Cycle modes
 		AP_MODE_ALT = counter(),
+		AP_MODE_ATT = counter(),
+		AP_MODE_DAMPER = counter(),
+		AP_MODE_LEVEL = counter(),
+		AP_MODE_GCA = counter(),  -- Autopilot: Ground Collision Avoidance
 		AP_TGL = counter(),
 		AP_CAS_PITCH = counter(),
 		AP_CAS_ROLL = counter(),
@@ -35,6 +38,8 @@ if device_commands == nil then
 		AP_ARM = counter(),  -- Used by the A-10A to arm the autopilot system
 
 		-- Misc
+		ALT_SET = counter(),
+		ALT_SET_RADAR = counter(),
 		ADI_RESET = counter(),
 		CANOPY = counter(),
 		CAUTION_CLR = counter(),
@@ -67,8 +72,10 @@ if device_commands == nil then
 		ENGL_TGL = counter(),
 		ENGR_TGL = counter(),
 		ENG_TGL = counter(),
+		ENG_OFF = counter(),
 		ENGL_OFF = counter(),
 		ENGR_OFF = counter(),
+		ENG_ON = counter(),
 		ENGL_ON = counter(),
 		ENGR_ON = counter(),
 		POWER_TGL = counter(),
@@ -88,9 +95,11 @@ if device_commands == nil then
 		-- Radar
 		RDR_MODE = counter(),
 		RDR_TGL = counter(),
+		RDR_FREQ = counter(),
 		RDR_RANGE = counter(),
 		RDR_VERT = counter(),  -- Adjust radar elevation
 		RDR_HORZ = counter(),  -- Adjust radar horizontal angle
+		EOS_TGL = counter(),  -- Electro-Optical System
 
 		-- Weapons / Pylons
 		JET_EXT = counter(),
@@ -99,6 +108,8 @@ if device_commands == nil then
 		WEP_RIP_INT = counter(),
 		WEP_RIP_MODE = counter(),
 		WEP_RIP_QTY = counter(),
+		TGT_SIZE = counter(),
+		TGT_RANGE = counter(),
 
 		-- Fuel
 		FUEL_AA_TGL = counter(),
@@ -207,6 +218,7 @@ if iCommands == nil then
 		TGT_PredictedRangeInc = 263,
 		TGT_WingspanInc = 412,
 		TGT_WingspanDec = 413,
+		TGT_WingspanStop = 414,
 		TGT_SelectorLeft = 139,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		TGT_SelectorRight = 140,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		TGT_SelectorUp = 141,  -- Sometimes used to swivel the radar itself, sometimes for target designator
@@ -226,7 +238,7 @@ if iCommands == nil then
 		RADAR_MoveCenter = 92,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		RADAR_MoveStop = 235,  -- Sometimes used to swivel the radar itself, sometimes for target designator
 		RADAR_Mode = 285,  -- F-5E gunsight modes
-		RADAR_PulseWidth = 394,
+		RADAR_PulseFreq = 394,
 		RADAR_ResetTWS = 143,  -- TWS Target Unlock
 
 		RWR_Mode = 286,
