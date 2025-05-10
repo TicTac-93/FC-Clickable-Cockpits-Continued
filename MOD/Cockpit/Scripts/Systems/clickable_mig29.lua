@@ -3,6 +3,10 @@
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")
 dofile(LockOn_Options.script_path.."device_commands.lua")
 
+-- Localization function
+local gettext = require("i_18n")
+_ = gettext.translate
+
 local self = GetSelf()
 local sensor_data = get_base_data()
 
@@ -30,9 +34,6 @@ self:listen_command(iCommands.MM_Air_VerticalScan)
 self:listen_command(iCommands.MM_FI0)
 self:listen_command(iCommands.MM_Ground)
 
--- Debugging
-self:listen_command(iCommands.AP_MIG29_MinAlt)
-
 ---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
 ---@param value number The current value of the clickable element, specifically the arg tied to it
@@ -51,13 +52,12 @@ function SetCommand(command, value)
   elseif command == device_commands.AP_MODE_GCA then
     dispatch_action(nil, iCommands.AP_GroundAvoidance)
 
-  -- Not working yet, might need to be sent to a specific device like the ADI commands in the F-86 and MiG-15
-  -- elseif command == device_commands.ALT_SET_RADAR then
-  --   if value > 0 then
-  --     dispatch_action(nil, iCommands.AP_MIG29_MinAlt, 1)
-  --   else
-  --     dispatch_action(nil, iCommands.AP_MIG29_MinAlt, -1)
-  --   end
+  elseif command == device_commands.HUD_SIGHT then
+    dispatch_action(nil, iCommands.MM_Gunsight)
+
+  -- Have to specify a device number here, though the specific number does not seem to matter
+  elseif command == device_commands.ALT_SET_RADAR then
+      dispatch_action(0, iCommands.AP_MIG29_MinAlt, value)
 
   elseif command == device_commands.ENG_TGL then
     mig29_starter_switch(value)
@@ -158,21 +158,21 @@ function mig29_starter_switch(value)
 
   -- Tell user which mode is selected
   elseif mig29_start_mode == 1 then
-    print_message_to_user(_("Engine Starter: LEFT"))
+    print_message_to_user(_("Engine Starter: RIGHT"))
   elseif mig29_start_mode == 2 then
     print_message_to_user(_("Engine Starter: BOTH"))
   elseif mig29_start_mode == 3 then
-    print_message_to_user(_("Engine Starter: RIGHT"))
+    print_message_to_user(_("Engine Starter: LEFT"))
   end
 end
 
 function mig29_engine_start()
   if mig29_start_mode == 1 then
-    dispatch_action(nil, iCommands.SYS_LeftEngineStart)
+    dispatch_action(nil, iCommands.SYS_RightEngineStart)
   elseif mig29_start_mode == 2 then
     dispatch_action(nil, iCommands.SYS_EnginesStart)
   elseif mig29_start_mode == 3 then
-    dispatch_action(nil, iCommands.SYS_RightEngineStart)
+    dispatch_action(nil, iCommands.SYS_LeftEngineStart)
   end
 end
 

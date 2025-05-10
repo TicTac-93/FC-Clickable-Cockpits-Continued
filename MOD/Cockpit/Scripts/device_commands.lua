@@ -45,6 +45,7 @@ if device_commands == nil then
 		CAUTION_CLR = counter(),
 		CHUTE = counter(),
 		CLOCK = counter(),
+		CLOCK2 = counter(),
 		FLAPS = counter(),
 		GEAR = counter(),
 		AIRBRAKE = counter(),
@@ -87,6 +88,7 @@ if device_commands == nil then
 		HUD_CLR = counter(),
 		HUD_FILTER = counter(),
 		HUD_MODE = counter(),
+		HUD_SIGHT = counter(),
 		LGT_BCN = counter(),
 		LGT_NAV = counter(),
 		LGT_INT = counter(),
@@ -104,6 +106,7 @@ if device_commands == nil then
 		-- Weapons / Pylons
 		JET_EXT = counter(),
 		JET_FUEL = counter(),
+		JET_ALL = counter(),
 		WEP_CYCLE = counter(),
 		WEP_RIP_INT = counter(),
 		WEP_RIP_MODE = counter(),

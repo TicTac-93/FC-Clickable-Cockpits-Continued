@@ -13,7 +13,7 @@ This mod aims to add basic clickable functionality to all Flaming Cliffs aircraf
 - **F-15C:**  Basic
 - **F-86:**  Basic
 - **MiG-15bis:**  Basic
-- **MiG-29:**  Work in Progress
+- **MiG-29:**  Basic
 - **SU-25A:**  Waiting for update from ED
 - **SU-25T:**  Waiting for update from ED
 - **SU-27:**  Work in Progress
