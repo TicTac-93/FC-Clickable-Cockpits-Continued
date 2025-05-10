@@ -23,12 +23,14 @@ elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, 
 elements["PNT_CAUTION_CLR"] = fcc_button(_("Reset Master Caution"), devices.FCC_COMMON, device_commands.CAUTION_CLR)
 elements["PNT_CHUTE"] = fcc_button(_("Drogue Chute DEPLOY/CUT"), devices.FCC_COMMON, device_commands.CHUTE)
 elements["PNT_CLOCK"] = fcc_button(_("Clock Start/Stop/Reset"), devices.FCC_COMMON, device_commands.CLOCK)
+-- elements["PNT_CLOCK_2"] = fcc_button(_("Flight Clock Start/Stop/Reset"), devices.FCC_COMMON, device_commands.CLOCK2)
 elements["PNT_CM_AUTO"] = fcc_button(_("Countermeasures Periodic Dispense"), devices.FCC_COMMON, device_commands.CM_AUTO)
 -- elements["PNT_CM_CHAFF"] = fcc_button(_("Dispense Chaff"), devices.FCC_COMMON, device_commands.CM_CHAFF)
 -- elements["PNT_CM_FLARE"] = fcc_button(_("Dispense Flare"), devices.FCC_COMMON, device_commands.CM_FLARE)
 elements["PNT_CYCLE_WP"] = fcc_knob(_("Cycle Waypoint / Airfield / Target"), devices.FCC_COMMON, device_commands.WPT_CYCLE)
 elements["PNT_DROP_EXT"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
 elements["PNT_DROP_FUEL"] = fcc_button(_("Jettison External Fuel Tanks"), devices.FCC_COMMON, device_commands.JET_FUEL)
+elements["PNT_DROP_EMER"] = fcc_button(_("Emergency Jettison ALL External Stores"), devices.FCC_COMMON, device_commands.JET_ALL)
 elements["PNT_ECM"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)
 elements["PNT_EJECT_1"] = fcc_button(_("EJECT x3"), devices.FCC_COMMON, device_commands.EJECT)
 elements["PNT_EJECT_2"] = fcc_button(_("EJECT x3"), devices.FCC_COMMON, device_commands.EJECT)
@@ -76,12 +78,12 @@ if aircraft == "A-10A" then
   elements["A10A_AP_TGL"] = fcc_button(_("Autopilot ON/OFF"), devices.FCC_A10A, device_commands.AP_TGL)
   -- Left click to enter A2G mode, right click for CCRP Steering
   elements["A10A_MODE_AG"] = fcc_switch(_("Air-to-Ground CCIP/CCRP"), devices.FCC_A10A, device_commands.MM_AG)
+  elements["A10A_RIP_MODE"] = fcc_knob(_("Weapon Release Mode"), devices.FCC_A10A, device_commands.WEP_RIP_MODE)
   elements["A10A_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity"), devices.FCC_A10A, device_commands.WEP_RIP_QTY)
   -- These are just extra buttons for standard behavior
   elements["A10A_ENGL_OFF_FIRE"] = fcc_button(_("Left Engine OFF"), devices.FCC_COMMON, device_commands.ENGL_OFF)
   elements["A10A_ENGR_OFF_FIRE"] = fcc_button(_("Right Engine OFF"), devices.FCC_COMMON, device_commands.ENGR_OFF)
   elements["A10A_WEP_CYC_2"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
-  elements["A10A_DROP_EXT_2"] = fcc_button(_("Jettison External Stores"), devices.FCC_COMMON, device_commands.JET_EXT)
 
 -- F-5E specific features
 elseif aircraft == "F-5E-3_FC" then
@@ -123,9 +125,33 @@ elseif aircraft == "MiG-15bis_FC" then
   elements["MIG15_MODE_AA"] = fcc_switch(_("Cannons ARM/DISARM"), devices.FCC_MIG15, device_commands.MM_AA)
   elements["MIG15_MODE_AG"] = fcc_switch(_("Bombs ARM/DISARM"), devices.FCC_MIG15, device_commands.MM_AG)
   elements["MIG15_POWER_2"] = fcc_button(_("Electrical Systems ON/OFF"), devices.FCC_COMMON, device_commands.POWER_TGL)
-  elements["MIG15_SIGHT_BACKUP"] = fcc_button(_("Backup Gunsight"), devices.FCC_MIG15, device_commands.HUD_MODE)
+  elements["MIG15_SIGHT_BACKUP"] = fcc_button(_("Backup Gunsight"), devices.FCC_MIG15, device_commands.HUD_SIGHT)
   elements["MIG15_WINGSPAN"] = fcc_knob(_("Adjust Target Wingspan"), devices.FCC_MIG15, device_commands.RDR_HORZ)
   elements["MIG15_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
+
+-- MiG-29 A/G/S specific features
+elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" then
+  elements["MIG29_ALT_RADAR"] = fcc_switch(_("Set Radar Altimeter Warning"), devices.FCC_MIG29, device_commands.ALT_SET_RADAR, true)
+  elements["MIG29_AP_ALT"] = fcc_button(_("Autopilot: Altitude Hold"), devices.FCC_MIG29, device_commands.AP_MODE_ALT)
+  elements["MIG29_AP_ATT"] = fcc_button(_("Autopilot: Attitude Hold"), devices.FCC_MIG29, device_commands.AP_MODE_ATT)
+  elements["MIG29_AP_DAMPER"] = fcc_button(_("Autopilot: Damper"), devices.FCC_MIG29, device_commands.AP_MODE_DAMPER)
+  elements["MIG29_AP_LEVEL"] = fcc_button(_("Autopilot: Ground Collision Avoidance"), devices.FCC_MIG29, device_commands.AP_MODE_GCA)
+  elements["MIG29_ENG_SEL"] = fcc_switch(_("Engine Starter Mode: LEFT/AUTO/RIGHT"), devices.FCC_MIG29, device_commands.ENG_TGL)
+  elements["MIG29_ENG_START"] = fcc_button(_("Engine Starter"), devices.FCC_MIG29, device_commands.ENG_ON)
+  elements["MIG29_EOS"] = fcc_button(_("EOS ON/OFF"), devices.FCC_MIG29, device_commands.EOS_TGL)
+  elements["MIG29_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_MIG29, device_commands.HUD_SIGHT)
+  elements["MIG29_MODE"] = fcc_switch_scrollable(_("Weapons System Mode"), devices.FCC_MIG29, device_commands.MM_AA)
+  elements["MIG29_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_MIG29, device_commands.RDR_TGL)
+  elements["MIG29_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_MIG29, device_commands.RDR_VERT, true)
+  elements["MIG29_RADAR_FREQ"] = fcc_button(_("Radar Frequency AUTO/MED/HIGH"), devices.FCC_MIG29, device_commands.RDR_FREQ)
+  elements["MIG29_RADAR_HORZ"] = fcc_switch(_("Radar Scan Zone LEFT/CENTER/RIGHT"), devices.FCC_MIG29, device_commands.RDR_HORZ, true)
+  elements["MIG29_RADAR_MODE"] = fcc_button(_("Radar Mode STT/TWS"), devices.FCC_MIG29, device_commands.RDR_MODE)
+  elements["MIG29_SALVO"] = fcc_button(_("Weapons and Cannons SALVO/SINGLE"), devices.FCC_MIG29, device_commands.WEP_RIP_MODE)
+  elements["MIG29_TGT_WINGSPAN"] = fcc_knob(_("Target Wingspan INC/DEC"), devices.FCC_MIG29, device_commands.TGT_SIZE)
+
+  if aircraft == "MiG-29S" then
+    elements["MIG29_ECM"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)  -- Not available in other variants
+  end
 
 end
 

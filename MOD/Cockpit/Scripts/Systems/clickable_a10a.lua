@@ -13,7 +13,6 @@ local update_time_step = 0.1  -- Update will be called 10 times per second
 make_default_activity(update_time_step)
 
 local a10a_ap_mode = 1
-local rip_sel_count = 0
 
 ---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
@@ -58,12 +57,24 @@ function SetCommand(command, value)
       dispatch_action(nil, iCommands.TGT_EOSOnOff)  -- This triggers CCRP Steering in the A-10A
     end
 
+  elseif command == device_commands.WEP_RIP_MODE then
+    if value > 0 then
+      dispatch_action(nil, iCommands.W_ReleaseModeCycle)
+    else
+      -- Similar to the F-15C fuel selector, cycle backwards by going forwards
+      local rip_mode_count = 3
+      while rip_mode_count > 0 do
+        dispatch_action(nil, iCommands.W_ReleaseModeCycle)
+        rip_mode_count = rip_mode_count - 1
+      end
+    end
+
   elseif command == device_commands.WEP_RIP_QTY then
     if value > 0 then
       dispatch_action(nil, iCommands.W_RippleQuantityCycle)
     else
       -- Similar to the F-15C fuel selector, cycle backwards by going forwards
-      rip_sel_count = 11
+      local rip_sel_count = 11
       while rip_sel_count > 0 do
         dispatch_action(nil, iCommands.W_RippleQuantityCycle)
         rip_sel_count = rip_sel_count - 1

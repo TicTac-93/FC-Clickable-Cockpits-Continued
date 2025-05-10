@@ -74,6 +74,9 @@ function SetCommand(command, value)
   elseif command == device_commands.CLOCK then
     dispatch_action(nil, iCommands.SYS_ClockElapsedTimeReset)
 
+  elseif command == device_commands.CLOCK2 then
+    dispatch_action(nil, iCommands.SYS_FlightClockReset)
+
   elseif command == device_commands.CM_AUTO then
     dispatch_action(nil, iCommands.CM_ContinuousRelease)
 
@@ -224,6 +227,13 @@ function SetCommand(command, value)
     end
 
   elseif command == device_commands.JET_FUEL then
+    dispatch_action(nil, iCommands.SYS_JettisonFuel)
+
+  elseif command == device_commands.JET_ALL then
+    for i = 1, 6, 1 do
+      dispatch_action(nil, iCommands.SYS_JettisonWeapons)
+      dispatch_action(nil, iCommands.SYS_JettisonWeaponsStop)
+    end
     dispatch_action(nil, iCommands.SYS_JettisonFuel)
 
   elseif command == device_commands.WEP_CYCLE then

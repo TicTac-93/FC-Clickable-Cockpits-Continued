@@ -14,9 +14,9 @@ local whitelist = {
   "A-10A",
   "F-15C",
   -- "J-11A",
-  -- "MiG-29A",
-  -- "MiG-29G",
-  -- "MiG-29S",
+  "MiG-29A",
+  "MiG-29G",
+  "MiG-29S",
   -- "Su-25",
   -- "Su-25T",
   -- "Su-27",
@@ -62,6 +62,9 @@ elseif aircraft == "F-86F_FC" then
 
 elseif aircraft == "MiG-15bis_FC" then
   creators[devices.FCC_MIG15] = {"avLuaDevice", scripts.."Systems/clickable_mig15.lua"}
+
+elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" then
+  creators[devices.FCC_MIG29] = {"avLuaDevice", scripts.."Systems/clickable_mig29.lua"}
 
 end
 

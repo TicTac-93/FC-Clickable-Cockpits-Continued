@@ -1,4 +1,4 @@
--- This handles behavior specific to the F-86
+-- This handles behavior specific to the MiG-15bis
 
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")
 dofile(LockOn_Options.script_path.."device_commands.lua")
@@ -58,7 +58,7 @@ function SetCommand(command, value)
       dispatch_action(25, iCommands.SYS_ResetADI, 0)
     end
 
-  elseif command == device_commands.HUD_MODE then
+  elseif command == device_commands.HUD_SIGHT then
     dispatch_action(nil, iCommands.MM_Gunsight)
 
   elseif command == device_commands.HUD_FILTER then
