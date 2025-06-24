@@ -31,6 +31,8 @@ if device_commands == nil then
 		AP_MODE_DAMPER = counter(),
 		AP_MODE_LEVEL = counter(),
 		AP_MODE_GCA = counter(),  -- Autopilot: Ground Collision Avoidance
+		AP_MODE_NAV = counter(),
+		AP_MODE_RESET = counter(),
 		AP_TGL = counter(),
 		AP_CAS_PITCH = counter(),
 		AP_CAS_ROLL = counter(),
@@ -47,6 +49,8 @@ if device_commands == nil then
 		CLOCK = counter(),
 		CLOCK2 = counter(),
 		FLAPS = counter(),
+		FLAPS_ON = counter(),
+		FLAPS_OFF = counter(),
 		GEAR = counter(),
 		AIRBRAKE = counter(),
 		MIRROR = counter(),
@@ -82,6 +86,7 @@ if device_commands == nil then
 		POWER_TGL = counter(),
 		POWER_ON = counter(),
 		POWER_OFF = counter(),
+		INTAKE_TGL = counter(),
 
 		-- HUD / Lights
 		HUD_BRT = counter(),
@@ -111,6 +116,8 @@ if device_commands == nil then
 		WEP_RIP_INT = counter(),
 		WEP_RIP_MODE = counter(),
 		WEP_RIP_QTY = counter(),
+		WEP_BURST = counter(),
+		WEP_LA = counter(),
 		TGT_SIZE = counter(),
 		TGT_RANGE = counter(),
 

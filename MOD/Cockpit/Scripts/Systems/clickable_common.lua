@@ -239,6 +239,12 @@ function SetCommand(command, value)
   elseif command == device_commands.WEP_CYCLE then
     dispatch_action(nil, iCommands.W_ChangeWeapon)
 
+  elseif command == device_commands.WEP_BURST then
+    dispatch_action(nil, iCommands.W_CannonBurst)
+
+  elseif command == device_commands.WEP_LA then
+    dispatch_action(nil, iCommands.W_LaunchPermissionOverride)
+
   end
 
   -- Not implemented in FC3 planes

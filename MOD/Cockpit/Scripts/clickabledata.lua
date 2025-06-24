@@ -17,6 +17,7 @@ elements = {}
 local aircraft = get_aircraft_type()
 
 -- Common elements, a baseline for all FC aircraft.  May be replaced by more specific commands in aircraft sections further down
+-- Radar and targetting commands are not included here, due to inconsistencies between aircraft
 elements["PNT_AIRBRAKE"] = fcc_switch(_("Airbrake DEPLOY/RETRACT"), devices.FCC_COMMON, device_commands.AIRBRAKE)
 elements["PNT_ALT"] = fcc_knob(_("Set Altimeter"), devices.FCC_COMMON, device_commands.ALT_SET)
 elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
@@ -65,6 +66,9 @@ elements["PNT_TRIM_PITCH"] = fcc_switch(_("Trim Elevator UP/DOWN"), devices.FCC_
 elements["PNT_TRIM_ROLL"] = fcc_switch(_("Trim Ailerons LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_ROLL, true)
 elements["PNT_TRIM_YAW"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_YAW, true)
 elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
+-- Implement these two in more planes?
+elements["PNT_WEP_BURST"] = fcc_button(_("Cannon Burst Cutoff ON/OFF"), devices.FCC_COMMON, device_commands.CNN_BURST)
+elements["PNT_WEP_LA"] = fcc_button(_("Launch Authority OVERRIDE"), devices.FCC_COMMON, device_commands.WEP_LA)
 -- Add to this with other shared basic features
 
 -- Not implemented in FC aircraft :(
@@ -152,6 +156,34 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
   if aircraft == "MiG-29S" then
     elements["MIG29_ECM"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)  -- Not available in other variants
   end
+
+elseif aircraft == "Su-27" or aircraft == "J11-A" then
+  elements["SU27_ALT_RADAR"] = fcc_switch(_("Set Radar Altimeter Warning"), devices.FCC_SU27, device_commands.ALT_SET_RADAR, true)
+  elements["SU27_AP_AUTO"] = fcc_button(_("Autopilot: Attitude Hold"), devices.FCC_SU27, device_commands.AP_MODE_ATT)
+  elements["SU27_AP_BARO"] = fcc_button(_("Autopilot: Altitude Hold"), devices.FCC_SU27, device_commands.AP_MODE_ALT) -- use 387
+  elements["SU27_AP_NAV"] = fcc_button(_("Autopilot: Route Following"), devices.FCC_SU27, device_commands.AP_MODE_NAV)
+  elements["SU27_AP_RADAR"] = fcc_button(_("Autopilot: Radar Altitude Hold / Ground Avoidance"), devices.FCC_SU27, device_commands.AP_MODE_GCA)
+  elements["SU27_AP_RESET"] = fcc_button(_("Autopilot: Reset and Disable"), devices.FCC_SU27, device_commands.AP_MODE_RESET)
+  elements["SU27_AP_VERT"] = fcc_button(_("Autopilot: Transition to Level Flight"), devices.FCC_SU27, device_commands.AP_MODE_LEVEL)
+  elements["SU27_DIRECT"] = fcc_button(_("Direct Control ON/OFF"), devices.FCC_SU27, device_commands.AP_MODE_DAMPER)
+  elements["SU27_EOS"] = fcc_button(_("Electro-Optical System ON/OFF"), devices.FCC_SU27, device_commands.EOS_TGL)
+  elements["SU27_FLAPS_OFF"] = fcc_button(_("Retract Flaps"), devices.FCC_SU27, device_commands.FLAPS_OFF)
+  elements["SU27_FLAPS_ON"] = fcc_button(_("Deploy Flaps"), devices.FCC_SU27, device_commands.FLAPS_ON)
+  elements["SU27_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU27, device_commands.HUD_SIGHT)
+  elements["SU27_HDD_REPEAT"] = fcc_button(_("Heads-Down Display RADAR/REPEAT"), devices.FCC_SU27, device_commands.HUD_MODE)
+  elements["SU27_HDD_ZOOM"] = fcc_switch(_("Heads-Down Display Zoom IN/OUT"), devices.FCC_SU27, device_commands.RDR_RANGE)
+  elements["SU27_INTAKE"] = fcc_button(_("Intake Screens AUTO/OFF"), devices.FCC_SU27, device_commands.INTAKE_TGL)
+  elements["SU27_MODE"] = fcc_switch_scrollable(_("Weapons System Mode"), devices.FCC_SU27, device_commands.MM_AA)
+  elements["SU27_NWS"] = fcc_button(_("Nosewheel Steering ON/OFF"), devices.FCC_SU27, device_commands.NWS_TGL)
+  elements["SU27_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_SU27, device_commands.RDR_TGL)
+  elements["SU27_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_SU27, device_commands.RDR_VERT, true)
+  elements["SU27_RADAR_FREQ"] = fcc_button(_("Radar Frequency AUTO/MED/HIGH"), devices.FCC_SU27, device_commands.RDR_FREQ)
+  elements["SU27_RADAR_HORZ"] = fcc_switch(_("Radar Scan Zone LEFT/CENTER/RIGHT"), devices.FCC_SU27, device_commands.RDR_HORZ, true)
+  elements["SU27_RADAR_MODE"] = fcc_button(_("Radar Mode STT/TWS"), devices.FCC_SU27, device_commands.RDR_MODE)
+  elements["SU27_TGT_SIZE"] = fcc_knob(_("Target Wingspan INC/DEC"), devices.FCC_SU27, device_commands.TGT_SIZE)
+  -- These are just extra buttons for standard behavior
+  elements["SU27_CYCLE_WP_2"] = fcc_knob(_("Cycle Waypoint / Airfield / Target"), devices.FCC_COMMON, device_commands.WPT_CYCLE)
+  elements["SU27_ECM_2"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)
 
 end
 
