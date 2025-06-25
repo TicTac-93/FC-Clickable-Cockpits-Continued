@@ -106,6 +106,7 @@ if device_commands == nil then
 		RDR_RANGE = counter(),
 		RDR_VERT = counter(),  -- Adjust radar elevation
 		RDR_HORZ = counter(),  -- Adjust radar horizontal angle
+		RDR_ZOOM = counter(),  -- Adjust scale of radar display
 		EOS_TGL = counter(),  -- Electro-Optical System
 
 		-- Weapons / Pylons
