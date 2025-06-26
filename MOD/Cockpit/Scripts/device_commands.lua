@@ -29,11 +29,14 @@ if device_commands == nil then
 		AP_MODE_ALT = counter(),
 		AP_MODE_ATT = counter(),
 		AP_MODE_DAMPER = counter(),
+		AP_MODE_DAMPER2 = counter(),  -- Used by Su-33 for A/A refuel damping
 		AP_MODE_LEVEL = counter(),
 		AP_MODE_GCA = counter(),  -- Autopilot: Ground Collision Avoidance
 		AP_MODE_NAV = counter(),
 		AP_MODE_RESET = counter(),
+		AP_MODE_VEL = counter(),
 		AP_TGL = counter(),
+		AP_SET_VEL = counter(),
 		AP_CAS_PITCH = counter(),
 		AP_CAS_ROLL = counter(),
 		AP_CAS_YAW = counter(),
@@ -52,6 +55,7 @@ if device_commands == nil then
 		FLAPS_ON = counter(),
 		FLAPS_OFF = counter(),
 		GEAR = counter(),
+		HOOK = counter(),
 		AIRBRAKE = counter(),
 		MIRROR = counter(),
 		NWS_STRUT = counter(),
@@ -62,6 +66,7 @@ if device_commands == nil then
 		TRIM_TO = counter(),  -- F15C Take-off trim
 		VIEW_VERT = counter(),
 		VIEW_FWD = counter(),
+		WING_FOLD = counter(),
 		STICK_TGL = counter(),
 
 		-- Countermeasures
