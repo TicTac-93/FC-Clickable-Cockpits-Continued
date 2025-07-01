@@ -27,6 +27,7 @@ if device_commands == nil then
 		-- Autopilot
 		AP_MODE = counter(),  -- Autopilot: Cycle modes
 		AP_MODE_ALT = counter(),
+		AP_MODE_RALT = counter(),
 		AP_MODE_ATT = counter(),
 		AP_MODE_DAMPER = counter(),
 		AP_MODE_DAMPER2 = counter(),  -- Used by Su-33 for A/A refuel damping

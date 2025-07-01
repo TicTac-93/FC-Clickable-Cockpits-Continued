@@ -47,10 +47,13 @@ function SetCommand(command, value)
   elseif command == device_commands.AP_MODE_ALT then
     dispatch_action(nil, iCommands.AP_AltBankMode)
 
+  elseif command == device_commands.AP_MODE_GCA then
+    dispatch_action(nil, iCommands.AP_GroundAvoidance)
+
   elseif command == device_commands.AP_MODE_NAV then
     dispatch_action(nil, iCommands.AP_RouteMode)
 
-  elseif command == device_commands.AP_MODE_GCA then
+  elseif command == device_commands.AP_MODE_RALT then
     dispatch_action(nil, iCommands.AP_RadarMode)
 
   elseif command == device_commands.AP_MODE_RESET then

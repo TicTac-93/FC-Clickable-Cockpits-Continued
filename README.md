@@ -16,8 +16,8 @@ This mod aims to add basic clickable functionality to all Flaming Cliffs aircraf
 - **MiG-29:**  Basic
 - **SU-25A:**  Waiting for update from ED
 - **SU-25T:**  Waiting for update from ED
-- **SU-27:**  Work in Progress
-- **SU-33:**  Work in Progress
+- **SU-27 / J-11A:**  Basic
+- **SU-33:**  Basic
 
 Due to the lack of licensing on the original mod, and to my lack of experience with DCS modding, I'm rebuilding it from scratch.
 **This mod, *Clickable Cockpits Continued* is licensed under GNU-GPL-3.0,** meaning that it is open source and will always be open source.  Anyone is free to copy this and work on it as long as they keep it open, and I hope that the work I've done here can help others learn how to write plugins and mods for DCS -- I'm trying to document the code as thoroughly as I can so that this project might centralize some of the knowledge floating around in the community.

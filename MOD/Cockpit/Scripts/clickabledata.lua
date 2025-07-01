@@ -187,11 +187,11 @@ elseif aircraft == "Su-27" or aircraft == "J11-A" then
   elements["SU27_ECM_2"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)
 
 elseif aircraft == "Su-33" then
-  elements["SU33_AB_MODE"] = fcc_button(_("Toggle Afterburner Limiter"), devices.FCC_SU33, device_commands.ENG_TGL)
   elements["SU33_AP_AUTO"] = fcc_button(_("Autopilot: Attitude Hold"), devices.FCC_SU33, device_commands.AP_MODE_ATT)
   elements["SU33_AP_ALT"] = fcc_button(_("Autopilot: Altitude Hold"), devices.FCC_SU33, device_commands.AP_MODE_ALT)
+  elements["SU33_AP_GCA"] = fcc_button(_("Autopilot: Ground Collision Avoidance"), devices.FCC_SU33, device_commands.AP_MODE_GCA)
   elements["SU33_AP_NAV"] = fcc_button(_("Autopilot: Route Following"), devices.FCC_SU33, device_commands.AP_MODE_NAV)
-  elements["SU33_AP_RADAR"] = fcc_button(_("Autopilot: Radar Altitude Hold / Ground Avoidance"), devices.FCC_SU33, device_commands.AP_MODE_GCA)
+  elements["SU33_AP_RADAR"] = fcc_button(_("Autopilot: Radar Altitude Hold"), devices.FCC_SU33, device_commands.AP_MODE_RALT)
   elements["SU33_AP_RESET"] = fcc_button(_("Autopilot: Reset and Disable"), devices.FCC_SU33, device_commands.AP_MODE_RESET)
   elements["SU33_AP_STAB"] = fcc_button(_("Autopilot: Transition to Level Flight"), devices.FCC_SU33, device_commands.AP_MODE_LEVEL)
   elements["SU33_AP_THRUST"] = fcc_button(_("Autopilot: Velocity Control"), devices.FCC_SU33, device_commands.AP_MODE_VEL)
@@ -203,7 +203,7 @@ elseif aircraft == "Su-33" then
   elements["SU33_FLAPS_ON"] = fcc_button(_("Deploy Flaps"), devices.FCC_SU33, device_commands.FLAPS_ON)
   elements["SU33_FOLD_WINGS"] = fcc_button(_("FOLD/UNFOLD Wings"), devices.FCC_SU33, device_commands.WING_FOLD)
   elements["SU33_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU33, device_commands.HUD_SIGHT)
-  elements["SU33_HDD_REPEAT"] = fcc_button(_("Heads-Down Display RADAR/REPEAT"), devices.FCC_SU33, device_commands.HUD_MODE)
+  elements["SU33_HDD_REPEAT"] = fcc_button(_("Heads-Down Display RADAR/HUD"), devices.FCC_SU33, device_commands.HUD_MODE)
   elements["SU33_HDD_ZOOM"] = fcc_switch(_("Heads-Down Display Zoom IN/OUT"), devices.FCC_SU33, device_commands.RDR_ZOOM)
   elements["SU33_HOOK"] = fcc_switch(_("Arresting Hook UP/DOWN"), devices.FCC_SU33, device_commands.HOOK)
   elements["SU33_INTAKE"] = fcc_button(_("Intake Screens AUTO/OFF"), devices.FCC_SU33, device_commands.INTAKE_TGL)
