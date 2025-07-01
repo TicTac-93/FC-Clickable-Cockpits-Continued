@@ -27,11 +27,17 @@ if device_commands == nil then
 		-- Autopilot
 		AP_MODE = counter(),  -- Autopilot: Cycle modes
 		AP_MODE_ALT = counter(),
+		AP_MODE_RALT = counter(),
 		AP_MODE_ATT = counter(),
 		AP_MODE_DAMPER = counter(),
+		AP_MODE_DAMPER2 = counter(),  -- Used by Su-33 for A/A refuel damping
 		AP_MODE_LEVEL = counter(),
 		AP_MODE_GCA = counter(),  -- Autopilot: Ground Collision Avoidance
+		AP_MODE_NAV = counter(),
+		AP_MODE_RESET = counter(),
+		AP_MODE_VEL = counter(),
 		AP_TGL = counter(),
+		AP_SET_VEL = counter(),
 		AP_CAS_PITCH = counter(),
 		AP_CAS_ROLL = counter(),
 		AP_CAS_YAW = counter(),
@@ -47,7 +53,10 @@ if device_commands == nil then
 		CLOCK = counter(),
 		CLOCK2 = counter(),
 		FLAPS = counter(),
+		FLAPS_ON = counter(),
+		FLAPS_OFF = counter(),
 		GEAR = counter(),
+		HOOK = counter(),
 		AIRBRAKE = counter(),
 		MIRROR = counter(),
 		NWS_STRUT = counter(),
@@ -58,6 +67,7 @@ if device_commands == nil then
 		TRIM_TO = counter(),  -- F15C Take-off trim
 		VIEW_VERT = counter(),
 		VIEW_FWD = counter(),
+		WING_FOLD = counter(),
 		STICK_TGL = counter(),
 
 		-- Countermeasures
@@ -82,6 +92,7 @@ if device_commands == nil then
 		POWER_TGL = counter(),
 		POWER_ON = counter(),
 		POWER_OFF = counter(),
+		INTAKE_TGL = counter(),
 
 		-- HUD / Lights
 		HUD_BRT = counter(),
@@ -101,6 +112,7 @@ if device_commands == nil then
 		RDR_RANGE = counter(),
 		RDR_VERT = counter(),  -- Adjust radar elevation
 		RDR_HORZ = counter(),  -- Adjust radar horizontal angle
+		RDR_ZOOM = counter(),  -- Adjust scale of radar display
 		EOS_TGL = counter(),  -- Electro-Optical System
 
 		-- Weapons / Pylons
@@ -111,6 +123,8 @@ if device_commands == nil then
 		WEP_RIP_INT = counter(),
 		WEP_RIP_MODE = counter(),
 		WEP_RIP_QTY = counter(),
+		WEP_BURST = counter(),
+		WEP_LA = counter(),
 		TGT_SIZE = counter(),
 		TGT_RANGE = counter(),
 

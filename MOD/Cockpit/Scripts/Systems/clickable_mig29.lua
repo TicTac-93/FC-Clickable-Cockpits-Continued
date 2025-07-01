@@ -10,7 +10,6 @@ _ = gettext.translate
 local self = GetSelf()
 local sensor_data = get_base_data()
 
--- Timestep has to be fairly small, otherwise view adjustments will stutter
 local update_time_step = 0.1  -- Update will be called 10 times per second
 make_default_activity(update_time_step)
 
