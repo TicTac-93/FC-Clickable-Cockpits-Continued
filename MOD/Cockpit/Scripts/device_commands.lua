@@ -104,6 +104,7 @@ if device_commands == nil then
 		LGT_NAV = counter(),
 		LGT_INT = counter(),
 		LGT_LANDING = counter(),
+		ASP_VERT = counter(),
 
 		-- Radar
 		RDR_MODE = counter(),
@@ -127,6 +128,9 @@ if device_commands == nil then
 		WEP_LA = counter(),
 		TGT_SIZE = counter(),
 		TGT_RANGE = counter(),
+		TGT_LASER = counter(),
+		TGT_HORZ = counter(),
+		TGT_VERT = counter(),
 
 		-- Fuel
 		FUEL_AA_TGL = counter(),
@@ -289,7 +293,7 @@ if iCommands == nil then
 		SYS_SU33_SpecialABMode = 1601,
 
 		SYS_FlapsOn = 145,
-		SYS_FlapsOff = 146,
+		SYS_FlapsOff = 72,
 		SYS_FlapsCycle = 72,
 		SYS_AirbrakeOn = 147,
 		SYS_AirbrakeOff = 148,
@@ -336,7 +340,7 @@ if iCommands == nil then
 		SYS_HUDBrightnessUp = 746,
 		SYS_HUDBrightnessDown = 747,
 		SYS_HUDColor = 156,  -- Cycle HUD colors
-		SYS_HUDFilter = 247,
+		SYS_HUDFilter = 247,  -- SU-25 ASP adjustment
 
 		-- View
 		VIEW_Mirrors = 1625,
@@ -354,6 +358,7 @@ if iCommands == nil then
 		W_ChangeWeapon = 101,
 		W_CannonBurst = 280,
 		W_LaunchPermissionOverride = 349,
+		W_LaserDesignator = 392,
 
 
 	}

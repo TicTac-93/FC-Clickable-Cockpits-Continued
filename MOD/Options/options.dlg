@@ -458,10 +458,10 @@ dialog = {
 				
 
 				--------------------------------------------
-				-- Su-25a
+				-- Su-25
 				--------------------------------------------
 
-				["SU25ALabel"] = {
+				["SU25Label"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,
@@ -470,7 +470,7 @@ dialog = {
 							["y"] = OrderToggle7,
 						},
 						["enabled"] = true,
-						["text"] = "$FCC_TOGGLE_SU25A",
+						["text"] = "$FCC_TOGGLE_SU25",
 						["tooltip"] = "",
 						["visible"] = true,
 						["zindex"] = 0,
@@ -482,7 +482,7 @@ dialog = {
 					},
 					["type"] = "Static"
 				},
-				["SU25A_enabledCheckbox"] = {
+				["SU25_enabledCheckbox"] = {
 					["params"] = {
 						["bounds"] = {
 							["h"] = EntryHeight,

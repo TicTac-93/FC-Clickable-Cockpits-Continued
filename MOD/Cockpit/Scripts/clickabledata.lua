@@ -67,7 +67,7 @@ elements["PNT_TRIM_ROLL"] = fcc_switch(_("Trim Ailerons LEFT/RIGHT"), devices.FC
 elements["PNT_TRIM_YAW"] = fcc_switch(_("Trim Rudder LEFT/RIGHT"), devices.FCC_COMMON, device_commands.TRIM_YAW, true)
 elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, device_commands.WEP_CYCLE)
 -- Implement these two in more planes?
-elements["PNT_WEP_BURST"] = fcc_button(_("Cannon Burst Cutoff ON/OFF"), devices.FCC_COMMON, device_commands.CNN_BURST)
+elements["PNT_WEP_BURST"] = fcc_button(_("Cannon Burst Cutoff ON/OFF"), devices.FCC_COMMON, device_commands.WEP_BURST)
 elements["PNT_WEP_LA"] = fcc_button(_("Launch Authority OVERRIDE"), devices.FCC_COMMON, device_commands.WEP_LA)
 -- Add to this with other shared basic features
 
@@ -157,6 +157,17 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
     elements["MIG29_ECM"] = fcc_button(_("ECM ON/OFF"), devices.FCC_COMMON, device_commands.ECM_TGL)  -- Not available in other variants
   end
 
+-- Su-25 specific features
+elseif aircraft == "Su-25" then
+  elements["SU25_ASP_VERT"] = fcc_knob(_("Adjust ASP Sight UP/DOWN"), devices.FCC_SU25, device_commands.ASP_VERT)
+  elements["SU25_WEP_CYC"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25, device_commands.HUD_SIGHT)
+  elements["SU25_LASER"] = fcc_button(_("Toggle Laser Designator"), devices.FCC_SU25, device_commands.TGT_LASER)
+  elements["SU25_MODE_AG"] = fcc_switch(_("Air-to-Air / Air-to-Ground Weapons"), devices.FCC_SU25, device_commands.MM_AG)
+  elements["SU25_TGT_HORZ"] = fcc_switch(_("Adjust Reticle LEFT/RIGHT"), devices.FCC_SU25, device_commands.TGT_HORZ, true)
+  elements["SU25_TGT_VERT"] = fcc_switch(_("Adjust Reticle UP/DOWN"), devices.FCC_SU25, device_commands.TGT_VERT, true)
+  elements["SU25_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
+
+-- Su-27 specific features
 elseif aircraft == "Su-27" or aircraft == "J11-A" then
   elements["SU27_AP_AUTO"] = fcc_button(_("Autopilot: Attitude Hold"), devices.FCC_SU27, device_commands.AP_MODE_ATT)
   elements["SU27_AP_BARO"] = fcc_button(_("Autopilot: Altitude Hold"), devices.FCC_SU27, device_commands.AP_MODE_ALT) -- use 387
