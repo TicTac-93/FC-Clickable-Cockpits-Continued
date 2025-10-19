@@ -30,7 +30,7 @@ Due to the lack of licensing on the original mod, and to my lack of experience w
 
 ## Troubleshooting
 - If you're in a supported aircraft and can't click anything:
-  - Try pressing your bind for "Force cursor to show" (default LCTRL+C)
+  - Try pressing your bind for "Force cursor to show" (default LALT+C)
   - Check that it's enabled in the **FC Clickable Cockpits** Options menu
 
 ## Original CLICKABLE-FC3 mod
