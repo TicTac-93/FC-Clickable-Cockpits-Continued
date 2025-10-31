@@ -39,10 +39,10 @@ elements["PNT_ENGL_OFF"] = fcc_button(_("Shutdown Left Engine"), devices.FCC_COM
 elements["PNT_ENGL_ON"] = fcc_button(_("Start Left Engine"), devices.FCC_COMMON, device_commands.ENGL_ON)
 elements["PNT_ENGR_OFF"] = fcc_button(_("Shutdown Right Engine"), devices.FCC_COMMON, device_commands.ENGR_OFF)
 elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON, device_commands.ENGR_ON)
-elements["PNT_FLAPS"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS)
-elements["PNT_FUEL_AA"] = fcc_button(_("Refuelling Bay OPEN/CLOSE"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
+elements["PNT_FLAPS"] = fcc_switch(_("Flaps LMB RAISE/COMBAT, RMB LANDING"), devices.FCC_COMMON, device_commands.FLAPS)
+elements["PNT_FUEL_AA"] = fcc_button(_("Toggle A/A Refueling"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
 elements["PNT_FUEL_DUMP"] = fcc_momentary_button(_("Dump Fuel"), devices.FCC_COMMON, device_commands.FUEL_DUMP)
-elements["PNT_GEAR"] = fcc_switch(_("Landing Gear"), devices.FCC_COMMON, device_commands.GEAR)
+elements["PNT_GEAR"] = fcc_switch(_("Landing Gear RAISE/LOWER"), devices.FCC_COMMON, device_commands.GEAR)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
 elements["PNT_HUD_FILTER"] = fcc_button(_("Toggle HUD Filter"), devices.FCC_COMMON, device_commands.HUD_FILTER)
 elements["PNT_LGT_BCN"] = fcc_button(_("Beacon Light"), devices.FCC_COMMON, device_commands.LGT_BCN)
@@ -160,12 +160,31 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
 -- Su-25 specific features
 elseif aircraft == "Su-25" then
   elements["SU25_ASP_VERT"] = fcc_knob(_("Adjust ASP Sight UP/DOWN"), devices.FCC_SU25, device_commands.ASP_VERT)
-  elements["SU25_WEP_CYC"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25, device_commands.HUD_SIGHT)
+  elements["SU25_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25, device_commands.HUD_SIGHT)
   elements["SU25_LASER"] = fcc_button(_("Toggle Laser Designator"), devices.FCC_SU25, device_commands.TGT_LASER)
   elements["SU25_MODE_AG"] = fcc_switch(_("Air-to-Air / Air-to-Ground Weapons"), devices.FCC_SU25, device_commands.MM_AG)
+  elements["SU25_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity / Gunpod Selection"), devices.FCC_SU25, device_commands.WEP_RIP_QTY)
   elements["SU25_TGT_HORZ"] = fcc_switch(_("Adjust Reticle LEFT/RIGHT"), devices.FCC_SU25, device_commands.TGT_HORZ, true)
   elements["SU25_TGT_VERT"] = fcc_switch(_("Adjust Reticle UP/DOWN"), devices.FCC_SU25, device_commands.TGT_VERT, true)
   elements["SU25_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
+
+-- Su-25T specific features
+elseif aircraft == "Su-25T" then
+  elements["SU25T_AP_AUTO"] = fcc_button(_("Autopilot: Attitude Hold"), devices.FCC_SU25T, device_commands.AP_MODE_ATT)
+  elements["SU25T_AP_BARO"] = fcc_button(_("Autopilot: Altitude Hold"), devices.FCC_SU25T, device_commands.AP_MODE_ALT)
+  elements["SU25T_AP_ROUTE"] = fcc_button(_("Autopilot: Route Following"), devices.FCC_SU25T, device_commands.AP_MODE_NAV)
+  elements["SU25T_AP_LEVEL"] = fcc_button(_("Autopilot: Transition to Level Flight"), devices.FCC_SU25T, device_commands.AP_MODE_LEVEL)
+  elements["SU25T_AP_RADAR"] = fcc_button(_("Autopilot: Radar Altitude Hold"), devices.FCC_SU25T, device_commands.AP_MODE_RALT)
+  elements["SU25T_ELINT"] = fcc_button(_("'Fantasmagoria' ELINT Pod ON/OFF"), devices.FCC_SU25T, device_commands.RDR_TGL)
+  elements["SU25T_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25T, device_commands.HUD_SIGHT)
+  elements["SU25T_IRJAM"] = fcc_button(_("IR Jammer ON/OFF"), devices.FCC_SU25T, device_commands.ECM_TGL)
+  elements["SU25T_MERCURY"] = fcc_button(_("Mercury LLTV/FLIR Pod ON/OFF"), devices.FCC_SU25T, device_commands.RDR_MODE)
+  elements["SU25T_LASER"] = fcc_button(_("Toggle Laser Designator"), devices.FCC_SU25T, device_commands.TGT_LASER)
+  elements["SU25T_MODE_AG"] = fcc_switch(_("Air-to-Air / Air-to-Ground Weapons"), devices.FCC_SU25T, device_commands.MM_AG)
+  elements["SU25T_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity / Gunpod Selection"), devices.FCC_SU25T, device_commands.WEP_RIP_QTY)
+  elements["SU25T_SHKVAL"] = fcc_button(_("Shkval Camera ON/OFF"), devices.FCC_SU25T, device_commands.EOS_TGL)
+  elements["SU25T_ZOOM"] = fcc_switch(_("Shkval Zoom IN/OUT"), devices.FCC_SU25T, device_commands.RDR_ZOOM)
+  elements["SU25T_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 
 -- Su-27 specific features
 elseif aircraft == "Su-27" or aircraft == "J11-A" then

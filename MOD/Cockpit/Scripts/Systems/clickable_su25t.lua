@@ -1,4 +1,4 @@
--- This handles behavior specific to the Su-25
+-- This handles behavior specific to the Su-25T
 
 dofile(LockOn_Options.script_path.."/Utilities/logging.lua")
 dofile(LockOn_Options.script_path.."device_commands.lua")
@@ -19,43 +19,56 @@ make_default_activity(update_time_step)
 function SetCommand(command, value)
   FCCLOG.info("Command triggered: " .. command .. ", " .. value)
 
-  if command == device_commands.ASP_VERT then
+  if command == device_commands.AP_MODE_ATT then
+    dispatch_action(nil, iCommands.AP_AttitudeMode)
+
+  elseif command == device_commands.AP_MODE_ALT then
+    dispatch_action(nil, iCommands.AP_AltMode)
+
+  elseif command == device_commands.AP_MODE_NAV then
+    dispatch_action(nil, iCommands.AP_RouteMode)
+
+  elseif command == device_commands.AP_MODE_LEVEL then
+    dispatch_action(nil, iCommands.AP_LevelMode)
+
+  elseif command == device_commands.AP_MODE_RALT then
+    dispatch_action(nil, iCommands.AP_RadarMode)
+
+  -- IR Jammer
+  elseif command == device_commands.ECM_TGL then
+    dispatch_action(nil, iCommands.CM_IR)
+
+  -- Shkval
+  elseif command == device_commands.EOS_TGL then
+    dispatch_action(nil, iCommands.TGT_EOSOnOff)
+
+  -- Shkval zoom
+  elseif command == device_commands.RDR_ZOOM then
     if value > 0 then
-      dispatch_action(0, iCommands.SYS_HUDFilter, -1)
+      dispatch_action(nil, iCommands.RADAR_ZoomIn)
     else
-      dispatch_action(0, iCommands.SYS_HUDFilter, 1)
+      dispatch_action(nil, iCommands.RADAR_ZoomOut)
     end
 
-  elseif command == device_commands.HUD_SIGHT then
-    dispatch_action(nil, iCommands.MM_Gunsight)
+  -- ELINT / Fantasmagoria pod
+  elseif command == device_commands.RDR_TGL then
+    dispatch_action(nil, iCommands.RADAR_Toggle)
+
+  -- Mercury FLIR pod
+  elseif command == device_commands.RDR_MODE then
+    dispatch_action(nil, iCommands.TGT_LLTV)
 
   elseif command == device_commands.TGT_LASER then
     dispatch_action(nil, iCommands.W_LaserDesignator)
+
+  elseif command == device_commands.HUD_SIGHT then
+    dispatch_action(nil, iCommands.MM_Gunsight)
 
   elseif command == device_commands.MM_AG then
     if value > 0 then
       dispatch_action(nil, iCommands.MM_FI0)
     else
       dispatch_action(nil, iCommands.MM_Ground)
-    end
-
-  -- Laser designator adjustment
-  elseif command == device_commands.TGT_HORZ then
-    if value > 0 then
-      dispatch_action(0, iCommands.RADAR_MoveLeft)
-    elseif value < 0 then
-      dispatch_action(0, iCommands.RADAR_MoveRight)
-    else
-      dispatch_action(0, iCommands.RADAR_MoveStop)
-    end
-
-  elseif command == device_commands.TGT_VERT then
-    if value > 0 then
-      dispatch_action(0, iCommands.RADAR_MoveUp)
-    elseif value < 0 then
-      dispatch_action(0, iCommands.RADAR_MoveDown)
-    else
-      dispatch_action(0, iCommands.RADAR_MoveStop)
     end
 
   elseif command == device_commands.WEP_RIP_QTY then
@@ -80,7 +93,7 @@ end
 
 -- Called automatically after the cockpit has been initialized, maybe?  Not sure on the exact timing
 function post_initialize()
-  FCCLOG.info("clickable_su25 INIT")
+  FCCLOG.info("clickable_su25t INIT")
 end
 
 need_to_be_closed = false

@@ -106,14 +106,14 @@ if device_commands == nil then
 		LGT_LANDING = counter(),
 		ASP_VERT = counter(),
 
-		-- Radar
+		-- Radar / Sensors
 		RDR_MODE = counter(),
 		RDR_TGL = counter(),
 		RDR_FREQ = counter(),
 		RDR_RANGE = counter(),
-		RDR_VERT = counter(),  -- Adjust radar elevation
-		RDR_HORZ = counter(),  -- Adjust radar horizontal angle
-		RDR_ZOOM = counter(),  -- Adjust scale of radar display
+		RDR_VERT = counter(),
+		RDR_HORZ = counter(),
+		RDR_ZOOM = counter(),
 		EOS_TGL = counter(),  -- Electro-Optical System
 
 		-- Weapons / Pylons
@@ -209,6 +209,7 @@ if iCommands == nil then
 		CM_ReleaseOnce = 176,  -- Countermeasures release
 		CM_ReleaseOnceOff = 536,  -- Countermeasures stop
 		CM_Jamming = 136,  -- ECM
+		CM_IR = 391,  -- IR Jamming
 
 		-- Autopilot
 		AP_EAC_Arm = 1050,  -- The A-10A's AP computer
@@ -235,6 +236,7 @@ if iCommands == nil then
 
 		-- Sensors
 		TGT_EOSOnOff = 87,  -- A-10A CCRP Steering
+		TGT_LLTV = 393,
 		TGT_PredictedRangeDec = 262,
 		TGT_PredictedRangeInc = 263,
 		TGT_WingspanInc = 412,

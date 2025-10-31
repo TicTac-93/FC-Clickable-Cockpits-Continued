@@ -6,6 +6,7 @@ dofile(LockOn_Options.script_path.."/Utilities/logging.lua")  -- Mod logging fun
 -- dofile(LockOn_Options.script_path.."/Utilities/dump_data.lua")  -- Debug scripts
 
 local aircraft = get_aircraft_type()
+FCCLOG.info("Current aircraft: " .. aircraft)
 shape_name = ""
 
 -- Set the clickable cockpit model based on the current aircraft
@@ -23,6 +24,8 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
   shape_name = "FCClickable_MiG-29"
 elseif aircraft == "Su-25" then
   shape_name = "FCClickable_Su-25"
+elseif aircraft == "Su-25T" then
+  shape_name = "FCClickable_Su-25T"
 elseif aircraft == "Su-27" or aircraft == "J-11A" then
   shape_name = "FCClickable_Su-27"
 elseif aircraft == "Su-33" then

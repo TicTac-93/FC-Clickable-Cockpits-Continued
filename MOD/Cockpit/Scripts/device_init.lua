@@ -69,6 +69,9 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
 elseif aircraft == "Su-25" then
   creators[devices.FCC_SU25] = {"avLuaDevice", scripts.."Systems/clickable_su25.lua"}
 
+elseif aircraft == "Su-25T" then
+  creators[devices.FCC_SU25T] = {"avLuaDevice", scripts.."Systems/clickable_su25t.lua"}
+
 elseif aircraft == "Su-27" or aircraft == "J-11A" then
   creators[devices.FCC_SU27] = {"avLuaDevice", scripts.."Systems/clickable_su27.lua"}
 
