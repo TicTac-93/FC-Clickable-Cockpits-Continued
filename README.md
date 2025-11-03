@@ -6,7 +6,7 @@
 
 
 ## About
-This mod aims to add basic clickable functionality to all Flaming Cliffs aircraft in DCS, including FC24, with a later goal being to enhance some of it where possible. Basic support meaning you can trigger most keybinds by clicking an appropriate part of the cockpit, but with no added features.  All aircraft and their level of support are listed below:
+This mod aims to add basic clickable functionality to all Flaming Cliffs aircraft in DCS, including FC24, with a later goal being to enhance some of it where possible. Basic support means you can trigger most keybinds by clicking an appropriate part of the cockpit, but with no added features.  PDFs showing clickable points for each aircraft are in the **FC-Clickable-Cockpits-Continued\Doc** folder, and try to be as accurate to the real aircraft as possible.  All aircraft and their level of support are listed below:
 
 - **A-10A:**  Basic
 - **F-5E:**  Basic
@@ -14,8 +14,8 @@ This mod aims to add basic clickable functionality to all Flaming Cliffs aircraf
 - **F-86:**  Basic
 - **MiG-15bis:**  Basic
 - **MiG-29:**  Basic
-- **SU-25A:**  Waiting for update from ED
-- **SU-25T:**  Waiting for update from ED
+- **SU-25A:**  Basic
+- **SU-25T:**  Basic
 - **SU-27 / J-11A:**  Basic
 - **SU-33:**  Basic
 
@@ -32,6 +32,7 @@ Due to the lack of licensing on the original mod, and to my lack of experience w
 - If you're in a supported aircraft and can't click anything:
   - Try pressing your bind for "Force cursor to show" (default LCTRL+C)
   - Check that it's enabled in the **FC Clickable Cockpits** Options menu
+  - Check the PDF for your aircraft in **FC-Clickable-Cockpits-Continued\Doc** to see what points are clickable.  Some functions are split between LMB and RMB, eg Left Click will RAISE landing gear, while Right Click will lower it.
 
 ## Original CLICKABLE-FC3 mod
 

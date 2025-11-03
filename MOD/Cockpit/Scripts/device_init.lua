@@ -80,4 +80,6 @@ elseif aircraft == "Su-33" then
 
 end
 
+print_message_to_user("FC Clickable Cockpits: Active")
+
 -- FCCLOG.info("device_init INIT")
