@@ -42,7 +42,7 @@ elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON
 elements["PNT_FLAPS"] = fcc_switch(_("Flaps LMB RAISE/COMBAT, RMB LANDING"), devices.FCC_COMMON, device_commands.FLAPS)
 elements["PNT_FUEL_AA"] = fcc_button(_("Toggle A/A Refueling"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
 elements["PNT_FUEL_DUMP"] = fcc_momentary_button(_("Dump Fuel"), devices.FCC_COMMON, device_commands.FUEL_DUMP)
-elements["PNT_GEAR"] = fcc_switch(_("Landing Gear RAISE/LOWER"), devices.FCC_COMMON, device_commands.GEAR)
+elements["PNT_GEAR"] = fcc_switch(_("Landing Gear RAISE/LOWER"), devices.FCC_COMMON, device_commands.GEAR, false, true)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
 elements["PNT_HUD_FILTER"] = fcc_button(_("Toggle HUD Filter"), devices.FCC_COMMON, device_commands.HUD_FILTER)
 elements["PNT_LGT_BCN"] = fcc_button(_("Beacon Light"), devices.FCC_COMMON, device_commands.LGT_BCN)
@@ -69,10 +69,6 @@ elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, dev
 -- Implement these two in more planes?
 elements["PNT_WEP_BURST"] = fcc_button(_("Cannon Burst Cutoff ON/OFF"), devices.FCC_COMMON, device_commands.WEP_BURST)
 elements["PNT_WEP_LA"] = fcc_button(_("Launch Authority OVERRIDE"), devices.FCC_COMMON, device_commands.WEP_LA)
--- Add to this with other shared basic features
-
--- Not implemented in FC aircraft :(
--- elements["PNT_STICK_VIS"] = fcc_button(_("Stick SHOW/HIDE"), devices.FCC_COMMON, device_commands.STICK_TGL)
 
 -- A-10A specific features
 if aircraft == "A-10A" then

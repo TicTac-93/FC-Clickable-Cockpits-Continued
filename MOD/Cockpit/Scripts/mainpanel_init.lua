@@ -39,18 +39,23 @@ local controllers = LoRegisterPanelControls()
 -- show_param_handles_list()  -- Opens a window in-game to show the values of different parameters in real-time
 
 -- Animation "gauges" declared here
+-- These will match the animated position of our buttons to the state of the actual cockpit
+-- For sanity, our animation args use the same numbers as their visible elements;
+-- eg, arg 83 is the FC3 arg for the landing gear lever animation.
 
--- FCC_GEARLEVER              = CreateGauge()
--- FCC_GEARLEVER.arg_number   = 1
--- FCC_GEARLEVER.input        = {0,1}
--- FCC_GEARLEVER.output       = {0,1}
--- FCC_GEARLEVER.controller   = controllers.base_gauge_LandingGearHandlePos
+-- TODO: Make sure to sync animation on initialization!
 
--- FCC_CANOPY                 = CreateGauge()
--- FCC_CANOPY.arg_number      = 2
--- FCC_CANOPY.input           = {0,1}
--- FCC_CANOPY.output          = {0,1}
--- FCC_CANOPY.controller      = controllers.base_gauge_CanopyPos
+FCC_GEARLEVER                 = CreateGauge()
+FCC_GEARLEVER.arg_number      = 83
+FCC_GEARLEVER.input           = {0,1}
+FCC_GEARLEVER.output          = {0,1}
+FCC_GEARLEVER.controller      = controllers.base_gauge_LandingGearHandlePos
+
+FCC_CANOPY                 = CreateGauge()
+FCC_CANOPY.arg_number      = 2
+FCC_CANOPY.input           = {0,1}
+FCC_CANOPY.output          = {0,1}
+FCC_CANOPY.controller      = controllers.base_gauge_CanopyPos
 
 
 -- FCCLOG.info("mainpanel_init INIT")

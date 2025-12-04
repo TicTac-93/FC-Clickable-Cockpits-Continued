@@ -114,21 +114,16 @@ end
 ---
 ---If on_release_ == true, also output 0 when the switch is released.  Useful for commands that require a second stopping-command.
 ---
----If inversed_ == true, swap left and right click behaviors.
+---If animated_ == true, enable updating the connector position.
 ---@param hint_ string
 ---@param device_ integer
 ---@param command_ integer
 ---@param on_release_ boolean?
----@param inversed_ boolean?
+---@param animated_ boolean?
 ---@return table
-function fcc_switch(hint_, device_, command_, on_release_, inversed_)
+function fcc_switch(hint_, device_, command_, on_release_, animated_)
 
-	local arg_val_
-	if inversed_ then
-		arg_val_ = {-1, 1}
-	else
-		arg_val_ = {1, -1}
-	end
+	local animated_ = animated_ or false
 
 	local stop_action_
 	if on_release_ then
@@ -144,17 +139,17 @@ function fcc_switch(hint_, device_, command_, on_release_, inversed_)
 		action        = {command_, command_},
 		stop_action   = stop_action_,
 		arg           = {nil, nil},
-		arg_value     = arg_val_,
+		arg_value     = {1, -1},
 		arg_lim       = { {-1, 1}, {-1, 1} },
 		cycle         = false,
+		use_OBB				= animated_,
+		updatable			= animated_,
 	}
 end
 
 ---Useful for any rotary / multiposition switches, outputs 1 on left-click, -1 on right-click, >0 on scroll-up, <0 on scroll-down.
 ---
 ---Does NOT support stop_action, since scrolling has no signal for it.
----
----Does NOT support inversed, since scrolling always produces positive for scroll-up and negative for scroll-down.
 ---@param hint_ string
 ---@param device_ integer
 ---@param command_ integer
