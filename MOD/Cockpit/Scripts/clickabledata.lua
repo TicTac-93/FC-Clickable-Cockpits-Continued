@@ -12,7 +12,7 @@ local gettext = require("i_18n")
 _ = gettext.translate
 
 
--- Elements table, stores all connectors as keys and their associated function calls as values
+-- Elements table, stores all connectors as keys and their behavior tables (returned by the functions in clickable_defs) as values
 elements = {}
 local aircraft = get_aircraft_type()
 
@@ -20,7 +20,7 @@ local aircraft = get_aircraft_type()
 -- Radar and targetting commands are not included here, due to inconsistencies between aircraft
 elements["PNT_AIRBRAKE"] = fcc_switch(_("Airbrake DEPLOY/RETRACT"), devices.FCC_COMMON, device_commands.AIRBRAKE)
 elements["PNT_ALT"] = fcc_knob(_("Set Altimeter"), devices.FCC_COMMON, device_commands.ALT_SET)
-elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
+elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY, true)
 elements["PNT_CAUTION_CLR"] = fcc_button(_("Reset Master Caution"), devices.FCC_COMMON, device_commands.CAUTION_CLR)
 elements["PNT_CHUTE"] = fcc_button(_("Drogue Chute DEPLOY/CUT"), devices.FCC_COMMON, device_commands.CHUTE)
 elements["PNT_CLOCK"] = fcc_button(_("Clock Start/Stop/Reset"), devices.FCC_COMMON, device_commands.CLOCK)
@@ -49,9 +49,9 @@ elements["PNT_LGT_BCN"] = fcc_button(_("Beacon Light"), devices.FCC_COMMON, devi
 elements["PNT_LGT_INT"] = fcc_button(_("Instrument Lights"), devices.FCC_COMMON, device_commands.LGT_INT)
 elements["PNT_LGT_LAND"] = fcc_button(_("Landing Lights"), devices.FCC_COMMON, device_commands.LGT_LANDING)
 elements["PNT_LGT_NAV"] = fcc_button(_("Navigation Lights"), devices.FCC_COMMON, device_commands.LGT_NAV)
-elements["PNT_MIRROR_L"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
-elements["PNT_MIRROR_U"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
-elements["PNT_MIRROR_R"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
+elements["PNT_MIRROR_L"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR, true)
+elements["PNT_MIRROR_U"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR, true)
+elements["PNT_MIRROR_R"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR, true)
 elements["PNT_MODE_AA"] = fcc_button(_("Air-to-Air Master Modes"), devices.FCC_COMMON, device_commands.MM_AA)
 elements["PNT_MODE_AG"] = fcc_button(_("Air-to-Ground Master Modes"), devices.FCC_COMMON, device_commands.MM_AG)
 elements["PNT_MODE_NAV"] = fcc_button(_("Navigation Master Modes"), devices.FCC_COMMON, device_commands.MM_NAV)

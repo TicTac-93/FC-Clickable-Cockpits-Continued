@@ -46,6 +46,10 @@ MainPanel = {
 -- Creators table 
 dofile(scripts.."devices.lua")  -- Device IDs
 creators = {}
+-- Responsible for synchronizing animation between the aircraft and our clickable points
+creators[devices.FCC_ANIMATOR] = {"avLuaDevice", scripts.."Systems/clickable_animator.lua"}
+
+-- Common behavior is handled here and used by all aircraft
 creators[devices.FCC_COMMON] = {"avLuaDevice", scripts.."Systems/clickable_common.lua"}
 
 -- Aircraft-specific scripts added here, these run in tandem with clickable_common.lua

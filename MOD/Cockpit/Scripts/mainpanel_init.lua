@@ -39,23 +39,25 @@ local controllers = LoRegisterPanelControls()
 -- show_param_handles_list()  -- Opens a window in-game to show the values of different parameters in real-time
 
 -- Animation "gauges" declared here
--- These will match the animated position of our buttons to the state of the actual cockpit
--- For sanity, our animation args use the same numbers as their visible elements;
--- eg, arg 83 is the FC3 arg for the landing gear lever animation.
-
--- TODO: Make sure to sync animation on initialization!
+-- These will match the animated position of our connectors to the state of the actual cockpit
+-- For sanity, our animation args use the same numbers as their visible elements,
+-- eg: arg 83 is the FC3 arg for the landing gear lever animation.
+--
+-- Because these animations are driven by the gauges and not user input, we must tell the connectors to update
+-- their positions periodically or they won't move.
+-- This is handled by the device FCC_ANIMATOR (clickable_animator.lua)
 
 FCC_GEARLEVER                 = CreateGauge()
 FCC_GEARLEVER.arg_number      = 83
 FCC_GEARLEVER.input           = {0,1}
-FCC_GEARLEVER.output          = {0,1}
+FCC_GEARLEVER.output          = {1,0}  -- This is inverted, at least in the Su-25 animation
 FCC_GEARLEVER.controller      = controllers.base_gauge_LandingGearHandlePos
 
-FCC_CANOPY                 = CreateGauge()
-FCC_CANOPY.arg_number      = 2
-FCC_CANOPY.input           = {0,1}
-FCC_CANOPY.output          = {0,1}
-FCC_CANOPY.controller      = controllers.base_gauge_CanopyPos
+FCC_CANOPY                    = CreateGauge()
+FCC_CANOPY.arg_number         = 181
+FCC_CANOPY.input              = {0,1}
+FCC_CANOPY.output             = {0,1}
+FCC_CANOPY.controller         = controllers.base_gauge_CanopyPos
 
 
 -- FCCLOG.info("mainpanel_init INIT")

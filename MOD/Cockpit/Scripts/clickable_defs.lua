@@ -47,10 +47,11 @@ anim_speed_default = 16
 ---@param hint_ string
 ---@param device_ integer
 ---@param command_ integer
+---@param animated_ boolean?
 ---@return table
-function fcc_button(hint_, device_, command_)
-	local arg_val_ = 1
-	local arg_lim_ = {0, 1}
+function fcc_button(hint_, device_, command_, animated_)
+
+	local animated_ = animated_ or false
 
 	return {
 		class         = {class_type.BTN},
@@ -58,8 +59,10 @@ function fcc_button(hint_, device_, command_)
 		device        = device_,
 		action        = {command_},
 		arg           = {nil},
-		arg_value     = {arg_val_},
-		arg_lim       = {arg_lim_},
+		arg_value     = {1},
+		arg_lim       = {{0, 1}},
+		use_OBB				= animated_,
+		updatable			= animated_,
 	}
 end
 
@@ -71,8 +74,6 @@ end
 ---@param command_ integer
 ---@return table
 function fcc_momentary_button(hint_, device_, command_)
-	local arg_val_ = 1
-	local arg_lim_ = {0, 1}
 
 	return {
 		class         = {class_type.TUMB},
@@ -81,8 +82,8 @@ function fcc_momentary_button(hint_, device_, command_)
 		action        = {command_},
 		stop_action   = {command_},
 		arg           = {nil},
-		arg_value     = {arg_val_},
-		arg_lim       = {arg_lim_},
+		arg_value     = {1},
+		arg_lim       = {{0, 1}},
 	}
 end
 

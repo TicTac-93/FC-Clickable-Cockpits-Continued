@@ -103,6 +103,7 @@ ARG 25T     ARG 33          WHAT IS
 161         161                                       below
 164-169     164-169                         type (fighter, long range sam etc)
 171-176     171-176             sec. thread type
+181                         canopy
 191-198     191-198                         direction front
 199-200     199-200                                   back
 201         201             RWR triangle?

@@ -6,8 +6,6 @@ dofile(LockOn_Options.script_path.."device_commands.lua")
 -- dofile(LockOn_Options.script_path.."/Utilities/dump_data.lua")  -- Debug scripts
 
 local self = GetSelf()
-local sensor_data = get_base_data()
--- dump_table(sensor_data)
 
 -- Timestep has to be fairly small, otherwise view adjustments will stutter
 -- Can we avoid the update() calls for these?  See auto-thrust adjustment in Su-33
@@ -247,10 +245,6 @@ function SetCommand(command, value)
     dispatch_action(nil, iCommands.W_LaunchPermissionOverride)
 
   end
-
-  -- Not implemented in FC3 planes
-  -- elseif command == device_commands.STICK_TGL then
-  --   FCCLOG.info("SHOW/HIDE STICK")
 
 end
 
