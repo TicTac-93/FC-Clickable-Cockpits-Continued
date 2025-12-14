@@ -5,6 +5,9 @@ dofile(LockOn_Options.script_path.."device_commands.lua")
 dofile(LockOn_Options.script_path.."/Utilities/dump_data.lua")  -- Debug scripts
 
 local self = GetSelf()
+local cockpit = GetDevice(0)
+local aircraft = get_aircraft_type()
+local is_FC24 = false
 
 -- Timestep controls how often we update the position of animated connectors
 local update_time_step = 0.1  -- Update will be called 10 times per second
@@ -28,7 +31,12 @@ end
 
 -- This gets called every update_time_step
 function update()
-  
+
+  -- Special treatment for the FC24 planes, they don't use base_gauge_LandingGearHandlePos
+  if is_FC24 then
+    -- Needs more R+D, can't seem to access any useful values for the gear handle anim...
+  end
+
   -- Check if we found each point during post_initialize() before attempting to update them
   -- Condensed to one-liners since we aren't doing anything complex
   if PNT_GEAR then PNT_GEAR:update() end
@@ -49,6 +57,11 @@ function post_initialize()
   PNT_MIRROR_U = get_clickable_element_reference("PNT_MIRROR_U")
   PNT_MIRROR_R = get_clickable_element_reference("PNT_MIRROR_R")
   PNT_MISSING = get_clickable_element_reference("PNT_MISSING")
+
+  -- Check if we're in a FC24 aircraft, requires special syncing
+  if aircraft == "F-5E-3_FC" or aircraft == "F-86F_FC" or aircraft == "MiG-15bis_FC" then
+    is_FC24 = true
+  end
   
   FCCLOG.info("clickable_animator INIT")
 end

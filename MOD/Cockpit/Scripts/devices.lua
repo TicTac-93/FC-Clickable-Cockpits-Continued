@@ -21,5 +21,5 @@ if devices == nil then
 		FCC_SU27 = counter(),
 		FCC_SU33 = counter(),
 	}
-	
+
 end
