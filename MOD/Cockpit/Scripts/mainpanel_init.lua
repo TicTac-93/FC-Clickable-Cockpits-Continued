@@ -40,24 +40,25 @@ local controllers = LoRegisterPanelControls()
 
 -- Animation "gauges" declared here
 -- These will match the animated position of our connectors to the state of the actual cockpit
--- For sanity, our animation args use the same numbers as their visible elements,
--- eg: arg 83 is the FC3 arg for the landing gear lever animation.
 --
 -- Because these animations are driven by the gauges and not user input, we must tell the connectors to update
 -- their positions periodically or they won't move.
 -- This is handled by the device FCC_ANIMATOR (clickable_animator.lua)
 
-FCC_GEARLEVER                 = CreateGauge()
-FCC_GEARLEVER.arg_number      = 83
-FCC_GEARLEVER.input           = {0,1}
-FCC_GEARLEVER.output          = {1,0}  -- This is inverted, at least in the Su-25 animation
-FCC_GEARLEVER.controller      = controllers.base_gauge_LandingGearHandlePos
-
+-- TODO: Test for conflicting args
+-- Do they need to be completely unique from base cockpit model?
+-- Or just not be one of the args we query with get_cockpit_draw_argument_value()?
 FCC_CANOPY                    = CreateGauge()
-FCC_CANOPY.arg_number         = 181
+FCC_CANOPY.arg_number         = 1
 FCC_CANOPY.input              = {0,1}
 FCC_CANOPY.output             = {0,1}
 FCC_CANOPY.controller         = controllers.base_gauge_CanopyPos
+
+FCC_GEARLEVER                 = CreateGauge()
+FCC_GEARLEVER.arg_number      = 2
+FCC_GEARLEVER.input           = {0,1}
+FCC_GEARLEVER.output          = {1,0}  -- This is inverted for some reason
+FCC_GEARLEVER.controller      = controllers.base_gauge_LandingGearHandlePos
 
 
 -- FCCLOG.info("mainpanel_init INIT")
