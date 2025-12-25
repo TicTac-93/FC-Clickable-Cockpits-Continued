@@ -295,7 +295,7 @@ if iCommands == nil then
 		SYS_SU33_SpecialABMode = 1601,
 
 		SYS_FlapsOn = 145,
-		SYS_FlapsOff = 72,
+		SYS_FlapsOff = 146,
 		SYS_FlapsCycle = 72,
 		SYS_AirbrakeOn = 147,
 		SYS_AirbrakeOff = 148,

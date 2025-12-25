@@ -60,7 +60,6 @@ FCC_GEARLEVER.input           = {0,1}
 FCC_GEARLEVER.output          = {1,0}  -- This is inverted for some reason
 FCC_GEARLEVER.controller      = controllers.base_gauge_LandingGearHandlePos
 
-
 -- FCCLOG.info("mainpanel_init INIT")
 
 need_to_be_closed = true
