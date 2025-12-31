@@ -21,13 +21,15 @@ local update_time_step = 0.1  -- Update will be called 10 times per second
 make_default_activity(update_time_step)
 
 -- Declare some vars for storing animated clickable elements, scoped to this file
-local PNT_GEAR
-local PNT_FLAPS_ANIM
-local PNT_CANOPY
-local PNT_MIRROR_L
-local PNT_MIRROR_U
-local PNT_MIRROR_R
-local PNT_MISSING  -- This point does not exist in any FCC files, and is purely to check for errors
+local PNT_GEAR = nil
+local PNT_FLAPS_ANIM = nil
+local PNT_CANOPY = nil
+local MIG15_CANOPY_2 = nil
+local MIG15_CANOPY_3 = nil
+local PNT_MIRROR_L = nil
+local PNT_MIRROR_U = nil
+local PNT_MIRROR_R = nil
+local PNT_MISSING = nil  -- This point does not exist in any FCC files, and is purely to check for errors
 
 ---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
@@ -55,6 +57,8 @@ function update()
   if PNT_GEAR then PNT_GEAR:update() end
   if PNT_FLAPS_ANIM then PNT_FLAPS_ANIM:update() end
   if PNT_CANOPY then PNT_CANOPY:update() end
+  if MIG15_CANOPY_2 then MIG15_CANOPY_2:update() end
+  if MIG15_CANOPY_3 then MIG15_CANOPY_3:update() end
   if PNT_MIRROR_L then PNT_MIRROR_L:update() end
   if PNT_MIRROR_U then PNT_MIRROR_U:update() end
   if PNT_MIRROR_R then PNT_MIRROR_R:update() end
@@ -68,6 +72,8 @@ function post_initialize()
   PNT_GEAR = get_clickable_element_reference("PNT_GEAR")
   PNT_FLAPS_ANIM = get_clickable_element_reference("PNT_FLAPS_ANIM")
   PNT_CANOPY = get_clickable_element_reference("PNT_CANOPY")
+  MIG15_CANOPY_2 = get_clickable_element_reference("MIG15_CANOPY_2")
+  MIG15_CANOPY_3 = get_clickable_element_reference("MIG15_CANOPY_3")
   PNT_MIRROR_L = get_clickable_element_reference("PNT_MIRROR_L")
   PNT_MIRROR_U = get_clickable_element_reference("PNT_MIRROR_U")
   PNT_MIRROR_R = get_clickable_element_reference("PNT_MIRROR_R")
@@ -95,6 +101,8 @@ function post_initialize()
       is_MIG15 = true
       arg_gear = 71
       arg_gear_fcc = 2
+      arg_flaps = 207
+      arg_flaps_fcc = 3
       
     end
   end

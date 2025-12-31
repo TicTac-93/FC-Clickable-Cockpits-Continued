@@ -4,14 +4,12 @@ dofile(LockOn_Options.script_path.."/Utilities/logging.lua")
 dofile(LockOn_Options.script_path.."device_commands.lua")
 
 local self = GetSelf()
-local sensor_data = get_base_data()
 
 -- Timestep has to be fairly small, otherwise view adjustments will stutter
 local update_time_step = 0.02  -- Update will be called 50 times per second
 make_default_activity(update_time_step)
 
 local mig15_mode = 1  -- 1 == Nav, 2 == A/A, 3 == A/G
-local adi_reset = -1
 
 
 ---This is called by the elements assigned in clickabledata.lua
