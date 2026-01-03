@@ -37,6 +37,13 @@ function SetCommand(command, value)
   elseif command == device_commands.ECM_TGL then
     dispatch_action(nil, iCommands.CM_IR)
 
+  elseif command == device_commands.FLAPS then
+    if value > 0 then
+      dispatch_action(nil, iCommands.SYS_FlapsCycle)
+    else
+      dispatch_action(nil, iCommands.SYS_FlapsOn)
+    end
+
   -- Shkval
   elseif command == device_commands.EOS_TGL then
     dispatch_action(nil, iCommands.TGT_EOSOnOff)

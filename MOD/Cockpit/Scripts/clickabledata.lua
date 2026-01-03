@@ -158,6 +158,7 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
 -- Su-25 specific features
 elseif aircraft == "Su-25" then
   elements["SU25_ASP_VERT"] = fcc_knob(_("Adjust ASP Sight UP/DOWN"), devices.FCC_SU25, device_commands.ASP_VERT)
+  elements["SU25_FLAPS"] = fcc_switch(_("Flaps: LMB COMBAT/RAISED, RMB LANDING"), devices.FCC_SU25, device_commands.FLAPS)
   elements["SU25_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25, device_commands.HUD_SIGHT)
   elements["SU25_LASER"] = fcc_button(_("Toggle Laser Designator"), devices.FCC_SU25, device_commands.TGT_LASER)
   elements["SU25_MODE_AG"] = fcc_switch(_("Air-to-Air / Air-to-Ground Weapons"), devices.FCC_SU25, device_commands.MM_AG)
@@ -174,6 +175,7 @@ elseif aircraft == "Su-25T" then
   elements["SU25T_AP_LEVEL"] = fcc_button(_("Autopilot: Transition to Level Flight"), devices.FCC_SU25T, device_commands.AP_MODE_LEVEL)
   elements["SU25T_AP_RADAR"] = fcc_button(_("Autopilot: Radar Altitude Hold"), devices.FCC_SU25T, device_commands.AP_MODE_RALT)
   elements["SU25T_ELINT"] = fcc_button(_("'Fantasmagoria' ELINT Pod ON/OFF"), devices.FCC_SU25T, device_commands.RDR_TGL)
+  elements["SU25T_FLAPS"] = fcc_switch(_("Flaps: LMB COMBAT/RAISED, RMB LANDING"), devices.FCC_SU25T, device_commands.FLAPS)
   elements["SU25T_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25T, device_commands.HUD_SIGHT)
   elements["SU25T_IRJAM"] = fcc_button(_("IR Jammer ON/OFF"), devices.FCC_SU25T, device_commands.ECM_TGL)
   elements["SU25T_MERCURY"] = fcc_button(_("Mercury LLTV/FLIR Pod ON/OFF"), devices.FCC_SU25T, device_commands.RDR_MODE)

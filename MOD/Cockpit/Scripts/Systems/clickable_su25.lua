@@ -25,6 +25,13 @@ function SetCommand(command, value)
       dispatch_action(0, iCommands.SYS_HUDFilter, 1)
     end
 
+  elseif command == device_commands.FLAPS then
+    if value > 0 then
+      dispatch_action(nil, iCommands.SYS_FlapsCycle)
+    else
+      dispatch_action(nil, iCommands.SYS_FlapsOn)
+    end
+
   elseif command == device_commands.HUD_SIGHT then
     dispatch_action(nil, iCommands.MM_Gunsight)
 
