@@ -63,6 +63,9 @@ function SetCommand(command, value)
       dispatch_action(nil, iCommands.SYS_RightEngineStop)
     end
 
+  elseif command == device_commands.MM_AA then
+    dispatch_action(nil, iCommands.MM_Air_VerticalScan)
+
   elseif command == device_commands.RDR_TGL then
     dispatch_action(nil, iCommands.RADAR_Toggle)
 

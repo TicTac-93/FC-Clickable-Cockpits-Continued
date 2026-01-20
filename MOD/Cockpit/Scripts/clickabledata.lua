@@ -104,6 +104,7 @@ elseif aircraft == "F-15C" then
   elements["F15_CAS_YAW"] = fcc_button(_("CAS Yaw ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_YAW)
   elements["F15_ENGL_MASTER"] = fcc_switch(_("Left Engine START/STOP"), devices.FCC_F15C, device_commands.ENGL_TGL)
   elements["F15_ENGR_MASTER"] = fcc_switch(_("Right Engine START/STOP"), devices.FCC_F15C, device_commands.ENGR_TGL)
+  elements["F15_MODE_AA"] = fcc_button(_("A/A Close-Combat Mode"), devices.FCC_F15C, device_commands.MM_AA)
   elements["F15_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_F15C, device_commands.RDR_TGL)
   elements["F15_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_F15C, device_commands.RDR_VERT, true)
   elements["F15_RADAR_HORZ"] = fcc_switch(_("Radar Scan Zone INC/DEC"), devices.FCC_F15C, device_commands.RDR_HORZ)
