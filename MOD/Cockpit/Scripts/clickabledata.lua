@@ -133,6 +133,7 @@ elseif aircraft == "MiG-15bis_FC" then
   elements["MIG15_POWER_2"] = fcc_button(_("Electrical Systems ON/OFF"), devices.FCC_COMMON, device_commands.POWER_TGL)
   elements["MIG15_SIGHT_BACKUP"] = fcc_button(_("Backup Gunsight"), devices.FCC_MIG15, device_commands.HUD_SIGHT)
   elements["MIG15_WINGSPAN"] = fcc_knob(_("Adjust Target Wingspan"), devices.FCC_MIG15, device_commands.RDR_HORZ)
+  -- These are just extra buttons for standard behavior
   elements["MIG15_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY, true)
   elements["MIG15_CANOPY_3"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY, true)
 
@@ -171,7 +172,6 @@ elseif aircraft == "Su-25" then
   elements["SU25_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity / Gunpod Selection"), devices.FCC_SU25, device_commands.WEP_RIP_QTY)
   elements["SU25_TGT_HORZ"] = fcc_switch(_("Adjust Reticle LEFT/RIGHT"), devices.FCC_SU25, device_commands.TGT_HORZ, true)
   elements["SU25_TGT_VERT"] = fcc_switch(_("Adjust Reticle UP/DOWN"), devices.FCC_SU25, device_commands.TGT_VERT, true)
-  elements["SU25_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 
 -- Su-25T specific features
 elseif aircraft == "Su-25T" then
@@ -190,7 +190,6 @@ elseif aircraft == "Su-25T" then
   elements["SU25T_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity / Gunpod Selection"), devices.FCC_SU25T, device_commands.WEP_RIP_QTY)
   elements["SU25T_SHKVAL"] = fcc_button(_("Shkval Camera ON/OFF"), devices.FCC_SU25T, device_commands.EOS_TGL)
   elements["SU25T_ZOOM"] = fcc_switch(_("Shkval Zoom IN/OUT"), devices.FCC_SU25T, device_commands.RDR_ZOOM)
-  elements["SU25T_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 
 -- Su-27 specific features
 elseif aircraft == "Su-27" or aircraft == "J11-A" then
