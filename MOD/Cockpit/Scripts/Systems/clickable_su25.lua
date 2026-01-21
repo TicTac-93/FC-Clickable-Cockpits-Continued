@@ -25,11 +25,21 @@ function SetCommand(command, value)
       dispatch_action(0, iCommands.SYS_HUDFilter, 1)
     end
 
+  elseif command == device_commands.WEP_CANNON then
+    dispatch_action(0, iCommands.W_Cannon)
+
   elseif command == device_commands.FLAPS then
     if value > 0 then
       dispatch_action(nil, iCommands.SYS_FlapsCycle)
     else
       dispatch_action(nil, iCommands.SYS_FlapsOn)
+    end
+
+  elseif command == device_commands.TGT_RANGE then
+    if value > 0 then
+      dispatch_action(0, iCommands.TGT_PredictedRangeDec)
+    else
+      dispatch_action(0, iCommands.TGT_PredictedRangeInc)
     end
 
   elseif command == device_commands.HUD_SIGHT then
@@ -58,8 +68,10 @@ function SetCommand(command, value)
   elseif command == device_commands.TGT_VERT then
     if value > 0 then
       dispatch_action(0, iCommands.RADAR_MoveUp)
+      dispatch_action(0, iCommands.TGT_PredictedRangeDec)
     elseif value < 0 then
       dispatch_action(0, iCommands.RADAR_MoveDown)
+      dispatch_action(0, iCommands.TGT_PredictedRangeInc)
     else
       dispatch_action(0, iCommands.RADAR_MoveStop)
     end

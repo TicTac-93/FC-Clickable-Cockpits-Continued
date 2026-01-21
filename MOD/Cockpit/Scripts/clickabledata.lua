@@ -104,6 +104,7 @@ elseif aircraft == "F-15C" then
   elements["F15_CAS_YAW"] = fcc_button(_("CAS Yaw ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_YAW)
   elements["F15_ENGL_MASTER"] = fcc_switch(_("Left Engine START/STOP"), devices.FCC_F15C, device_commands.ENGL_TGL)
   elements["F15_ENGR_MASTER"] = fcc_switch(_("Right Engine START/STOP"), devices.FCC_F15C, device_commands.ENGR_TGL)
+  elements["F15_FLOOD"] = fcc_button(_("A/A Boresight / FLOOD Mode"), devices.FCC_F15C, device_commands.MM_CC)
   elements["F15_MODE_AA"] = fcc_button(_("A/A Close-Combat Mode"), devices.FCC_F15C, device_commands.MM_AA)
   elements["F15_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_F15C, device_commands.RDR_TGL)
   elements["F15_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_F15C, device_commands.RDR_VERT, true)
@@ -112,6 +113,9 @@ elseif aircraft == "F-15C" then
   elements["F15_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F15C, device_commands.RDR_RANGE)
   elements["F15_TANK_SEL"] = fcc_switch_scrollable(_("Fuel Gauge Tank Selection"), devices.FCC_F15C, device_commands.FUEL_SEL)
   elements["F15_TRIM_TO"] = fcc_button(_("Take-off Trim"), devices.FCC_F15C, device_commands.TRIM_TO)
+  -- These are just extra buttons for standard behavior
+  elements["F15_ENGL_OFF"] = fcc_button(_("Left Engine SHUTDOWN"), devices.FCC_COMMON, device_commands.ENGL_OFF)
+  elements["F15_ENGR_OFF"] = fcc_button(_("Right Engine SHUTDOWN"), devices.FCC_COMMON, device_commands.ENGR_OFF)
 
 -- F-86 specific features
 elseif aircraft == "F-86F_FC" then
@@ -159,6 +163,7 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
 -- Su-25 specific features
 elseif aircraft == "Su-25" then
   elements["SU25_ASP_VERT"] = fcc_knob(_("Adjust ASP Sight UP/DOWN"), devices.FCC_SU25, device_commands.ASP_VERT)
+  elements["SU25_CANNON"] = fcc_button(_("Cannon / Gunpods"), devices.FCC_SU25, device_commands.WEP_CANNON)
   elements["SU25_FLAPS"] = fcc_switch(_("Flaps: LMB COMBAT/RAISED, RMB LANDING"), devices.FCC_SU25, device_commands.FLAPS)
   elements["SU25_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25, device_commands.HUD_SIGHT)
   elements["SU25_LASER"] = fcc_button(_("Toggle Laser Designator"), devices.FCC_SU25, device_commands.TGT_LASER)

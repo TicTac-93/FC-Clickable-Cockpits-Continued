@@ -9,7 +9,7 @@ declare_plugin(mod_ID,
 		dirName				= current_mod_path,
 		displayName		= _(mod_ID),
 		fileMenuName	= _("FC Clickable"),
-		version				= "0.5.0",
+		version				= "1.0.0",
 		state					= "installed",
 		developerName	= "TicTac",
 		info					= _("A spiritual successor to RedK0d's Clickable Cockpits mod"),
@@ -19,7 +19,7 @@ declare_plugin(mod_ID,
 		Skins = {},
 		
 		-- All table entries in the declare_plugin call need to be wrapped in a second table, for some reason
-		Options = 
+		Options =
 		{
 			{
 				name			= _("FC Clickable Cockpits"),
