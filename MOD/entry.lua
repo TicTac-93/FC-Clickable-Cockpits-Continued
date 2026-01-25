@@ -16,7 +16,14 @@ declare_plugin(mod_ID,
 
 		load_immediately	= true,
 		binaries					= {},
-		Skins = {},
+
+		Skins	=
+			{
+				{
+					name	= _("FC CCC"),
+					dir		= "Skins/1"
+				},
+			},
 		
 		-- All table entries in the declare_plugin call need to be wrapped in a second table, for some reason
 		Options =

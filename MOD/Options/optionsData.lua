@@ -3,7 +3,7 @@ cdata =
 
   FCC_PLUGIN_NAME                   = _("FC Clickable Cockpits Continued"),
   FCC_PROJECT_URL                   = _("https://github.com/TicTac-93/FC-Clickable-Cockpits-Continued"),
-  FCC_VERSION                       = _("Mod Version 1.0.0 DEV"),
+  FCC_VERSION                       = _("Mod Version 1.0.0"),
 
   FCC_FC3_HEADER                    = _("Flaming Cliffs 3 Aircraft"),
   FCC_FC24_HEADER                   = _("Flaming Cliffs 2024 Aircraft"),
