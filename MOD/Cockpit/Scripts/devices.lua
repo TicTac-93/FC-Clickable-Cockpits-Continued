@@ -7,6 +7,7 @@ end
 if devices == nil then
 
 	devices = {
+		FCC_ANIMATOR = counter(),
 		FCC_COMMON = counter(),
 		FCC_TEST = counter(),
 		FCC_A10A = counter(),
@@ -20,5 +21,5 @@ if devices == nil then
 		FCC_SU27 = counter(),
 		FCC_SU33 = counter(),
 	}
-	
+
 end

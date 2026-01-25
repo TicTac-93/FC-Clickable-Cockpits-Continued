@@ -12,7 +12,7 @@ local gettext = require("i_18n")
 _ = gettext.translate
 
 
--- Elements table, stores all connectors as keys and their associated function calls as values
+-- Elements table, stores all connectors as keys and their behavior tables (returned by the functions in clickable_defs) as values
 elements = {}
 local aircraft = get_aircraft_type()
 
@@ -20,7 +20,7 @@ local aircraft = get_aircraft_type()
 -- Radar and targetting commands are not included here, due to inconsistencies between aircraft
 elements["PNT_AIRBRAKE"] = fcc_switch(_("Airbrake DEPLOY/RETRACT"), devices.FCC_COMMON, device_commands.AIRBRAKE)
 elements["PNT_ALT"] = fcc_knob(_("Set Altimeter"), devices.FCC_COMMON, device_commands.ALT_SET)
-elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
+elements["PNT_CANOPY"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY, true)
 elements["PNT_CAUTION_CLR"] = fcc_button(_("Reset Master Caution"), devices.FCC_COMMON, device_commands.CAUTION_CLR)
 elements["PNT_CHUTE"] = fcc_button(_("Drogue Chute DEPLOY/CUT"), devices.FCC_COMMON, device_commands.CHUTE)
 elements["PNT_CLOCK"] = fcc_button(_("Clock Start/Stop/Reset"), devices.FCC_COMMON, device_commands.CLOCK)
@@ -39,19 +39,20 @@ elements["PNT_ENGL_OFF"] = fcc_button(_("Shutdown Left Engine"), devices.FCC_COM
 elements["PNT_ENGL_ON"] = fcc_button(_("Start Left Engine"), devices.FCC_COMMON, device_commands.ENGL_ON)
 elements["PNT_ENGR_OFF"] = fcc_button(_("Shutdown Right Engine"), devices.FCC_COMMON, device_commands.ENGR_OFF)
 elements["PNT_ENGR_ON"] = fcc_button(_("Start Right Engine"), devices.FCC_COMMON, device_commands.ENGR_ON)
-elements["PNT_FLAPS"] = fcc_switch(_("Flaps LMB RAISE/COMBAT, RMB LANDING"), devices.FCC_COMMON, device_commands.FLAPS)
+elements["PNT_FLAPS"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS)
+elements["PNT_FLAPS_ANIM"] = fcc_switch(_("Flaps RAISE/LOWER"), devices.FCC_COMMON, device_commands.FLAPS, false, true)
 elements["PNT_FUEL_AA"] = fcc_button(_("Toggle A/A Refueling"), devices.FCC_COMMON, device_commands.FUEL_AA_TGL)
 elements["PNT_FUEL_DUMP"] = fcc_momentary_button(_("Dump Fuel"), devices.FCC_COMMON, device_commands.FUEL_DUMP)
-elements["PNT_GEAR"] = fcc_switch(_("Landing Gear RAISE/LOWER"), devices.FCC_COMMON, device_commands.GEAR)
+elements["PNT_GEAR"] = fcc_switch(_("Landing Gear RAISE/LOWER"), devices.FCC_COMMON, device_commands.GEAR, false, true)
 elements["PNT_HUD_BRT"] = fcc_knob(_("Set HUD Brightness"), devices.FCC_COMMON, device_commands.HUD_BRT)
 elements["PNT_HUD_FILTER"] = fcc_button(_("Toggle HUD Filter"), devices.FCC_COMMON, device_commands.HUD_FILTER)
 elements["PNT_LGT_BCN"] = fcc_button(_("Beacon Light"), devices.FCC_COMMON, device_commands.LGT_BCN)
 elements["PNT_LGT_INT"] = fcc_button(_("Instrument Lights"), devices.FCC_COMMON, device_commands.LGT_INT)
 elements["PNT_LGT_LAND"] = fcc_button(_("Landing Lights"), devices.FCC_COMMON, device_commands.LGT_LANDING)
 elements["PNT_LGT_NAV"] = fcc_button(_("Navigation Lights"), devices.FCC_COMMON, device_commands.LGT_NAV)
-elements["PNT_MIRROR_L"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
-elements["PNT_MIRROR_U"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
-elements["PNT_MIRROR_R"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR)
+elements["PNT_MIRROR_L"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR, true)
+elements["PNT_MIRROR_U"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR, true)
+elements["PNT_MIRROR_R"] = fcc_button(_("Toggle Mirrors"), devices.FCC_COMMON, device_commands.MIRROR, true)
 elements["PNT_MODE_AA"] = fcc_button(_("Air-to-Air Master Modes"), devices.FCC_COMMON, device_commands.MM_AA)
 elements["PNT_MODE_AG"] = fcc_button(_("Air-to-Ground Master Modes"), devices.FCC_COMMON, device_commands.MM_AG)
 elements["PNT_MODE_NAV"] = fcc_button(_("Navigation Master Modes"), devices.FCC_COMMON, device_commands.MM_NAV)
@@ -69,10 +70,6 @@ elements["PNT_WEP_CYC"] = fcc_button(_("Change Weapon"), devices.FCC_COMMON, dev
 -- Implement these two in more planes?
 elements["PNT_WEP_BURST"] = fcc_button(_("Cannon Burst Cutoff ON/OFF"), devices.FCC_COMMON, device_commands.WEP_BURST)
 elements["PNT_WEP_LA"] = fcc_button(_("Launch Authority OVERRIDE"), devices.FCC_COMMON, device_commands.WEP_LA)
--- Add to this with other shared basic features
-
--- Not implemented in FC aircraft :(
--- elements["PNT_STICK_VIS"] = fcc_button(_("Stick SHOW/HIDE"), devices.FCC_COMMON, device_commands.STICK_TGL)
 
 -- A-10A specific features
 if aircraft == "A-10A" then
@@ -81,8 +78,8 @@ if aircraft == "A-10A" then
   elements["A10A_AP_MODE"] = fcc_switch(_("Autopilot Mode"), devices.FCC_A10A, device_commands.AP_MODE)
   elements["A10A_AP_TGL"] = fcc_button(_("Autopilot ON/OFF"), devices.FCC_A10A, device_commands.AP_TGL)
   -- Left click to enter A2G mode, right click for CCRP Steering
-  elements["A10A_MODE_AG"] = fcc_switch(_("Air-to-Ground CCIP/CCRP"), devices.FCC_A10A, device_commands.MM_AG)
-  elements["A10A_RIP_MODE"] = fcc_knob(_("Weapon Release Mode"), devices.FCC_A10A, device_commands.WEP_RIP_MODE)
+  elements["A10A_MODE_AG"] = fcc_switch(_("Air-to-Ground Modes: LMB CCIP/CCRP, RMB GUNS"), devices.FCC_A10A, device_commands.MM_AG)
+  elements["A10A_RIP_MODE"] = fcc_switch_scrollable(_("Weapon Release Mode"), devices.FCC_A10A, device_commands.WEP_RIP_MODE)
   elements["A10A_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity"), devices.FCC_A10A, device_commands.WEP_RIP_QTY)
   -- These are just extra buttons for standard behavior
   elements["A10A_ENGL_OFF_FIRE"] = fcc_button(_("Left Engine OFF"), devices.FCC_COMMON, device_commands.ENGL_OFF)
@@ -107,6 +104,8 @@ elseif aircraft == "F-15C" then
   elements["F15_CAS_YAW"] = fcc_button(_("CAS Yaw ON/OFF"), devices.FCC_F15C, device_commands.AP_CAS_YAW)
   elements["F15_ENGL_MASTER"] = fcc_switch(_("Left Engine START/STOP"), devices.FCC_F15C, device_commands.ENGL_TGL)
   elements["F15_ENGR_MASTER"] = fcc_switch(_("Right Engine START/STOP"), devices.FCC_F15C, device_commands.ENGR_TGL)
+  elements["F15_FLOOD"] = fcc_button(_("A/A Boresight / FLOOD Mode"), devices.FCC_F15C, device_commands.MM_CC)
+  elements["F15_MODE_AA"] = fcc_button(_("A/A Close-Combat Mode"), devices.FCC_F15C, device_commands.MM_AA)
   elements["F15_RADAR"] = fcc_button(_("Radar ON/OFF"), devices.FCC_F15C, device_commands.RDR_TGL)
   elements["F15_RADAR_ELEV"] = fcc_switch(_("Radar Elevation UP/DOWN"), devices.FCC_F15C, device_commands.RDR_VERT, true)
   elements["F15_RADAR_HORZ"] = fcc_switch(_("Radar Scan Zone INC/DEC"), devices.FCC_F15C, device_commands.RDR_HORZ)
@@ -114,6 +113,9 @@ elseif aircraft == "F-15C" then
   elements["F15_RADAR_RANGE"] = fcc_switch_scrollable(_("Radar Display Range INC/DEC"), devices.FCC_F15C, device_commands.RDR_RANGE)
   elements["F15_TANK_SEL"] = fcc_switch_scrollable(_("Fuel Gauge Tank Selection"), devices.FCC_F15C, device_commands.FUEL_SEL)
   elements["F15_TRIM_TO"] = fcc_button(_("Take-off Trim"), devices.FCC_F15C, device_commands.TRIM_TO)
+  -- These are just extra buttons for standard behavior
+  elements["F15_ENGL_OFF"] = fcc_button(_("Left Engine SHUTDOWN"), devices.FCC_COMMON, device_commands.ENGL_OFF)
+  elements["F15_ENGR_OFF"] = fcc_button(_("Right Engine SHUTDOWN"), devices.FCC_COMMON, device_commands.ENGR_OFF)
 
 -- F-86 specific features
 elseif aircraft == "F-86F_FC" then
@@ -131,7 +133,9 @@ elseif aircraft == "MiG-15bis_FC" then
   elements["MIG15_POWER_2"] = fcc_button(_("Electrical Systems ON/OFF"), devices.FCC_COMMON, device_commands.POWER_TGL)
   elements["MIG15_SIGHT_BACKUP"] = fcc_button(_("Backup Gunsight"), devices.FCC_MIG15, device_commands.HUD_SIGHT)
   elements["MIG15_WINGSPAN"] = fcc_knob(_("Adjust Target Wingspan"), devices.FCC_MIG15, device_commands.RDR_HORZ)
-  elements["MIG15_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
+  -- These are just extra buttons for standard behavior
+  elements["MIG15_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY, true)
+  elements["MIG15_CANOPY_3"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY, true)
 
 -- MiG-29 A/G/S specific features
 elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" then
@@ -160,13 +164,14 @@ elseif aircraft == "MiG-29A" or aircraft == "MiG-29G" or aircraft == "MiG-29S" t
 -- Su-25 specific features
 elseif aircraft == "Su-25" then
   elements["SU25_ASP_VERT"] = fcc_knob(_("Adjust ASP Sight UP/DOWN"), devices.FCC_SU25, device_commands.ASP_VERT)
+  elements["SU25_CANNON"] = fcc_button(_("Cannon / Gunpods"), devices.FCC_SU25, device_commands.WEP_CANNON)
+  elements["SU25_FLAPS"] = fcc_switch(_("Flaps: LMB COMBAT/RAISED, RMB LANDING"), devices.FCC_SU25, device_commands.FLAPS)
   elements["SU25_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25, device_commands.HUD_SIGHT)
   elements["SU25_LASER"] = fcc_button(_("Toggle Laser Designator"), devices.FCC_SU25, device_commands.TGT_LASER)
   elements["SU25_MODE_AG"] = fcc_switch(_("Air-to-Air / Air-to-Ground Weapons"), devices.FCC_SU25, device_commands.MM_AG)
   elements["SU25_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity / Gunpod Selection"), devices.FCC_SU25, device_commands.WEP_RIP_QTY)
   elements["SU25_TGT_HORZ"] = fcc_switch(_("Adjust Reticle LEFT/RIGHT"), devices.FCC_SU25, device_commands.TGT_HORZ, true)
   elements["SU25_TGT_VERT"] = fcc_switch(_("Adjust Reticle UP/DOWN"), devices.FCC_SU25, device_commands.TGT_VERT, true)
-  elements["SU25_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 
 -- Su-25T specific features
 elseif aircraft == "Su-25T" then
@@ -176,6 +181,7 @@ elseif aircraft == "Su-25T" then
   elements["SU25T_AP_LEVEL"] = fcc_button(_("Autopilot: Transition to Level Flight"), devices.FCC_SU25T, device_commands.AP_MODE_LEVEL)
   elements["SU25T_AP_RADAR"] = fcc_button(_("Autopilot: Radar Altitude Hold"), devices.FCC_SU25T, device_commands.AP_MODE_RALT)
   elements["SU25T_ELINT"] = fcc_button(_("'Fantasmagoria' ELINT Pod ON/OFF"), devices.FCC_SU25T, device_commands.RDR_TGL)
+  elements["SU25T_FLAPS"] = fcc_switch(_("Flaps: LMB COMBAT/RAISED, RMB LANDING"), devices.FCC_SU25T, device_commands.FLAPS)
   elements["SU25T_GUNSIGHT"] = fcc_button(_("Backup Gunsight"), devices.FCC_SU25T, device_commands.HUD_SIGHT)
   elements["SU25T_IRJAM"] = fcc_button(_("IR Jammer ON/OFF"), devices.FCC_SU25T, device_commands.ECM_TGL)
   elements["SU25T_MERCURY"] = fcc_button(_("Mercury LLTV/FLIR Pod ON/OFF"), devices.FCC_SU25T, device_commands.RDR_MODE)
@@ -184,7 +190,6 @@ elseif aircraft == "Su-25T" then
   elements["SU25T_RIP_QTY"] = fcc_switch_scrollable(_("Ripple Quantity / Gunpod Selection"), devices.FCC_SU25T, device_commands.WEP_RIP_QTY)
   elements["SU25T_SHKVAL"] = fcc_button(_("Shkval Camera ON/OFF"), devices.FCC_SU25T, device_commands.EOS_TGL)
   elements["SU25T_ZOOM"] = fcc_switch(_("Shkval Zoom IN/OUT"), devices.FCC_SU25T, device_commands.RDR_ZOOM)
-  elements["SU25T_CANOPY_2"] = fcc_button(_("Canopy OPEN/CLOSE"), devices.FCC_COMMON, device_commands.CANOPY)
 
 -- Su-27 specific features
 elseif aircraft == "Su-27" or aircraft == "J11-A" then

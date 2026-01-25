@@ -27,6 +27,7 @@ local whitelist = {
 }
 for index= 0, table.getn(whitelist), 1 do
   if whitelist[index] == aircraft then
+    -- Current aircraft is on the list, do NOT abort loading and break out of the loop
     abort = false
     break
   end
@@ -45,9 +46,13 @@ MainPanel = {
 -- Creators table 
 dofile(scripts.."devices.lua")  -- Device IDs
 creators = {}
+-- Responsible for synchronizing animation between the aircraft and our clickable points
+creators[devices.FCC_ANIMATOR] = {"avLuaDevice", scripts.."Systems/clickable_animator.lua"}
+
+-- Common behavior is handled here and used by all aircraft
 creators[devices.FCC_COMMON] = {"avLuaDevice", scripts.."Systems/clickable_common.lua"}
 
--- Aircraft-specific scripts will be added to creators[] here via conditional statements
+-- Aircraft-specific scripts added here, these run in tandem with clickable_common.lua
 if aircraft == "A-10A" then
   creators[devices.FCC_A10A] = {"avLuaDevice", scripts.."Systems/clickable_a10a.lua"}
 

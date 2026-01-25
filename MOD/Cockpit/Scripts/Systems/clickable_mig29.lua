@@ -8,7 +8,6 @@ local gettext = require("i_18n")
 _ = gettext.translate
 
 local self = GetSelf()
-local sensor_data = get_base_data()
 
 local update_time_step = 0.1  -- Update will be called 10 times per second
 make_default_activity(update_time_step)
@@ -116,19 +115,19 @@ function SetCommand(command, value)
 
   elseif command == iCommands.MM_Nav then
     mig29_master_mode = 2
-    
+
   elseif command == iCommands.MM_Air_BVR then
     mig29_master_mode = 3
-    
+
   elseif command == iCommands.MM_Air_VerticalScan then
     mig29_master_mode = 4
-    
+
   elseif command == iCommands.MM_Air_HelmetCue then
     mig29_master_mode = 5
-    
+
   elseif command == iCommands.MM_Air_Boresight then
     mig29_master_mode = 6
-    
+
   elseif command == iCommands.MM_FI0 then
     mig29_master_mode = 7
 

@@ -22,6 +22,7 @@ if device_commands == nil then
 		MM_AA = counter(),  -- Master Mode: Air-to-Air
 		MM_AG = counter(),  -- Master Mode: Air-to-Ground
 		MM_NAV = counter(),  -- Master Mode: Navigation
+		MM_CC = counter(),	-- Master Mode: Dogfight
 		WPT_CYCLE = counter(),  -- Waypoint / Airfield selection
 
 		-- Autopilot
@@ -120,6 +121,7 @@ if device_commands == nil then
 		JET_EXT = counter(),
 		JET_FUEL = counter(),
 		JET_ALL = counter(),
+		WEP_CANNON = counter(),
 		WEP_CYCLE = counter(),
 		WEP_RIP_INT = counter(),
 		WEP_RIP_MODE = counter(),
@@ -295,7 +297,7 @@ if iCommands == nil then
 		SYS_SU33_SpecialABMode = 1601,
 
 		SYS_FlapsOn = 145,
-		SYS_FlapsOff = 72,
+		SYS_FlapsOff = 146,
 		SYS_FlapsCycle = 72,
 		SYS_AirbrakeOn = 147,
 		SYS_AirbrakeOff = 148,

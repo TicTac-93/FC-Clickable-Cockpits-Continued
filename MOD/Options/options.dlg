@@ -55,6 +55,8 @@ local OrderToggle11           = OrderSecFC24 + lineheight * 1
 local OrderToggle12           = OrderSecFC24 + lineheight * 2
 local OrderToggle13           = OrderSecFC24 + lineheight * 3
 
+local OrderVersion						= OrderSecFC24 + lineheight * 6
+
 -- Styles
 
 local SectionSkin = {
@@ -799,6 +801,32 @@ dialog = {
 					},
 					["skin"] = CheckBoxSkin,
 					["type"] = "CheckBox",
+				},
+
+				--------------------------------------------
+				-- Version Number
+				--------------------------------------------
+
+				["projectVersion"] = {
+					["params"] = {
+						["bounds"] = {
+							["h"] = EntryHeight,
+							["w"] = EntryLabelWidthLong,
+							["x"] = LeftColumnX,
+							["y"] = OrderVersion,
+						},
+						["enabled"] = true,
+						["text"] = "$FCC_VERSION",
+						["tooltip"] = "",
+						["visible"] = true,
+						["zindex"] = 0,
+					},
+					["skin"] = {
+						["params"] = {
+							["name"] = "HelpSkin"
+						}
+					},
+					["type"] = "Static"
 				},
         --------------------------------------------------
       },

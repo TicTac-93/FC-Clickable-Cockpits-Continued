@@ -1,0 +1,171 @@
+
+ANIM ARGS COCKPIT SU-25T vs SU-33 (LAMPS, GAUGES) - only most important are included
+
+
+ARG 25T     ARG 33          WHAT IS
+------------------------------------
+3           3               mirrors
+6           6               G meter
+7           7               aoa meter
+8           8               speed (ias)
+9           9               radio altitude
+10          10              baro altitude 100
+            11                            1000
+12          12              engine temp left 100
+            13                               10
+14          14              engine temp right 100
+            15                                10
+16          16                     rpm left
+17          17                         right
+                    
+18          18              clock minutes
+19          19                    hourds
+20          20                    left stopper
+37          37                    right stopper
+270                               seconds
+21                                arrow?
+22          22              fuel right bar
+70                               left bar
+
+24          24              vertical speed ind VS
+25                                             slip/bank
+26                                             ball
+27          27              adi ils vertical
+28          28                      horizontal                          
+30          30                  bank angle
+31          31                  slip ball
+32          32              hsi heading tape rot        
+33          33                  ils horizontal
+34          34                      vertical
+35          35                  required heading on waypoint
+36          36                           heading to waypoint
+            
+39          39              gear indicator left
+40          40                             front
+41          41                             right
+42          42              flap indicator left
+43          43                             right            
+44-45       44              airbrake
+            45              wing fold
+46          46              gear indicator warning
+            
+50-69       50-69           armament status panel
+            70              tailhook indicator
+            
+71          71              stick movement horizontal
+74          74                             vertical
+            
+73          73              adi ils glideslope meters vertical
+29          29                                        horizontal
+            
+81          81              artificial horizont
+83          83              gear handle
+84-86       84-91           nav panel
+99-100      99-100          hsi course set
+            
+104         104             throttle left
+105         105                      right
+                
+107         107             master warning?
+110         110             fire (main)
+111         111             distance  100
+112         112                       10
+113         113                       1
+120         120                       cover
+114         114             end start left
+115         115                       right
+116-117                     hydraulics l/r
+124-125     124-125             brakes l/r
+130         130             g/aoa critical
+            131             priwyed k goriz
+            135             izlyuch (radar on)
+            136             failure hydraulics (main) 
+            137                     autopilot (or turned off)
+            138                     SDU
+            140             zakhwat OLS (EO lock/EO on?)
+            141             zamyer daln.?
+            
+142         142             trim neutr RW/ST
+143         143                        EL
+144         144                        RN
+            145             blyzhn wykl?
+146         146             ils marker
+182                         TAS
+            148             engine emergency afterburner
+            
+
+177         177             RWR operational
+163         163             RWR sound off
+162         162             RWR launch warning
+150-157     150-157         RWR main thread direction front
+158-159     158-159                                   back
+160         160                             elevation higher
+161         161                                       below
+164-169     164-169                         type (fighter, long range sam etc)
+171-176     171-176             sec. thread type
+181                         canopy
+191-198     191-198                         direction front
+199-200     199-200                                   back
+201         201             RWR triangle?
+202-216     202-216         RWR signal strenght
+
+217         217             fuel tank 1 empty
+218         218                       2 empty
+219         219                       wing empty/1500kg remain
+220         220             ? fuel lamp
+221                         bingo
+222         222             550kg remaining
+
+223                         failure hydraulics 1
+224                                            2
+
+225         312             fuel sum 1000
+226         313                      100
+227                                  10
+
+            231             ekran otkaz
+
+            244             afterburner left
+            245                         right
+245         305             QFE 100
+246         306                 10
+247         307                 1
+
+250                         AP Panel AP lamp
+252                                  MARSZR lamp
+254                                  PG lamp
+256                                  KW lamp
+258                                  POSAD lamp
+260                                  RW lamp
+
+268                         pyeryegryew oborud.
+            272             zakhwat RLS (radar lock?)
+273                         failure generator DC
+274                                           AC
+0           275             hud cover
+278                                 fuel low
+293                                      dlyablyem left
+294                                                right
+
+
+281                         baro altitude 10
+282         298                           100
+283         297                           1000
+            283             zapri fonar (close canopy)
+            
+
+289                         radio altimeter warning lamp
+290                                         red lamp
+292                         flap button/switch
+
+
+301         301             hsi heading 100+10
+302         302                         1
+            319             fire upaz?
+            320             icing
+            321             no oxygen
+            322             shtanga wypusk?
+            323             refueling
+            324             fuel tanks full
+            330             trimmer stab. kabr. max.
+            

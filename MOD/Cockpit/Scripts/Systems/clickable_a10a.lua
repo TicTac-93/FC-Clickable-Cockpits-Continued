@@ -8,11 +8,16 @@ local gettext = require("i_18n")
 _ = gettext.translate
 
 local self = GetSelf()
-local sensor_data = get_base_data()
 local update_time_step = 0.1  -- Update will be called 10 times per second
 make_default_activity(update_time_step)
 
 local a10a_ap_mode = 1
+local a10a_ag_mode = false  -- Track whether we've entered A/G mode, enables toggling of CCRP
+
+-- Listen for user input that could change the master mode
+self:listen_command(iCommands.MM_Nav)
+self:listen_command(iCommands.MM_FI0)
+self:listen_command(iCommands.MM_Ground)
 
 ---This is called by the elements assigned in clickabledata.lua
 ---@param command integer device_command code, what was interacted with
@@ -52,9 +57,15 @@ function SetCommand(command, value)
 
   elseif command == device_commands.MM_AG then
     if value > 0 then
-      dispatch_action(nil, iCommands.MM_Ground)
+      if a10a_ag_mode then
+        dispatch_action(nil, iCommands.TGT_EOSOnOff)  -- This triggers CCRP Steering in the A-10A
+      else
+        dispatch_action(nil, iCommands.MM_Ground)
+        a10a_ag_mode = true
+      end
     else
-      dispatch_action(nil, iCommands.TGT_EOSOnOff)  -- This triggers CCRP Steering in the A-10A
+      dispatch_action(nil, iCommands.W_Cannon)
+      a10a_ag_mode = false
     end
 
   elseif command == device_commands.WEP_RIP_MODE then
@@ -80,6 +91,16 @@ function SetCommand(command, value)
         rip_sel_count = rip_sel_count - 1
       end
     end
+
+  elseif command == iCommands.MM_Nav then
+    a10a_ag_mode = false
+
+  elseif command == iCommands.MM_FI0 then
+    a10a_ag_mode = false
+
+  elseif command == iCommands.MM_Ground then
+    a10a_ag_mode = true
+
   end
 
 end
